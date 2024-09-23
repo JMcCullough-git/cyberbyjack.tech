@@ -1418,15 +1418,19 @@
   top: 8526px;
   left: 0;
   background-color: #0000004c;
-}
-
-@media (max-width: 1427px) {
-  .MOBILE.SCALE-wrapper {
+/* Hide the mobile section on larger screens */
+@media (min-width: 768px) {
+  .mobile-wrapper {
     display: none !important;
   }
 }
 
-@media (min-width: 214px) {
-  .MOBILE.MOBILE-wrapper {
+/* Show the mobile section on smaller screens */
+@media (max-width: 767px) {
+  .desktop-wrapper {
     display: none !important;
   }
+  .mobile-wrapper {
+    display: block !important;
+  }
+}
