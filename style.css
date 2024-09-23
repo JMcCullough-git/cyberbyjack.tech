@@ -1420,14 +1420,14 @@
   background-color: #0000004c;
 }
 
-@media (min-width: 768px) {
-  .mobile-wrapper {
+@media (max-width: 1427px) {
+  .MOBILE.SCALE-wrapper {
     display: none !important;
   }
 }
 
-@media (max-width: 767px) {
-  .desktop-wrapper {
-    display: block !important;
+@media (min-width: 1428px) {
+  .MOBILE.MOBILE-wrapper {
+    display: none !important;
   }
 }
