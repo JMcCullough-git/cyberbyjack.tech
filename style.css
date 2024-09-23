@@ -1430,9 +1430,3 @@
   .MOBILE.MOBILE-wrapper {
     display: none !important;
   }
-}
-body {
-  overflow-x: hidden;
-  margin: 0;
-  padding: 0;
-}
