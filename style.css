@@ -1,24 +1,14 @@
-#Ai Code
-
-html, body {
-  margin: 0;
-  padding: 0;
-  height: 100%;
-  width: 100%;
-}
-
-.MOBILE.MOBILE-wrapper {
-  height: 100vh; /* This makes it 100% of the viewport height */
-}
-
-#End of AI
 
 .MOBILE.MOBILE-wrapper {
   background-color: #000000;
   display: flex;
   flex-direction: row;
   justify-content: center;
-  width: 100%;
+  width: 100vw;
+  height: 100vh;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
 .MOBILE .MOBILE-v {
