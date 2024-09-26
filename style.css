@@ -1419,18 +1419,16 @@
   left: 0;
   background-color: #0000004c;
 /* Hide the mobile section on larger screens */
-@media (min-width: 768px) {
-  .mobile-wrapper {
+}
+
+@media (max-width: 1427px) {
+  .MOBILE.SCALE-wrapper {
     display: none !important;
   }
 }
 
-/* Show the mobile section on smaller screens */
-@media (max-width: 767px) {
-  .desktop-wrapper {
+@media (min-width: 1428px) {
+  .MOBILE.MOBILE-wrapper {
     display: none !important;
-  }
-  .mobile-wrapper {
-    display: block !important;
   }
 }
