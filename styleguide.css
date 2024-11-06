@@ -1,44 +1,36 @@
 :root {
-  --collection-1-breakpoint: 1440px;
   --collection-1-columns: 12;
-  --collection-1-margin: 96px;
-  --collection-1-gutter: 32px;
-  --collection-1-text-headers: 90px;
-  --collection-1-text-body-text: 27px;
-  --collection-1-text-navi: 24px;
-  --collection-1-text-header-PORT: 32px;
+  --collection-1-margin: 6vw;  /* 6% of viewport width */
+  --collection-1-gutter: 2vw;  /* 2% of viewport width */
+  --collection-1-text-headers: 5vw;
+  --collection-1-text-body-text: 2vw;
+  --collection-1-text-navi: 1.5vw;
+  --collection-1-text-header-PORT: 2vw;
 }
 
-/* Default (desktop mode) */
 [data-collection-1-mode="desktop"] {
-  --collection-1-breakpoint: 1440px;
-  --collection-1-columns: 12;
-  --collection-1-margin: 96px;
-  --collection-1-gutter: 32px;
-  --collection-1-text-headers: 90px;
-  --collection-1-text-body-text: 27px;
-  --collection-1-text-navi: 24px;
-  --collection-1-text-header-PORT: 32px;
+  --collection-1-margin: 6vw;
+  --collection-1-gutter: 2vw;
+  --collection-1-text-headers: 5vw;
+  --collection-1-text-body-text: 2vw;
+  --collection-1-text-navi: 1.5vw;
+  --collection-1-text-header-PORT: 2vw;
 }
 
 [data-collection-1-mode="tablet"] {
-  --collection-1-breakpoint: 768px;
-  --collection-1-columns: 8;
-  --collection-1-margin: 24px;
-  --collection-1-gutter: 24px;
-  --collection-1-text-headers: 60px;
-  --collection-1-text-body-text: 17px;
-  --collection-1-text-navi: 20px;
-  --collection-1-text-header-PORT: 28px;
+  --collection-1-margin: 5vw;
+  --collection-1-gutter: 3vw;
+  --collection-1-text-headers: 4vw;
+  --collection-1-text-body-text: 1.8vw;
+  --collection-1-text-navi: 1.5vw;
+  --collection-1-text-header-PORT: 1.5vw;
 }
 
 [data-collection-1-mode="mobile"] {
-  --collection-1-breakpoint: 390px;
-  --collection-1-columns: 4;
-  --collection-1-margin: 16px;
-  --collection-1-gutter: 16px;
-  --collection-1-text-headers: 48px;
-  --collection-1-text-body-text: 15px;
-  --collection-1-text-navi: 15px;
-  --collection-1-text-header-PORT: 24px;
+  --collection-1-margin: 4vw;
+  --collection-1-gutter: 3vw;
+  --collection-1-text-headers: 6vw;
+  --collection-1-text-body-text: 3vw;
+  --collection-1-text-navi: 2.5vw;
+  --collection-1-text-header-PORT: 2.5vw;
 }
