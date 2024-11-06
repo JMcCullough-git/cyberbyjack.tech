@@ -1,6 +1,6 @@
 :root {
   --collection-1-breakpoint: 1440px;
-  --collection-1-colomns: 12px;
+  --collection-1-columns: 12;
   --collection-1-margin: 96px;
   --collection-1-gutter: 32px;
   --collection-1-text-headers: 90px;
@@ -9,21 +9,10 @@
   --collection-1-text-header-PORT: 32px;
 }
 
-/*
-
-To enable a theme in your HTML, simply add one of the following data attributes to an HTML element, like so:
-
-<body data-collection-1-mode="desktop">
-    <!-- the rest of your content -->
-</body>
-
-You can apply the theme on any DOM node, not just the `body`
-
-*/
-
+/* Default (desktop mode) */
 [data-collection-1-mode="desktop"] {
   --collection-1-breakpoint: 1440px;
-  --collection-1-colomns: 12px;
+  --collection-1-columns: 12;
   --collection-1-margin: 96px;
   --collection-1-gutter: 32px;
   --collection-1-text-headers: 90px;
@@ -34,7 +23,7 @@ You can apply the theme on any DOM node, not just the `body`
 
 [data-collection-1-mode="tablet"] {
   --collection-1-breakpoint: 768px;
-  --collection-1-colomns: 8px;
+  --collection-1-columns: 8;
   --collection-1-margin: 24px;
   --collection-1-gutter: 24px;
   --collection-1-text-headers: 60px;
@@ -45,7 +34,7 @@ You can apply the theme on any DOM node, not just the `body`
 
 [data-collection-1-mode="mobile"] {
   --collection-1-breakpoint: 390px;
-  --collection-1-colomns: 4px;
+  --collection-1-columns: 4;
   --collection-1-margin: 16px;
   --collection-1-gutter: 16px;
   --collection-1-text-headers: 48px;
