@@ -139,6 +139,24 @@
         </div>
       </div>
     </div>
+    <script>
+function setResponsiveMode() {
+  const width = window.innerWidth;
+  const body = document.body;
+
+  if (width >= 1440) {
+    body.setAttribute("data-collection-1-mode", "desktop");
+  } else if (width >= 768) {
+    body.setAttribute("data-collection-1-mode", "tablet");
+  } else {
+    body.setAttribute("data-collection-1-mode", "mobile");
+  }
+}
+
+// Set mode on page load and resize
+window.addEventListener("load", setResponsiveMode);
+window.addEventListener("resize", setResponsiveMode);
+</script>
   </body>
 </html>
  
