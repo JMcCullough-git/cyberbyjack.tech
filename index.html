@@ -1,364 +1,105 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Jack McCullough Portfolio</title>
-
-    <!-- Optional font (safe to remove if you want zero external deps) -->
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
-      rel="stylesheet"
-    />
-
-    <link rel="icon" type="image/png" href="img/favicon-32x32.png" sizes="32x32" />
-    <link rel="icon" type="image/png" href="img/favicon-16x16.png" sizes="16x16" />
-
-    <link rel="stylesheet" href="style.css" />
-  </head>
-
-  <body>
-    <!-- Background layers (subtle like your references) -->
-    <div class="bg">
-      <div class="bg__grid"></div>
-      <div class="bg__glow bg__glow--a"></div>
-      <div class="bg__glow bg__glow--b"></div>
-    </div>
-
-    <header class="site-header" id="top">
-      <div class="container header-inner">
-        <a class="brand" href="#top" aria-label="Go to top">
-          <span class="brand__mark">&lt;/&gt;</span>
-          <span class="brand__text">Jack McCullough</span>
-        </a>
-
-        <button class="nav-toggle" aria-label="Open menu" aria-expanded="false" aria-controls="site-nav">
-          <span></span><span></span><span></span>
-        </button>
-
-        <nav class="nav" id="site-nav">
-          <a href="#about">About</a>
-          <a href="#skills">Skills</a>
-          <a href="#projects">Projects</a>
-          <a href="#contact">Contact</a>
-          <a class="nav__pill" href="https://drive.google.com/file/d/1Wg8I0NQdbi7fz-ccW-okq54LybmJH0As/view?usp=sharing" target="_blank" rel="noopener noreferrer">
-            Resume
-          </a>
-        </nav>
-      </div>
-    </header>
-
-    <main>
-      <!-- HERO -->
-      <section class="hero">
-        <div class="container hero-grid">
-          <div class="hero-copy">
-            <p class="eyebrow">
-              Hello<span class="dot">.</span>
-            </p>
-
-            <h1 class="hero-title">
-              I’m <span class="accent">Jack</span><br />
-              <span class="muted">IT Specialist &amp; Developer</span>
-            </h1>
-
-            <p class="hero-subtitle">
-              I build clean, reliable solutions—automation, web tools, and practical IT improvements that make teams faster.
-            </p>
-
-            <div class="hero-cta">
-              <a class="btn btn--primary" href="#contact">Got a project?</a>
-              <a
-                class="btn btn--ghost"
-                href="https://drive.google.com/file/d/1Wg8I0NQdbi7fz-ccW-okq54LybmJH0As/view?usp=sharing"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                My resume
-              </a>
-            </div>
-
-            <div class="social">
-              <a class="social__link" href="mailto:mcculloughjack7@gmail.com" aria-label="Email">Email</a>
-              <a
-                class="social__link"
-                href="https://www.linkedin.com/in/jack-mccullough-687657312/"
-                target="_blank"
-                rel="noopener noreferrer"
-                aria-label="LinkedIn"
-              >
-                LinkedIn
-              </a>
-              <a
-                class="social__link"
-                href="https://github.com/JMcCullough-git"
-                target="_blank"
-                rel="noopener noreferrer"
-                aria-label="GitHub"
-              >
-                GitHub
-              </a>
-            </div>
-
-            <!-- Tech strip like the reference -->
-            <div class="tech-strip" aria-label="Tech stack">
-              <span>HTML</span>
-              <span>CSS</span>
-              <span>JavaScript</span>
-              <span>PowerShell</span>
-              <span>Git</span>
-              <span>Microsoft 365</span>
-            </div>
-          </div>
-
-          <div class="hero-media" aria-label="Profile image">
-            <div class="portrait">
-              <!-- Use your existing image path -->
-              <img src="img/portfolio-pic-1.png" alt="Jack McCullough" />
-            </div>
-            <div class="hero-arrows" aria-hidden="true">
-              <span class="chev chev--l"></span>
-              <span class="chev chev--r"></span>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <!-- ABOUT -->
-      <section class="section" id="about">
-        <div class="container">
-          <div class="section-head">
-            <h2>About me</h2>
-            <p>
-              I’m Jack—based in Texas—focused on practical IT support, automation, and building simple, dependable tools.
-              I enjoy problem-solving, documentation, and making systems easier to use.
-            </p>
-          </div>
-
-          <div class="about-grid">
-            <div class="card card--soft">
-              <h3>What I do</h3>
-              <ul class="bullets">
-                <li>IT support & troubleshooting (Windows / macOS)</li>
-                <li>Automation & scripting (PowerShell, workflows)</li>
-                <li>Web tools & UI (HTML/CSS/JS, Figma)</li>
-                <li>Documentation that people actually follow</li>
-              </ul>
-            </div>
-
-            <div class="stats">
-              <div class="stat">
-                <div class="stat__num">120<span class="plus">+</span></div>
-                <div class="stat__label">Tickets / fixes shipped</div>
-              </div>
-              <div class="stat">
-                <div class="stat__num">95<span class="plus">%</span></div>
-                <div class="stat__label">User satisfaction goal</div>
-              </div>
-              <div class="stat">
-                <div class="stat__num">2<span class="plus">+</span></div>
-                <div class="stat__label">Years hands-on IT work</div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <!-- SKILLS -->
-      <section class="section" id="skills">
-        <div class="container">
-          <div class="section-head">
-            <h2>My top skills</h2>
-            <p>Built around what I actually use day-to-day: support, automation, and clean delivery.</p>
-          </div>
-
-          <div class="cards">
-            <article class="card">
-              <div class="card__icon">🧠</div>
-              <h3>IT Troubleshooting</h3>
-              <p>
-                Methodical diagnostics, root-cause thinking, and clear user communication. Comfortable with device + app issues.
-              </p>
-            </article>
-
-            <article class="card">
-              <div class="card__icon">🛠️</div>
-              <h3>Hardware &amp; OS</h3>
-              <p>
-                Experience with workstation setup, repair, and OS configuration—Windows and macOS basics included.
-              </p>
-            </article>
-
-            <article class="card">
-              <div class="card__icon">⚙️</div>
-              <h3>Automation &amp; Scripting</h3>
-              <p>
-                PowerShell scripts and repeatable workflows that reduce time-on-task and eliminate common mistakes.
-              </p>
-            </article>
-
-            <article class="card">
-              <div class="card__icon">🌐</div>
-              <h3>Web &amp; UI</h3>
-              <p>
-                Clean front-end layouts, simple components, and prototypes (Figma → HTML/CSS/JS).
-              </p>
-            </article>
-
-            <article class="card">
-              <div class="card__icon">📡</div>
-              <h3>Networking Fundamentals</h3>
-              <p>
-                Solid basics for diagnosing connectivity, DNS/VPN issues, and understanding how systems talk to each other.
-              </p>
-              <a class="card__link" href="https://www.credly.com/users/jackson-mccullough.9b591b24" target="_blank" rel="noopener noreferrer">
-                View certifications →
-              </a>
-            </article>
-
-            <article class="card">
-              <div class="card__icon">🧾</div>
-              <h3>Documentation</h3>
-              <p>
-                Short guides, templates, and “IT shortcuts” style how-tos that help teams self-serve.
-              </p>
-            </article>
-          </div>
-        </div>
-      </section>
-
-      <!-- PROJECTS -->
-      <section class="section" id="projects">
-        <div class="container">
-          <div class="section-head">
-            <h2>Projects</h2>
-            <p>Swap these out with your real projects. The layout matches the reference “cards + tags” vibe.</p>
-          </div>
-
-          <div class="projects">
-            <article class="project">
-              <div class="project__top">
-                <h3>IT Shortcuts Hub</h3>
-                <div class="tags">
-                  <span>SharePoint</span><span>Documentation</span><span>M365</span>
-                </div>
-              </div>
-              <p>
-                A simple internal portal for quick guides, video walkthroughs, and common fixes—built for speed and clarity.
-              </p>
-              <div class="project__links">
-                <a class="link" href="#" aria-label="Project link">View →</a>
-                <a class="link" href="#" aria-label="Source code link">Code →</a>
-              </div>
-            </article>
-
-            <article class="project">
-              <div class="project__top">
-                <h3>Automation Scripts Pack</h3>
-                <div class="tags">
-                  <span>PowerShell</span><span>Windows</span><span>IT Ops</span>
-                </div>
-              </div>
-              <p>
-                A set of repeatable scripts for common tasks (mapping drives, collecting logs, standardizing configs).
-              </p>
-              <div class="project__links">
-                <a class="link" href="#" aria-label="Project link">View →</a>
-                <a class="link" href="#" aria-label="Source code link">Code →</a>
-              </div>
-            </article>
-
-            <article class="project">
-              <div class="project__top">
-                <h3>Portfolio Website</h3>
-                <div class="tags">
-                  <span>HTML</span><span>CSS</span><span>Responsive</span>
-                </div>
-              </div>
-              <p>
-                This site: dark theme, bold hero, clean sections, and mobile-first navigation.
-              </p>
-              <div class="project__links">
-                <a class="link" href="#top">Live →</a>
-                <a class="link" href="https://github.com/JMcCullough-git" target="_blank" rel="noopener noreferrer">GitHub →</a>
-              </div>
-            </article>
-          </div>
-        </div>
-      </section>
-
-      <!-- CONTACT -->
-      <section class="section" id="contact">
-        <div class="container">
-          <div class="contact-card">
-            <div>
-              <h2>Contact me</h2>
-              <p>
-                Want to collaborate or need a hand with an IT/workflow problem? Send a quick message and I’ll follow up.
-              </p>
-              <div class="contact-actions">
-                <a class="btn btn--primary" href="mailto:mcculloughjack7@gmail.com">Email me</a>
-                <a
-                  class="btn btn--ghost"
-                  href="https://www.linkedin.com/in/jack-mccullough-687657312/"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  Message on LinkedIn
-                </a>
-              </div>
-            </div>
-
-            <div class="contact-info">
-              <div class="contact-row">
-                <span class="label">Email</span>
-                <a href="mailto:mcculloughjack7@gmail.com">mcculloughjack7@gmail.com</a>
-              </div>
-              <div class="contact-row">
-                <span class="label">LinkedIn</span>
-                <a href="https://www.linkedin.com/in/jack-mccullough-687657312/" target="_blank" rel="noopener noreferrer">
-                  jack-mccullough
-                </a>
-              </div>
-              <div class="contact-row">
-                <span class="label">GitHub</span>
-                <a href="https://github.com/JMcCullough-git" target="_blank" rel="noopener noreferrer">
-                  JMcCullough-git
-                </a>
-              </div>
-            </div>
-          </div>
-
-          <footer class="footer">
-            <span>© <span id="year"></span> Jack McCullough</span>
-            <a class="to-top" href="#top">Back to top ↑</a>
-          </footer>
-        </div>
-      </section>
-    </main>
-
-    <script>
-      // Mobile nav toggle
-      const toggle = document.querySelector(".nav-toggle");
-      const nav = document.querySelector(".nav");
-
-      toggle.addEventListener("click", () => {
-        const open = nav.classList.toggle("nav--open");
-        toggle.setAttribute("aria-expanded", String(open));
-      });
-
-      // Footer year
-      document.getElementById("year").textContent = new Date().getFullYear();
-
-      // Close menu on link click (mobile)
-      nav.querySelectorAll("a").forEach((a) => {
-        a.addEventListener("click", () => {
-          nav.classList.remove("nav--open");
-          toggle.setAttribute("aria-expanded", "false");
-        });
-      });
-    </script>
-  </body>
-</html>
+diff --git a/index.html b/index.html
+index a071324d7c8e21ed2e245aaff0e6c29a76a77be1..1d5d30b0ee3fa313d33e60fb484fd5aac90bf89a 100644
+--- a/index.html
++++ b/index.html
+@@ -1,44 +1,44 @@
+ <!DOCTYPE html>
+ <html lang="en">
+   <head>
+     <meta charset="UTF-8" />
+     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+     <title>Jack McCullough Portfolio</title>
+ 
+     <!-- Optional font (safe to remove if you want zero external deps) -->
+     <link rel="preconnect" href="https://fonts.googleapis.com" />
+     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+     <link
+       href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+       rel="stylesheet"
+     />
+ 
+-    <link rel="icon" type="image/png" href="img/favicon-32x32.png" sizes="32x32" />
+-    <link rel="icon" type="image/png" href="img/favicon-16x16.png" sizes="16x16" />
++    <link rel="icon" type="image/png" href="/img/favicon-32x32.png" sizes="32x32" />
++    <link rel="icon" type="image/png" href="/img/favicon-16x16.png" sizes="16x16" />
+ 
+-    <link rel="stylesheet" href="style.css" />
++    <link rel="stylesheet" href="/style.css" />
+   </head>
+ 
+   <body>
+     <!-- Background layers (subtle like your references) -->
+     <div class="bg">
+       <div class="bg__grid"></div>
+       <div class="bg__glow bg__glow--a"></div>
+       <div class="bg__glow bg__glow--b"></div>
+     </div>
+ 
+     <header class="site-header" id="top">
+       <div class="container header-inner">
+         <a class="brand" href="#top" aria-label="Go to top">
+           <span class="brand__mark">&lt;/&gt;</span>
+           <span class="brand__text">Jack McCullough</span>
+         </a>
+ 
+         <button class="nav-toggle" aria-label="Open menu" aria-expanded="false" aria-controls="site-nav">
+           <span></span><span></span><span></span>
+         </button>
+ 
+         <nav class="nav" id="site-nav">
+           <a href="#about">About</a>
+           <a href="#skills">Skills</a>
+           <a href="#projects">Projects</a>
+@@ -94,51 +94,51 @@
+               <a
+                 class="social__link"
+                 href="https://github.com/JMcCullough-git"
+                 target="_blank"
+                 rel="noopener noreferrer"
+                 aria-label="GitHub"
+               >
+                 GitHub
+               </a>
+             </div>
+ 
+             <!-- Tech strip like the reference -->
+             <div class="tech-strip" aria-label="Tech stack">
+               <span>HTML</span>
+               <span>CSS</span>
+               <span>JavaScript</span>
+               <span>PowerShell</span>
+               <span>Git</span>
+               <span>Microsoft 365</span>
+             </div>
+           </div>
+ 
+           <div class="hero-media" aria-label="Profile image">
+             <div class="portrait">
+               <!-- Use your existing image path -->
+-              <img src="img/portfolio-pic-1.png" alt="Jack McCullough" />
++              <img src="/img/portfolio-pic-1.png" alt="Jack McCullough" />
+             </div>
+             <div class="hero-arrows" aria-hidden="true">
+               <span class="chev chev--l"></span>
+               <span class="chev chev--r"></span>
+             </div>
+           </div>
+         </div>
+       </section>
+ 
+       <!-- ABOUT -->
+       <section class="section" id="about">
+         <div class="container">
+           <div class="section-head">
+             <h2>About me</h2>
+             <p>
+               I’m Jack—based in Texas—focused on practical IT support, automation, and building simple, dependable tools.
+               I enjoy problem-solving, documentation, and making systems easier to use.
+             </p>
+           </div>
+ 
+           <div class="about-grid">
+             <div class="card card--soft">
+               <h3>What I do</h3>
+               <ul class="bullets">
+                 <li>IT support & troubleshooting (Windows / macOS)</li>
