@@ -17,7 +17,14 @@
 
   --container: 1120px;
 }
+:root {
+  /* If your styleguide vars are present, these become active */
+  --container: 1120px;
+}
 
+body[data-collection-1-mode] .container {
+  width: min(var(--container), calc(100% - (var(--collection-1-margin) * 2)));
+}
 * { box-sizing: border-box; }
 html { scroll-behavior: smooth; }
 body {
