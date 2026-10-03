@@ -1,15 +1,18 @@
 # The Cyber Seal Report
 
-Source for [cybersealreport.com](https://cybersealreport.com): a static [Hugo](https://gohugo.io) site deployed by Cloudflare Pages on every push to `main`.
+Source for [cybersealreport.com](https://cybersealreport.com): a static [Hugo](https://gohugo.io) site deployed as a Cloudflare Worker (static assets) on every push to `main`.
 
-## Cloudflare Pages build settings
+## Cloudflare build settings
+
+Workers & Pages → **cyberseal** → Settings → Build:
 
 | Setting | Value |
 |---|---|
-| Framework preset | Hugo |
 | Build command | `hugo --minify` |
-| Build output directory | `public` |
-| Environment variable | `HUGO_VERSION` = `0.167.0` |
+| Deploy command | `npx wrangler deploy` |
+| Build variable | `HUGO_VERSION` = `0.167.0` (under **Build** variables, not the Worker's runtime variables) |
+
+`wrangler.jsonc` tells Wrangler to upload the `public/` folder Hugo produces. Keep the `name` in it matching the Worker's name in Cloudflare.
 
 The site needs Hugo **extended, 0.146 or newer** (it uses the `layouts/_partials` folder layout). If `HUGO_VERSION` isn't set, Cloudflare falls back to its default Hugo, which works but is older.
 
@@ -76,5 +79,5 @@ The About page text lives in `content/about.md`; the portrait is `static/images/
 ## Notes
 
 - Fonts (Bricolage Grotesque, Public Sans, JetBrains Mono) are self-hosted in `static/fonts/` under the SIL Open Font License, so the site makes no third-party requests.
-- `static/_headers` sets a strict Content Security Policy and other security headers on Cloudflare Pages. If you add third-party embeds or scripts later, update the CSP or they'll be blocked.
+- `static/_headers` sets a strict Content Security Policy and other security headers (Cloudflare applies it to the static assets). If you add third-party embeds or scripts later, update the CSP or they'll be blocked.
 - Light theme only; dark mode wasn't part of the design.
