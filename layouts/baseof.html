@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="{{ site.Language.Locale | default "en" }}">
+<head>
+  {{- partial "head.html" . }}
+</head>
+<body>
+<a class="skip-link" href="#content">Skip to content</a>
+<div class="page">
+  {{- partial "header.html" . }}
+  {{- block "main" . }}{{ end }}
+  {{- partial "footer.html" . }}
+</div>
+{{- if .Store.Get "hasCode" }}
+<script src="{{ "js/copy-code.js" | relURL }}" defer></script>
+{{- end }}
+</body>
+</html>

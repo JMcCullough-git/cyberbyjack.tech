@@ -1,0 +1,43 @@
+{{ define "main" }}
+<main class="main main--wide main--about" id="content">
+  <div class="about">
+    <div class="about__side">
+      <div class="about__portrait img-slot">
+        {{- with .Params.portrait }}
+        <img class="img-fill" src="{{ . | relURL }}" alt="{{ $.Params.portraitAlt | default site.Params.author }}">
+        {{- end }}
+      </div>
+      {{- if or site.Params.contactEmail site.Params.pgpFingerprint }}
+      <div class="about__contact">
+        <span class="kicker kicker--muted">Contact</span>
+        {{- with site.Params.contactEmail }}<a href="mailto:{{ . }}">{{ . }}</a>{{ end }}
+        {{- with site.Params.pgpFingerprint }}<span class="about__pgp">PGP {{ . }}</span>{{ end }}
+      </div>
+      {{- end }}
+    </div>
+
+    <div class="about__main">
+      <span class="kicker kicker--lg">About Me</span>
+      <h1 class="page-title">{{ .Params.heading | default site.Params.author }}</h1>
+      {{- with .Params.lead }}<div class="about__lead">{{ . | markdownify }}</div>{{ end }}
+      <div class="about__body">
+        {{ .Content }}
+      </div>
+
+      {{- with site.Params.topics }}
+      <h2 class="about__h2">What I cover</h2>
+      <div class="tags">
+        {{- range . }}
+          {{- with site.GetPage (printf "/tags/%s" (. | urlize)) }}
+          <a class="tag" href="{{ .RelPermalink }}">{{ .LinkTitle }}</a>
+          {{- else }}
+          <span class="tag">{{ . }}</span>
+          {{- end }}
+        {{- end }}
+      </div>
+      {{- end }}
+      <p class="disclaimer">{{ site.Params.disclaimer }}</p>
+    </div>
+  </div>
+</main>
+{{ end }}

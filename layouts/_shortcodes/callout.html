@@ -1,0 +1,6 @@
+{{- /* {{< callout type="note" >}}…{{< /callout >}}  or  type="disclosure". Optional label="…" overrides the heading. */ -}}
+{{- $type := .Get "type" | default "note" }}
+<aside class="callout callout-{{ $type }}">
+  <span class="callout-label">{{ .Get "label" | default ($type | humanize) }}</span>
+  <div class="callout-body">{{ .Inner | .Page.RenderString (dict "display" "block") }}</div>
+</aside>

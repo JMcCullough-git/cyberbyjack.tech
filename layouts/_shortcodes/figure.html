@@ -1,0 +1,24 @@
+{{- /*
+  Evidence figure. Drop the image into the post's folder, then:
+  {{< figure src="evidence-1.png" caption="What this shows." num="1" alt="Optional alt text" >}}
+  Images in the post folder are resized and converted to WebP automatically.
+*/ -}}
+{{- $src := .Get "src" }}
+{{- $caption := .Get "caption" }}
+{{- $alt := .Get "alt" | default ($caption | plainify) }}
+{{- $img := .Page.Resources.GetMatch $src }}
+<figure class="evidence">
+  {{- with $img }}
+    {{- if and (eq .MediaType.MainType "image") (ne .MediaType.SubType "svg") (ne .MediaType.SubType "gif") }}
+      {{- $r := .Resize "1360x webp q82" }}
+      <a href="{{ .RelPermalink }}"><img src="{{ $r.RelPermalink }}" width="{{ $r.Width }}" height="{{ $r.Height }}" alt="{{ $alt }}" loading="lazy"></a>
+    {{- else }}
+      <img src="{{ .RelPermalink }}" alt="{{ $alt }}" loading="lazy">
+    {{- end }}
+  {{- else }}
+    <img src="{{ $src }}" alt="{{ $alt }}" loading="lazy">
+  {{- end }}
+  {{- with $caption }}
+  <figcaption>{{ with $.Get "num" }}<span class="fig-num">Fig. {{ . }}</span>{{ end }}{{ . | $.Page.RenderString }}</figcaption>
+  {{- end }}
+</figure>

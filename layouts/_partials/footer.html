@@ -1,0 +1,12 @@
+<footer class="site-footer">
+  <div class="site-footer__inner">
+    <span>© {{ now.Year }} {{ site.Copyright }}</span>
+    <div class="site-footer__links">
+      {{- range site.Params.footerLinks }}
+        {{- if .url }}
+        <a href="{{ .url | relURL }}">{{ .name }}</a>
+        {{- end }}
+      {{- end }}
+    </div>
+  </div>
+</footer>

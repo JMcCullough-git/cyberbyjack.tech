@@ -1,0 +1,21 @@
+{{ define "main" }}
+{{- /* Archive (not in the design): every article grouped by year, built from the list styles. */ -}}
+{{- $posts := where site.RegularPages "Section" "posts" }}
+<main class="main main--wide main--list" id="content">
+  <h1 class="page-title">{{ .Title }}</h1>
+  {{- with .Description }}<p class="page-intro">{{ . }}</p>{{ end }}
+  {{- range $posts.GroupByDate "2006" }}
+  <h2 class="archive-year">{{ .Key }}</h2>
+  <ul class="archive-list">
+    {{- range .Pages }}
+    <li>
+      <span class="meta__date"><time datetime="{{ .Date.Format "2006-01-02" }}">{{ .Date.Format "Jan 2" }}</time></span>
+      <a href="{{ .RelPermalink }}">{{ .Title }}</a>
+    </li>
+    {{- end }}
+  </ul>
+  {{- else }}
+  <p class="empty-note">Nothing in the archive yet.</p>
+  {{- end }}
+</main>
+{{ end }}

@@ -1,0 +1,13 @@
+{{- $img := partial "cover.html" (dict "page" . "spec" "800x450 webp q80 Center") }}
+<article class="card">
+  <a class="card__media img-slot" href="{{ .RelPermalink }}" tabindex="-1" aria-hidden="true">
+    {{- with $img }}
+    <img class="img-fill" src="{{ .RelPermalink }}" width="{{ .Width }}" height="{{ .Height }}" alt="" loading="lazy">
+    {{- end }}
+  </a>
+  <div class="card__body">
+    {{- with index (.Params.tags | default slice) 0 }}<span class="kicker">{{ . }}</span>{{ end }}
+    <h3 class="card__title"><a href="{{ .RelPermalink }}">{{ .Title }}</a></h3>
+    {{- partial "meta.html" (dict "page" .) }}
+  </div>
+</article>

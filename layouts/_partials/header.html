@@ -1,0 +1,27 @@
+{{- $current := . }}
+{{- $about := site.GetPage "/about" }}
+<header class="site-header">
+  <nav class="site-nav" aria-label="Main">
+    <a class="brand" href="{{ "/" | relURL }}">
+      <span class="brand__mark" role="img" aria-label="Cyber Seal"></span>
+      <span class="brand__word">Cyber Seal</span>
+    </a>
+    <div class="nav-links">
+      {{- range site.Menus.main }}
+        {{- $active := false }}
+        {{- with .Page }}
+          {{- if eq .RelPermalink $current.RelPermalink }}{{ $active = true }}{{ end }}
+        {{- else }}
+          {{- if eq (.URL | relURL) $current.RelPermalink }}{{ $active = true }}{{ end }}
+        {{- end }}
+        <a href="{{ .URL | relURL }}"{{ if $active }} class="is-active" aria-current="page"{{ end }}>{{ .Name }}</a>
+      {{- end }}
+    </div>
+    <div class="nav-actions">
+      {{- with $about }}
+      <a class="btn btn--secondary{{ if eq .RelPermalink $current.RelPermalink }} is-active{{ end }}" href="{{ .RelPermalink }}"{{ if eq .RelPermalink $current.RelPermalink }} aria-current="page"{{ end }}>About Me</a>
+      {{- end }}
+      <a class="btn btn--primary" href="{{ "/#newsletter" | relURL }}">Subscribe</a>
+    </div>
+  </nav>
+</header>

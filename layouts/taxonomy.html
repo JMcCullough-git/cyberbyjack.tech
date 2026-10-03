@@ -1,0 +1,14 @@
+{{ define "main" }}
+{{- /* /tags/ index (not in the design): every tag as a chip. */ -}}
+<main class="main main--wide main--list" id="content">
+  <h1 class="page-title">Tags</h1>
+  <p class="page-intro">Browse every write-up by topic.</p>
+  <nav class="chips" aria-label="All tags">
+    {{- range .Data.Terms.Alphabetical }}
+    <a class="chip" href="{{ .Page.RelPermalink }}">{{ .Page.Title }} · {{ .Count }}</a>
+    {{- else }}
+    <p class="empty-note">No tags yet.</p>
+    {{- end }}
+  </nav>
+</main>
+{{ end }}

@@ -1,0 +1,73 @@
+baseURL = "https://cybersealreport.com/"
+locale = "en-US"
+title = "The Cyber Seal Report"
+copyright = "Cyber Seal Report"
+enableRobotsTXT = true
+
+[pagination]
+  pagerSize = 10
+
+[taxonomies]
+  tag = "tags"
+
+[permalinks]
+  [permalinks.page]
+    posts = "/posts/:contentbasename/"
+
+[markup]
+  [markup.highlight]
+    noClasses = false
+    codeFences = true
+    guessSyntax = false
+  [markup.goldmark.renderer]
+    unsafe = false
+
+[outputs]
+  home = ["HTML", "RSS"]
+  section = ["HTML", "RSS"]
+
+[params]
+  author = "Jack McCullough"
+  description = "Independent reporting, technical analysis, and field notes on the stories behind cybersecurity."
+  disclaimer = "Every article is human-written, not AI-generated."
+
+  # About page contact block. Leave a value empty ("") to hide that line.
+  contactEmail = "mcculloughjack7@gmail.com"
+  pgpFingerprint = ""
+
+  # Topic tags shown under "What I cover" on the About page.
+  topics = ["Threat Research", "Vulnerabilities", "Investigations", "Tooling", "Data Breaches", "Phishing & Scams", "Social Engineering", "Privacy", "OSINT", "Malware"]
+
+  [params.newsletter]
+    # Paste your newsletter provider's form URL here (e.g. Buttondown, Kit).
+    # While it's empty, the signup card shows as "coming soon" and can't be submitted.
+    action = ""
+    # Name of the email field the provider expects.
+    field = "email"
+    headline = "New research, every other Tuesday."
+    finePrint = "No tracking pixels. Unsubscribe anytime."
+
+  # Footer links. Leave url empty to hide a link.
+  [[params.footerLinks]]
+    name = "RSS"
+    url = "/index.xml"
+  [[params.footerLinks]]
+    name = "Disclosure policy"
+    url = ""
+  [[params.footerLinks]]
+    name = "PGP key"
+    url = ""
+
+[menus]
+  [[menus.main]]
+    name = "Articles"
+    pageRef = "/posts"
+    weight = 10
+  [[menus.main]]
+    name = "Investigations"
+    url = "/tags/investigations/"
+    weight = 20
+  [[menus.main]]
+    name = "Archive"
+    pageRef = "/archive"
+    weight = 30

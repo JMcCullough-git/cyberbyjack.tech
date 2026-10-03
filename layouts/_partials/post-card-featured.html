@@ -1,0 +1,19 @@
+{{- $img := partial "cover.html" (dict "page" . "spec" "1600x900 webp q80 Center") }}
+<article class="home-main">
+  <a class="featured__media" href="{{ .RelPermalink }}">
+    {{- with $img }}
+    <img class="img-fill" src="{{ .RelPermalink }}" width="{{ .Width }}" height="{{ .Height }}" alt="{{ $.Params.coverAlt }}" fetchpriority="high">
+    {{- end }}
+    <div class="featured__overlay">
+      {{- with index (.Params.tags | default slice) 0 }}<span class="tag tag--primary">{{ . }}</span>{{ end }}
+      <h2 class="featured__title">{{ .Title }}</h2>
+    </div>
+  </a>
+  <div class="featured__foot">
+    <div class="meta">
+      <span class="meta__author">{{ .Params.author | default site.Params.author }}</span>
+      <span class="meta__date"><time datetime="{{ .Date.Format "2006-01-02" }}">{{ .Date.Format "Jan 2, 2006" }}</time> · {{ .ReadingTime }} min read</span>
+    </div>
+    <a class="read-more" href="{{ .RelPermalink }}">Read article →</a>
+  </div>
+</article>
