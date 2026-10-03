@@ -1,0 +1,20 @@
+{{- $n := site.Params.newsletter }}
+<div class="newsletter" id="newsletter">
+  <span class="kicker">Newsletter</span>
+  <h3 class="newsletter__title">{{ $n.headline }}</h3>
+  {{- if $n.action }}
+  <form class="newsletter__form" action="{{ $n.action }}" method="post" target="_blank">
+    <label class="visually-hidden" for="newsletter-email">Email address</label>
+    <input class="newsletter__input" id="newsletter-email" type="email" name="{{ $n.field | default "email" }}" required placeholder="you@company.com" autocomplete="email">
+    <button class="newsletter__button" type="submit">Subscribe</button>
+  </form>
+  <p class="newsletter__fine">{{ $n.finePrint }}</p>
+  {{- else }}
+  <form class="newsletter__form" aria-describedby="newsletter-soon">
+    <label class="visually-hidden" for="newsletter-email">Email address</label>
+    <input class="newsletter__input" id="newsletter-email" type="email" placeholder="you@company.com" disabled>
+    <button class="newsletter__button" type="button" disabled>Subscribe</button>
+  </form>
+  <p class="newsletter__fine" id="newsletter-soon">Signups open soon. Follow along with <a href="{{ "index.xml" | relURL }}">RSS</a> in the meantime.</p>
+  {{- end }}
+</div>

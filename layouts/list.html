@@ -1,0 +1,41 @@
+{{ define "main" }}
+{{- /* Used for /posts/ and every tag page (/tags/<name>/). */ -}}
+{{- $postsSection := site.GetPage "/posts" }}
+{{- $isTerm := eq .Kind "term" }}
+<main class="main main--wide main--list" id="content">
+  <h1 class="page-title">{{ .Title }}</h1>
+  {{- if $isTerm }}
+  <p class="page-intro">{{ len .Pages }} {{ cond (eq (len .Pages) 1) "article" "articles" }} tagged {{ .Title }}.</p>
+  {{- else }}
+    {{- with .Description }}<p class="page-intro">{{ . }}</p>{{ end }}
+  {{- end }}
+
+  {{- $tags := site.Taxonomies.tags.ByCount }}
+  {{- if $tags }}
+  <nav class="chips" aria-label="Filter by tag">
+    <a class="chip{{ if not $isTerm }} is-active{{ end }}" href="{{ $postsSection.RelPermalink }}"{{ if not $isTerm }} aria-current="page"{{ end }}>All</a>
+    {{- range first 8 $tags }}
+      {{- $active := eq .Page.RelPermalink $.RelPermalink }}
+      <a class="chip{{ if $active }} is-active{{ end }}" href="{{ .Page.RelPermalink }}"{{ if $active }} aria-current="page"{{ end }}>{{ .Page.Title }}</a>
+    {{- end }}
+  </nav>
+  {{- end }}
+
+  {{- $pager := .Paginate .Pages }}
+  <div class="rows">
+    {{- range $pager.Pages }}
+      {{- partial "post-row.html" . }}
+    {{- else }}
+      <p class="empty-note">No articles here yet.</p>
+    {{- end }}
+  </div>
+
+  {{- if gt $pager.TotalPages 1 }}
+  <nav class="pager" aria-label="Pagination">
+    {{- with $pager.Prev }}<a href="{{ .URL }}">← Newer</a>{{ else }}<span class="pager__disabled">← Newer</span>{{ end }}
+    <span class="pager__count">Page {{ $pager.PageNumber }} of {{ $pager.TotalPages }}</span>
+    {{- with $pager.Next }}<a href="{{ .URL }}">Older →</a>{{ else }}<span class="pager__disabled">Older →</span>{{ end }}
+  </nav>
+  {{- end }}
+</main>
+{{ end }}

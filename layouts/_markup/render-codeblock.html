@@ -1,0 +1,16 @@
+{{- /*
+  Fenced code blocks get the dark bar with a filename and a Copy button.
+  ```bash {filename="check_build.sh"}
+  ...
+  ```
+  With no filename, the bar shows the language (or just the Copy button).
+*/ -}}
+{{- .Page.Store.Set "hasCode" true }}
+{{- $label := .Attributes.filename | default .Type }}
+<div class="code">
+  <div class="code__bar">
+    {{- with $label }}<span class="code__name">{{ . }}</span>{{ end }}
+    <button class="code__copy" type="button">Copy</button>
+  </div>
+  {{ transform.Highlight .Inner (.Type | default "text") .Options }}
+</div>

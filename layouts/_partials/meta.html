@@ -1,0 +1,6 @@
+{{- /* Author · date · read time. Pass (dict "page" . "long" true) for "14 min read" and the larger size. */ -}}
+{{- $p := .page -}}
+<div class="meta{{ if .long }} meta--lg{{ end }}">
+  <span class="meta__author">{{ $p.Params.author | default site.Params.author }}</span>
+  <span class="meta__date"><time datetime="{{ $p.Date.Format "2006-01-02" }}">{{ $p.Date.Format "Jan 2, 2006" }}</time> · {{ $p.ReadingTime }} min{{ if .long }} read{{ end }}</span>
+</div>

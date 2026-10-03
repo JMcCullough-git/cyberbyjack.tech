@@ -1,0 +1,16 @@
+{{- $img := partial "cover.html" (dict "page" . "spec" "640x400 webp q80 Center") }}
+<a class="row" href="{{ .RelPermalink }}">
+  <div class="row__media">
+    {{- with $img }}
+    <img class="img-fill" src="{{ .RelPermalink }}" width="{{ .Width }}" height="{{ .Height }}" alt="" loading="lazy">
+    {{- end }}
+  </div>
+  <div class="row__body">
+    {{- with index (.Params.tags | default slice) 0 }}<span class="kicker">{{ . }}</span>{{ end }}
+    <h2 class="row__title">{{ .Title }}</h2>
+    {{- with .Params.excerpt | default .Params.dek | default .Summary }}
+    <p class="row__excerpt">{{ . | plainify | truncate 220 }}</p>
+    {{- end }}
+    {{- partial "meta.html" (dict "page" .) }}
+  </div>
+</a>

@@ -1,0 +1,30 @@
+{{ define "main" }}
+{{- $posts := where site.RegularPages "Section" "posts" }}
+<main class="main main--wide main--home" id="content">
+  <div class="home-intro">
+    <h1 class="home-title">
+      <span>The Cyber Seal Report:</span>
+      <span class="home-title__sub">Research from below the surface.</span>
+    </h1>
+    <p class="home-lead">{{ site.Params.description }}</p>
+    <p class="disclaimer">{{ site.Params.disclaimer }}</p>
+  </div>
+
+  <div class="home-grid">
+    {{- with index $posts 0 }}
+      {{- partial "post-card-featured.html" . }}
+    {{- else }}
+    <div class="home-main">
+      <p class="empty-note">The first investigation is on its way. Follow the <a href="{{ "index.xml" | relURL }}">RSS feed</a> to catch it when it lands.</p>
+    </div>
+    {{- end }}
+
+    <aside class="home-side">
+      {{- if gt (len $posts) 1 }}
+        {{- partial "post-card.html" (index $posts 1) }}
+      {{- end }}
+      {{- partial "newsletter.html" . }}
+    </aside>
+  </div>
+</main>
+{{ end }}

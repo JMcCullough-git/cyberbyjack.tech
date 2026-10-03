@@ -1,0 +1,20 @@
+{{- /*
+  Returns the page's cover image, resized/cropped with Hugo image processing, or nothing.
+  Usage: partial "cover.html" (dict "page" . "spec" "1600x900 webp q80 Center")
+  The cover is the file named in front matter `cover:` (default "cover.*") inside the post's folder.
+*/ -}}
+{{- $page := .page -}}
+{{- $out := false -}}
+{{- if $page.File -}}
+  {{- $name := $page.Params.cover | default "cover.*" -}}
+  {{- with $page.Resources.GetMatch $name -}}
+    {{- if eq .MediaType.MainType "image" -}}
+      {{- if eq .MediaType.SubType "svg" -}}
+        {{- $out = . -}}
+      {{- else -}}
+        {{- $out = .Fill $.spec -}}
+      {{- end -}}
+    {{- end -}}
+  {{- end -}}
+{{- end -}}
+{{- return $out -}}
