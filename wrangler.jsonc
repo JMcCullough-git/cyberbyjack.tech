@@ -1,0 +1,15 @@
+{
+  // Cloudflare Workers config: serves the Hugo output in public/ as static assets.
+  // Cloudflare runs `hugo --minify` (build command), then `npx wrangler deploy` (deploy command).
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "cyberseal",
+  "compatibility_date": "2026-10-01",
+  "observability": {
+    "enabled": true
+  },
+  "assets": {
+    "directory": "public",
+    // Serve Hugo's 404.html for missing pages.
+    "not_found_handling": "404-page"
+  }
+}
