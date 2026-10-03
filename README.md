@@ -11,7 +11,7 @@ Source for [cybersealreport.com](https://cybersealreport.com): a static [Hugo](h
 | Build output directory | `public` |
 | Environment variable | `HUGO_VERSION` = `0.167.0` |
 
-The site needs Hugo **0.158 or newer** (it uses the `locale` setting and the `layouts/_partials` folder layout).
+The site needs Hugo **extended, 0.146 or newer** (it uses the `layouts/_partials` folder layout). If `HUGO_VERSION` isn't set, Cloudflare falls back to its default Hugo, which works but is older.
 
 ## Write a post
 

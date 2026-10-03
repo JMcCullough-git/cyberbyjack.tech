@@ -1,8 +1,12 @@
 baseURL = "https://cybersealreport.com/"
-locale = "en-US"
 title = "The Cyber Seal Report"
 copyright = "Cyber Seal Report"
 enableRobotsTXT = true
+
+# Fail fast with a clear message if the build server runs an older Hugo.
+[module.hugoVersion]
+  extended = true
+  min = "0.146.0"
 
 [pagination]
   pagerSize = 10
