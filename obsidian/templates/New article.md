@@ -1,0 +1,55 @@
+<%*
+// "New article": creates content/posts/<slug>/index.md and fills in the properties.
+// Run it from the ribbon or command palette: Templater → "Create new note from template" → New article.
+let title = await tp.system.prompt("Article title");
+if (!title || !title.trim()) title = "Untitled article";
+title = title.trim();
+const slug = title.toLowerCase()
+  .replace(/['’]/g, "")
+  .replace(/[^a-z0-9]+/g, "-")
+  .replace(/^-+|-+$/g, "")
+  .slice(0, 60) || "untitled-article";
+const folder = `content/posts/${slug}`;
+if (!app.vault.getAbstractFileByPath(folder)) {
+  await app.vault.createFolder(folder);
+}
+await tp.file.move(`${folder}/index`);
+const safeTitle = title.replace(/"/g, '\\"');
+-%>
+---
+title: "<% safeTitle %>"
+date: <% tp.date.now("YYYY-MM-DD") %>
+draft: true
+dek: ""
+tags:
+  - investigations
+cover: ""
+coverAlt: ""
+---
+<!--
+  Properties above:
+  - dek: one-sentence hook shown under the title and on cards.
+  - tags: first tag is the red category pill. No spaces: threat-research, data-breaches.
+  - cover: drag the lead image into this folder and name it "cover", or type its file name here.
+  - draft: untick (false) when it's ready, then Commit-and-sync to publish.
+  Comments like this one never appear on the site.
+-->
+
+<% tp.file.cursor() %>Open with the moment the story started. What was the question, and what looked off?
+
+> [!quote]
+> The line you want readers to remember.
+
+## What I found
+
+<!-- Drag screenshots into the note. Type the caption between the [ ] of the image link. -->
+
+> [!note]
+> Context, method, or a caveat.
+
+> [!disclosure]
+> Who was notified, when, and what they did.
+
+## What it means
+
+Close the story. What should the reader do or take away?

@@ -1,0 +1,20 @@
+{
+  "attachmentFolderPath": "./",
+  "newLinkFormat": "relative",
+  "useMarkdownLinks": true,
+  "alwaysUpdateLinks": true,
+  "newFileLocation": "folder",
+  "newFileFolderPath": "content/posts",
+  "strictLineBreaks": true,
+  "showFrontmatter": true,
+  "propertiesInDocument": "visible",
+  "userIgnoreFilters": [
+    "layouts/",
+    "assets/",
+    "static/",
+    "archetypes/",
+    "public/",
+    "resources/",
+    "node_modules/"
+  ]
+}

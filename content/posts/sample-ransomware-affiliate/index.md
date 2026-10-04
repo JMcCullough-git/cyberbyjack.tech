@@ -5,7 +5,8 @@ date: 2026-09-10
 draft: true
 author: "Jack McCullough"
 dek: "Wallet clustering, forum posts, and one reused handle led back to a single operator running three brands."
-tags: ["Investigations"]
+tags:
+  - investigations
 cover: "cover.jpg"
 coverAlt: ""
 ---

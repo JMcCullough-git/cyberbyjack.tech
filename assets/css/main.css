@@ -304,7 +304,9 @@ a.tag--primary:hover { background: var(--accent-hover); color: #fff; }
 .callout-disclosure .callout-label { color: var(--accent-deep); }
 
 .evidence { margin: 40px 0; display: flex; flex-direction: column; gap: 12px; }
-.evidence img { width: 100%; aspect-ratio: 16 / 10; object-fit: cover; border-radius: 10px; }
+.evidence > a { display: block; }
+.evidence img { width: 100%; height: auto; border-radius: 10px; display: block; }
+.prose .inline-img { display: inline; vertical-align: middle; max-height: 1.6em; width: auto; border-radius: 4px; }
 .evidence figcaption { font-size: 14px; line-height: 1.5; color: var(--muted); }
 .evidence figcaption p { display: inline; margin: 0; }
 .fig-num { font: 500 11px var(--font-mono); letter-spacing: .06em; text-transform: uppercase; color: var(--ink); margin-right: 8px; }

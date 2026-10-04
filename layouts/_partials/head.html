@@ -1,6 +1,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-{{- $title := cond .IsHome site.Title (printf "%s · %s" .Title site.Copyright) }}
+{{- $name := cond (eq .Kind "term") (partial "tag-name.html" .Title) .Title }}
+{{- $title := cond .IsHome site.Title (printf "%s · %s" $name site.Copyright) }}
 {{- with .Params.seoTitle }}{{ $title = . }}{{ end }}
 <title>{{ $title }}</title>
 {{- $desc := .Params.dek | default .Description | default site.Params.description }}

@@ -16,51 +16,25 @@ Workers & Pages → **cyberseal** → Settings → Build:
 
 The site needs Hugo **extended, 0.146 or newer** (it uses the `layouts/_partials` folder layout). If `HUGO_VERSION` isn't set, Cloudflare falls back to its default Hugo, which works but is older.
 
-## Write a post
+## Write a post (Obsidian)
 
-Each post is a folder. Everything for that post lives inside it.
+The repo doubles as an Obsidian vault. Open the repo folder in Obsidian and write with normal Obsidian features; the site renders them directly.
 
-```
-content/posts/router-backdoor/
-  index.md        ← the story, in Markdown
-  cover.jpg       ← lead image (cards + post hero)
-  evidence-1.png  ← screenshots, diagrams, photos
-```
+**One-time setup:** clone the repo, open the folder as a vault in Obsidian, turn on community plugins, and install **Templater** and **Git** (settings for both are already in `.obsidian/`).
 
-1. `hugo new posts/router-backdoor/index.md` (or copy an existing post folder).
-2. Fill in the front matter: `title`, `date`, `dek` (one-sentence hook), and `tags`. **The first tag is the red category pill.**
-3. Write the story. Plain paragraphs, `##` headings, lists and fenced code all just work.
-4. Drop images into the folder. Covers and figures are resized and converted to WebP automatically, so full-size screenshots are fine.
-5. Preview with `hugo server -D` and open http://localhost:1313.
-6. Set `draft: false`, commit, and push. Cloudflare publishes in about a minute.
+**Each article:**
 
-The URL is the folder name: `content/posts/router-backdoor/` → `/posts/router-backdoor/`.
+1. Templater → *Create new note from template* → **New article** → type the title. It creates `content/posts/<title>/index.md`.
+2. Write. Fill in `dek` (one-sentence hook) and `tags` in Properties. **The first tag is the red category pill.**
+3. Drag screenshots into the note. They land in the article's folder. Type a caption between the `[ ]` to get a numbered "Fig. N".
+4. Rename the lead image to `cover` (or type its file name in the `cover` property).
+5. Untick `draft`, then **Git: Commit-and-sync**. Cloudflare publishes in about a minute.
 
-### Story blocks
+`obsidian/Writing cheatsheet.md` has the full syntax: `> [!quote]` pull quotes, `> [!note]` / `> [!disclosure]` callouts, code blocks with `{title="file.sh"}`, and tags.
 
-```markdown
-{{< pullquote >}}
-The line you want readers to remember.
-{{< /pullquote >}}
+Images are published only as resized WebP copies with EXIF/GPS metadata stripped; the original files you drop in are never published.
 
-{{< callout type="note" >}}
-Context, method, or a caveat.
-{{< /callout >}}
-
-{{< callout type="disclosure" >}}
-Who was notified, when, and what they did.
-{{< /callout >}}
-
-{{< figure src="evidence-1.png" caption="What this image shows." num="1" alt="Describe the image" >}}
-```
-
-Code blocks get a filename bar and a Copy button:
-
-````markdown
-```bash {filename="check_build.sh"}
-for host in $(cat routers.txt); do echo "$host"; done
-```
-````
+The older Hugo shortcodes (`{{< pullquote >}}`, `{{< callout >}}`, `{{< figure >}}`) still work if you write outside Obsidian.
 
 ## Site settings (`hugo.toml`)
 
@@ -74,7 +48,7 @@ The About page text lives in `content/about.md`; the portrait is `static/images/
 
 ## Sample posts
 
-`content/posts/sample-*` are the placeholder articles from the design handoff, kept as drafts so you can preview the layout with `hugo server -D`. They never appear on the live site. Delete them once you've published real posts.
+`content/posts/sample-*` are the placeholder articles from the design handoff, written in the same Obsidian syntax and kept as drafts. They never appear on the live site. Delete them once you've published real posts.
 
 ## Notes
 

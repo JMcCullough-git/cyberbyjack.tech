@@ -1,0 +1,8 @@
+{{- /*
+  Display name for a tag. Obsidian tags can't contain spaces, so write them as
+  threat-research / data-breaches; they show as "Threat Research" / "Data Breaches".
+  All-lowercase tags are title-cased; tags with capitals (OSINT, "Threat Research") keep them.
+*/ -}}
+{{- $s := replace (string .) "-" " " -}}
+{{- if eq $s (lower $s) }}{{ $s = title $s }}{{ end -}}
+{{- return $s -}}

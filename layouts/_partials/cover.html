@@ -1,15 +1,25 @@
 {{- /*
   Returns the page's cover image, resized/cropped with Hugo image processing, or nothing.
   Usage: partial "cover.html" (dict "page" . "spec" "1600x900 webp q80 Center")
-  The cover is the file named in front matter `cover:` (default "cover.*") inside the post's folder.
+
+  Which image is the cover:
+    1. front matter `cover:` — a file in the post's folder. Plain names ("photo.jpg"),
+       Obsidian links ("[[photo.jpg]]", "![[photo.jpg]]") and names with spaces all work.
+    2. otherwise any file in the post's folder named cover.* (cover.jpg, cover.png …)
 */ -}}
 {{- $page := .page -}}
 {{- $out := false -}}
 {{- if $page.File -}}
-  {{- $name := $page.Params.cover | default "cover.*" -}}
-  {{- with $page.Resources.GetMatch $name -}}
+  {{- $name := strings.TrimSpace (string ($page.Params.cover | default "")) -}}
+  {{- $name = replaceRE `^!?\[\[(.*?)(\|.*)?\]\]$` "$1" $name -}}
+  {{- $name = replaceRE `^!?\[[^\]]*\]\((.*)\)$` "$1" $name -}}
+  {{- $name = strings.TrimPrefix "./" (urls.Parse $name).Path -}}
+  {{- $img := false -}}
+  {{- with $name }}{{ $img = $page.Resources.Get . }}{{ end -}}
+  {{- if not $img }}{{ $img = $page.Resources.GetMatch "cover.*" }}{{ end -}}
+  {{- with $img -}}
     {{- if eq .MediaType.MainType "image" -}}
-      {{- if eq .MediaType.SubType "svg" -}}
+      {{- if in (slice "svg" "gif") .MediaType.SubType -}}
         {{- $out = . -}}
       {{- else -}}
         {{- $out = .Fill $.spec -}}

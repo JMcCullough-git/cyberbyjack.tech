@@ -3,9 +3,9 @@
 {{- $postsSection := site.GetPage "/posts" }}
 {{- $isTerm := eq .Kind "term" }}
 <main class="main main--wide main--list" id="content">
-  <h1 class="page-title">{{ .Title }}</h1>
+  <h1 class="page-title">{{ cond $isTerm (partial "tag-name.html" .Title) .Title }}</h1>
   {{- if $isTerm }}
-  <p class="page-intro">{{ len .Pages }} {{ cond (eq (len .Pages) 1) "article" "articles" }} tagged {{ .Title }}.</p>
+  <p class="page-intro">{{ len .Pages }} {{ cond (eq (len .Pages) 1) "article" "articles" }} tagged {{ partial "tag-name.html" .Title }}.</p>
   {{- else }}
     {{- with .Description }}<p class="page-intro">{{ . }}</p>{{ end }}
   {{- end }}
@@ -16,7 +16,7 @@
     <a class="chip{{ if not $isTerm }} is-active{{ end }}" href="{{ $postsSection.RelPermalink }}"{{ if not $isTerm }} aria-current="page"{{ end }}>All</a>
     {{- range first 8 $tags }}
       {{- $active := eq .Page.RelPermalink $.RelPermalink }}
-      <a class="chip{{ if $active }} is-active{{ end }}" href="{{ .Page.RelPermalink }}"{{ if $active }} aria-current="page"{{ end }}>{{ .Page.Title }}</a>
+      <a class="chip{{ if $active }} is-active{{ end }}" href="{{ .Page.RelPermalink }}"{{ if $active }} aria-current="page"{{ end }}>{{ partial "tag-name.html" .Page.Title }}</a>
     {{- end }}
   </nav>
   {{- end }}

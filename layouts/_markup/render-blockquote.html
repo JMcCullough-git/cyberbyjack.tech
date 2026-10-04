@@ -1,0 +1,22 @@
+{{- /*
+  Obsidian callouts become the site's story blocks:
+    > [!note]        → grey Note box
+    > [!disclosure]  → red Disclosure box (also [!warning], [!caution], [!danger], [!important])
+    > [!quote]       → large pull quote with the red bar
+  A custom title works too: > [!note] Method
+  Plain "> text" stays a normal blockquote.
+*/ -}}
+{{- if eq .Type "alert" }}
+  {{- $t := lower .AlertType }}
+  {{- if in (slice "quote" "cite" "pullquote") $t }}
+<blockquote class="pullquote"><span class="pullquote-rule" aria-hidden="true"></span>{{ .Text }}</blockquote>
+  {{- else }}
+    {{- $kind := cond (in (slice "disclosure" "warning" "caution" "danger" "important" "bug") $t) "disclosure" "note" }}
+<aside class="callout callout-{{ $kind }}">
+  <span class="callout-label">{{ .AlertTitle | default ($t | humanize) }}</span>
+  <div class="callout-body">{{ .Text }}</div>
+</aside>
+  {{- end }}
+{{- else }}
+<blockquote>{{ .Text }}</blockquote>
+{{- end }}

@@ -5,7 +5,8 @@ date: 2026-09-24
 draft: true
 author: "Jack McCullough"
 dek: "An open redirect plus a permissive allowlist turned a login flow into a token leak. Timeline, root cause, and the fix."
-tags: ["Vulnerabilities"]
+tags:
+  - vulnerabilities
 cover: "cover.jpg"
 coverAlt: ""
 ---
