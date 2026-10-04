@@ -4,7 +4,10 @@ Everything here works in Obsidian's editor and on the site.
 
 ## Publish a new article
 
-1. **New article:** click the Templater icon in the left ribbon (or `Ctrl/Cmd + P` → "Templater: Create new note from template") → **New article** → type the title. It creates `content/posts/<title>/index.md`.
+1. **New article:** press `Ctrl/Cmd + N` for a blank note, then click the **<%** Templater icon in the left ribbon → **New article** → type the title. It turns the note into `content/posts/<title>/index.md`.
+   - Or `Ctrl/Cmd + P` → "Templater: Create new note from template" → **New article**.
+   - The insert icon needs an open note; with nothing open, Templater shows "No active editor".
+   - Optional, Ctrl + N alone: Settings → Templater → turn on *Trigger Templater on new file creation*, then add a folder template: `content/posts` → `obsidian/templates/New article.md`.
 2. **Write.** Fill in `dek` and `tags` in Properties at the top.
 3. **Drag images** into the note. They're saved in the article's folder automatically.
 4. **Cover image:** rename your lead image to `cover` (right-click → Rename), or type its file name in the `cover` property.

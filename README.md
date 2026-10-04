@@ -24,7 +24,7 @@ The repo doubles as an Obsidian vault. Open the repo folder in Obsidian and writ
 
 **Each article:**
 
-1. Templater → *Create new note from template* → **New article** → type the title. It creates `content/posts/<title>/index.md`.
+1. `Ctrl + N` for a blank note, then the **<%** Templater icon → **New article** → type the title. It turns the note into `content/posts/<title>/index.md`.
 2. Write. Fill in `dek` (one-sentence hook) and `tags` in Properties. **The first tag is the red category pill.**
 3. Drag screenshots into the note. They land in the article's folder. Type a caption between the `[ ]` to get a numbered "Fig. N".
 4. Rename the lead image to `cover` (or type its file name in the `cover` property).
