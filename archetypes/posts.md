@@ -1,40 +1,29 @@
 ---
+# Used by `hugo new posts/<slug>/index.md`. In Obsidian, use the "New article" template instead.
 title: "{{ replace .File.ContentBaseName "-" " " | title }}"
 date: {{ .Date }}
 draft: true
-author: "Jack McCullough"
-# One-sentence hook shown under the title and on cards
 dek: ""
-# First tag = category pill (red). Others = neutral tags.
-tags: ["Investigations"]
-# Put cover.jpg in this post's folder (page bundle)
-cover: "cover.jpg"
+tags:
+  - investigations
+cover: ""
 coverAlt: ""
 ---
 
-Open with the moment the story started. What was the question, who asked it, what looked off?
+Open with the moment the story started. What was the question, and what looked off?
 
-{{< pullquote >}}
-The line you want readers to remember.
-{{< /pullquote >}}
+> [!quote]
+> The line you want readers to remember.
 
 ## What I found
 
-Walk through the evidence in order. Drop screenshots into this folder and reference them:
+![What this screenshot shows.](evidence-1.png)
 
-{{< figure src="evidence-1.png" caption="What this image shows." num="1" >}}
+> [!note]
+> Context, method, or a caveat.
 
-{{< callout type="note" >}}
-Context, method, or a caveat.
-{{< /callout >}}
-
-```bash {filename="example.sh"}
-# commands or code
-```
-
-{{< callout type="disclosure" >}}
-Who was notified, when, and what they did.
-{{< /callout >}}
+> [!disclosure]
+> Who was notified, when, and what they did.
 
 ## What it means
 

@@ -2,6 +2,12 @@ baseURL = "https://cybersealreport.com/"
 title = "The Cyber Seal Report"
 copyright = "Cyber Seal Report"
 enableRobotsTXT = true
+# Show tag names exactly as written (osint stays osint, then tag-name.html formats it).
+capitalizeListTitles = false
+# Publishing is manual (draft: false + sync), so a future date never hides a post.
+buildFuture = true
+# Content written in Obsidian lives in content/; ignore Obsidian/editor clutter there.
+ignoreFiles = ['\.obsidian', '\.trash', '(^|/)Untitled( \d+)?\.md$']
 
 # Fail fast with a clear message if the build server runs an older Hugo.
 [module.hugoVersion]
@@ -25,6 +31,9 @@ enableRobotsTXT = true
     guessSyntax = false
   [markup.goldmark.renderer]
     unsafe = false
+  [markup.goldmark.parser]
+    # An image on its own line becomes a <figure> (see layouts/_markup/render-image.html).
+    wrapStandAloneImageWithinParagraph = false
 
 [outputs]
   home = ["HTML", "RSS"]
@@ -39,8 +48,9 @@ enableRobotsTXT = true
   contactEmail = "mcculloughjack7@gmail.com"
   pgpFingerprint = ""
 
-  # Topic tags shown under "What I cover" on the About page.
-  topics = ["Threat Research", "Vulnerabilities", "Investigations", "Tooling", "Data Breaches", "Phishing & Scams", "Social Engineering", "Privacy", "OSINT", "Malware"]
+  # Topic tags shown under "What I cover" on the About page. Use the same spelling as post tags
+  # (lowercase-with-hyphens); each links to its tag page once a post uses it.
+  topics = ["threat-research", "vulnerabilities", "investigations", "tooling", "data-breaches", "phishing-scams", "social-engineering", "privacy", "OSINT", "malware"]
 
   [params.newsletter]
     # Paste your newsletter provider's form URL here (e.g. Buttondown, Kit).

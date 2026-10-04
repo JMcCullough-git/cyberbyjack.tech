@@ -7,7 +7,7 @@
     {{- if $tags }}
     <div class="tags">
       {{- range $i, $t := $tags }}
-      <a class="tag{{ if eq $i 0 }} tag--primary{{ end }}" href="{{ $t.RelPermalink }}">{{ $t.LinkTitle }}</a>
+      <a class="tag{{ if eq $i 0 }} tag--primary{{ end }}" href="{{ $t.RelPermalink }}">{{ partial "tag-name.html" $t.Title }}</a>
       {{- end }}
     </div>
     {{- else }}
@@ -29,7 +29,7 @@
 
     {{- if $tags }}
     <div class="post-foot">
-      {{- range $tags }}<a class="tag" href="{{ .RelPermalink }}">{{ .LinkTitle }}</a>{{ end }}
+      {{- range $tags }}<a class="tag" href="{{ .RelPermalink }}">{{ partial "tag-name.html" .Title }}</a>{{ end }}
     </div>
     {{- end }}
     <p class="disclaimer">{{ site.Params.disclaimer }}</p>

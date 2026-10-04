@@ -10,8 +10,10 @@
 <figure class="evidence">
   {{- with $img }}
     {{- if and (eq .MediaType.MainType "image") (ne .MediaType.SubType "svg") (ne .MediaType.SubType "gif") }}
-      {{- $r := .Resize "1360x webp q82" }}
-      <a href="{{ .RelPermalink }}"><img src="{{ $r.RelPermalink }}" width="{{ $r.Width }}" height="{{ $r.Height }}" alt="{{ $alt }}" loading="lazy"></a>
+      {{- $r := . }}{{ $big := . }}
+      {{- if gt .Width 1360 }}{{ $r = .Resize "1360x webp q82" }}{{ else }}{{ $r = .Process "webp q82" }}{{ end }}
+      {{- if gt .Width 2400 }}{{ $big = .Resize "2400x webp q85" }}{{ else }}{{ $big = .Process "webp q85" }}{{ end }}
+      <a href="{{ $big.RelPermalink }}"><img src="{{ $r.RelPermalink }}" width="{{ $r.Width }}" height="{{ $r.Height }}" alt="{{ $alt }}" loading="lazy"></a>
     {{- else }}
       <img src="{{ .RelPermalink }}" alt="{{ $alt }}" loading="lazy">
     {{- end }}

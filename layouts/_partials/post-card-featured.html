@@ -5,7 +5,7 @@
     <img class="img-fill" src="{{ .RelPermalink }}" width="{{ .Width }}" height="{{ .Height }}" alt="{{ $.Params.coverAlt }}" fetchpriority="high">
     {{- end }}
     <div class="featured__overlay">
-      {{- with index (.Params.tags | default slice) 0 }}<span class="tag tag--primary">{{ . }}</span>{{ end }}
+      {{- with index (.Params.tags | default slice) 0 }}<span class="tag tag--primary">{{ partial "tag-name.html" . }}</span>{{ end }}
       <h2 class="featured__title">{{ .Title }}</h2>
     </div>
   </a>

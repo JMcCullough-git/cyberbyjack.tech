@@ -1,0 +1,12 @@
+{
+  "commitMessage": "Update articles from Obsidian",
+  "autoCommitMessage": "Update articles from Obsidian",
+  "autoSaveInterval": 0,
+  "autoPushInterval": 0,
+  "autoPullInterval": 0,
+  "autoPullOnBoot": true,
+  "syncMethod": "merge",
+  "pullBeforePush": true,
+  "disablePush": false,
+  "showStatusBar": true
+}

@@ -4,3 +4,10 @@
 .DS_Store
 .wrangler/
 node_modules/
+
+# Obsidian: keep shared settings, ignore per-device state and installed plugin code
+.obsidian/workspace*.json
+.obsidian/graph.json
+.obsidian/plugins/*/*
+!.obsidian/plugins/*/data.json
+.trash/

@@ -5,7 +5,7 @@
   <p class="page-intro">Browse every write-up by topic.</p>
   <nav class="chips" aria-label="All tags">
     {{- range .Data.Terms.Alphabetical }}
-    <a class="chip" href="{{ .Page.RelPermalink }}">{{ .Page.Title }} · {{ .Count }}</a>
+    <a class="chip" href="{{ .Page.RelPermalink }}">{{ partial "tag-name.html" .Page.Title }} · {{ .Count }}</a>
     {{- else }}
     <p class="empty-note">No tags yet.</p>
     {{- end }}

@@ -28,10 +28,10 @@
       <h2 class="about__h2">What I cover</h2>
       <div class="tags">
         {{- range . }}
-          {{- with site.GetPage (printf "/tags/%s" (. | urlize)) }}
-          <a class="tag" href="{{ .RelPermalink }}">{{ .LinkTitle }}</a>
+          {{- with site.GetPage (printf "/tags/%s" (. | urlize | lower)) }}
+          <a class="tag" href="{{ .RelPermalink }}">{{ partial "tag-name.html" .Title }}</a>
           {{- else }}
-          <span class="tag">{{ . }}</span>
+          <span class="tag">{{ partial "tag-name.html" . }}</span>
           {{- end }}
         {{- end }}
       </div>

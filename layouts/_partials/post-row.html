@@ -6,7 +6,7 @@
     {{- end }}
   </div>
   <div class="row__body">
-    {{- with index (.Params.tags | default slice) 0 }}<span class="kicker">{{ . }}</span>{{ end }}
+    {{- with index (.Params.tags | default slice) 0 }}<span class="kicker">{{ partial "tag-name.html" . }}</span>{{ end }}
     <h2 class="row__title">{{ .Title }}</h2>
     {{- with .Params.excerpt | default .Params.dek | default .Summary }}
     <p class="row__excerpt">{{ . | plainify | truncate 220 }}</p>

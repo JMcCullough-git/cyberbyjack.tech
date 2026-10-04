@@ -1,0 +1,6 @@
+{
+  "templates_folder": "obsidian/templates",
+  "trigger_on_file_creation": false,
+  "auto_jump_to_cursor": true,
+  "enable_system_commands": false
+}
