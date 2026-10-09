@@ -40,7 +40,7 @@ For this article, I ranked ten public IT job postings by how much free reconnais
 
 I flagged a posting "+agg" when it gave away four or more systems at once, enough to map most of a network. Since the score only counts a posting's single worst item, those "+agg" flags are what let a wider leak outrank a higher-scoring but narrower one. Ironically, it may be that the most honest map of your network might be the one sitting on your public job board.
 
-![Table 1. Risk and Exposure Ratings](job-vuln-ranking-dark.jpg)
+{{< ranking-table >}}
 
 > [!disclosure]
 > Disclaimer: All findings and analysis are my own. Table 1 was generated using AI for visual design. Above job postings were also anonymized.
