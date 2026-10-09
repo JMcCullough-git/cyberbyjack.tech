@@ -1,0 +1,64 @@
+{{- /*
+  Interactive ranking table for "Your Job Posting Is Recon".
+  Sort by rank/score/rating, filter by band, click a row for the key exposure.
+  Styling lives in assets/css/main.css (.rt-*); behaviour in static/js/ranking-table.js.
+  Both are required because the site CSP blocks inline <style> and <script>.
+  Without JS the table still renders fully, sorted by rank, with every detail shown.
+*/ -}}
+{{- .Page.Store.Set "hasRanking" true }}
+{{- $rows := slice
+  (dict "rank" "01" "n" 1 "entity" "Illinois Tollway Authority" "role" "Systems Administrator" "score" 25 "band" "critical" "agg" false "detail" "Internet-facing Citrix NetScaler and on-prem Exchange for the way in, Active Directory and SCCM to spread, and the backup products named outright — a full kill chain, recovery included.")
+  (dict "rank" "02" "n" 2 "entity" "Defense IT contractor (CENTCOM support)" "role" "Cisco Collaboration Engineer" "score" 20 "band" "critical" "agg" false "detail" "Names its internet-facing collaboration edge and next-gen firewall, the call-manager core, and cross-domain gateways — alongside the command it supports.")
+  (dict "rank" "03" "n" 3 "entity" "National healthcare insurer" "role" "Microsoft PKI / Certificate Engineer" "score" 20 "band" "critical" "agg" false "detail" "Lays out its internal certificate authority — root and issuing CAs — and internet-facing load balancers across a regulated health estate.")
+  (dict "rank" "04" "n" 4 "entity" "County government" "role" "Information Security Specialist" "score" 25 "band" "critical" "agg" false "detail" "The full security edge named cleanly: perimeter firewall, email gateway, EDR, cloud identity, and network access control.")
+  (dict "rank" "05" "n" 5 "entity" "National footwear retailer" "role" "IT Corporate Support Technician" "score" 25 "band" "critical" "agg" false "detail" "Asks for skills in unsupported, end-of-life Windows versions next to card-processing databases — the single most dangerous disclosure type.")
+  (dict "rank" "06" "n" 6 "entity" "Managed service provider (MSP)" "role" "Senior Systems Engineer, L4" "score" 15 "band" "critical" "agg" true "detail" "A whole managed-services toolchain, including the remote-management platform and documentation vault — a supply-chain multiplier reaching every downstream client.")
+  (dict "rank" "07" "n" 7 "entity" "State office of technology" "role" "IT InfoSec Associate Analyst" "score" 8 "band" "high" "agg" true "detail" "Reveals the SOC's detection-and-response stack and that incident response is outsourced to a managed service.")
+  (dict "rank" "08" "n" 8 "entity" "Federal consulting firm" "role" "Zero Trust Strategist" "score" 12 "band" "high" "agg" false "detail" "The standard federal zero-trust triad — SASE, cloud identity, EDR — though as a consultant's client-generic skillset rather than one environment.")
+  (dict "rank" "09" "n" 9 "entity" "Financial data & ratings firm" "role" "Lead InfoSec Engineer, Vuln Mgmt" "score" 8 "band" "moderate" "agg" false "detail" "Discloses the security team's own vulnerability-management and application-testing tools, but no perimeter or identity.")
+  (dict "rank" "10" "n" 10 "entity" "SASE networking vendor" "role" "Product Support Engineer, Tier 3" "score" 2 "band" "low" "agg" false "detail" "Reveals only the vendor's own marketed product and universal networking protocols — no internal environment.")
+}}
+{{- $bands := slice (dict "k" "all" "l" "All") (dict "k" "critical" "l" "Critical") (dict "k" "high" "l" "High") (dict "k" "moderate" "l" "Moderate") (dict "k" "low" "l" "Low") }}
+<figure class="evidence rt-figure">
+  <div class="rt" data-ranking>
+    <div class="rt-filters" role="group" aria-label="Filter postings by rating">
+      {{- range $i, $b := $bands }}
+      <button type="button" class="rt-chip{{ if eq $b.k "all" }} is-active{{ end }}" data-filter="{{ $b.k }}"{{ if eq $b.k "all" }} aria-pressed="true"{{ else }} aria-pressed="false"{{ end }}>{{ $b.l }}</button>
+      {{- end }}
+    </div>
+    <div class="rt-head" role="row">
+      <span class="rt-h rt-h--rank"><button type="button" class="rt-sort" data-sort="rank" aria-label="Sort by rank">#</button></span>
+      <span class="rt-h rt-h--posting"><button type="button" class="rt-sort" data-sort="posting">Posting</button></span>
+      <span class="rt-h rt-h--score"><button type="button" class="rt-sort" data-sort="score">Score</button></span>
+      <span class="rt-h rt-h--rating"><button type="button" class="rt-sort" data-sort="rating">Rating</button></span>
+      <span class="rt-h rt-h--caret" aria-hidden="true"></span>
+    </div>
+    <ol class="rt-list">
+      {{- range $rows }}
+      <li class="rt-row" data-band="{{ .band }}" data-score="{{ .score }}" data-rank="{{ .n }}" data-entity="{{ .entity }}">
+        <button type="button" class="rt-row__main" aria-expanded="false" aria-controls="rt-d-{{ .n }}">
+          <span class="rt-rank{{ if eq .n 1 }} is-first{{ end }}">{{ .rank }}</span>
+          <span class="rt-posting">
+            <span class="rt-entity">{{ .entity }}</span>
+            <span class="rt-role">{{ .role }}</span>
+          </span>
+          <span class="rt-score">
+            <span class="rt-score__n">{{ .score }}</span>
+            {{- if .agg }}<span class="rt-agg">+agg</span>{{ end }}
+          </span>
+          <span class="rt-rating">
+            <span class="rt-band rt-band--{{ .band }}">{{ .band | humanize }}</span>
+          </span>
+          <span class="rt-caret" aria-hidden="true"></span>
+        </button>
+        <div class="rt-detail" id="rt-d-{{ .n }}" role="region" aria-label="Key exposure">
+          <p class="rt-detail__label">Key exposure</p>
+          <p class="rt-detail__text">{{ .detail }}</p>
+        </div>
+      </li>
+      {{- end }}
+    </ol>
+    <p class="rt-note">Score = peak NIST SP 800-30 (Likelihood &times; Impact, 1&ndash;25). <span class="rt-agg rt-agg--inline">+agg</span> = band raised a step for four or more systems disclosed. Ranked by overall disclosure &mdash; breadth, consequence, currency &mdash; not peak score alone.</p>
+  </div>
+  <figcaption><span class="fig-num">Fig. 1</span>Risk and exposure ratings across ten public IT job postings. Select a row for its key exposure.</figcaption>
+</figure>

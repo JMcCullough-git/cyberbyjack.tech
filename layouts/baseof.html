@@ -13,5 +13,8 @@
 {{- if .Store.Get "hasCode" }}
 <script src="{{ "js/copy-code.js" | relURL }}" defer></script>
 {{- end }}
+{{- if .Store.Get "hasRanking" }}
+<script src="{{ "js/ranking-table.js" | relURL }}" defer></script>
+{{- end }}
 </body>
 </html>
