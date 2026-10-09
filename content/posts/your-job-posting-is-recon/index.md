@@ -43,6 +43,6 @@ I flagged a posting "+agg" when it gave away four or more systems at once, enoug
 ![Table 1. Risk and Exposure Ratings](job-vuln-ranking.jpg)
 
 > [!disclosure]
-> Disclaimer: All findings and analysis are my own. Table 1 was generated using AI for visual design.
+> Disclaimer: All findings and analysis are my own. Table 1 was generated using AI for visual design. Above job postings were also anonymized.
 
 
