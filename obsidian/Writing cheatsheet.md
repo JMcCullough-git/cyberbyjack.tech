@@ -15,6 +15,17 @@ Everything here works in Obsidian's editor and on the site.
 
 To fix a typo after publishing, edit the note and Commit-and-sync again.
 
+## Home page
+
+The home page shows two stories: the **lead** (big card) and one story **beside it**. Everything else is on the Articles page.
+
+| Property | What it does |
+|---|---|
+| `featured` ☑ | Pins this post as the lead, however old. If several are ticked, the newest ticked one wins. Untick to go back to newest-first. |
+| `hideFromHome` ☑ | Keeps the post off the home page. It still appears under Articles, tags, Archive and RSS. |
+
+Older posts don't have these checkboxes yet. Add them in Properties (**+ Add property** → `featured`, type Checkbox), or just type `featured: true` in the properties.
+
 ## Story blocks
 
 ```markdown
