@@ -15,6 +15,19 @@ Everything here works in Obsidian's editor and on the site.
 
 To fix a typo after publishing, edit the note and Commit-and-sync again.
 
+## Home page
+
+The home page fills itself: the **lead** (big card), one story **beside it**, then a **Latest** row of 3.
+
+| Property | What it does |
+|---|---|
+| `featured` ☑ | Pins this post as the lead, however old. If several are ticked, the newest ticked one wins. Untick to go back to newest-first. |
+| `hideFromHome` ☑ | Keeps the post off the home page. It still appears under Articles, tags, Archive and RSS. |
+
+Older posts don't have these checkboxes yet. Add them in Properties (**+ Add property** → `featured`, type Checkbox), or just type `featured: true` in the properties.
+
+The number of stories in the Latest row is `homeLatestCount` in `hugo.toml` (0 hides the row).
+
 ## Story blocks
 
 ```markdown

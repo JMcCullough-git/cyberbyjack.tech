@@ -180,6 +180,13 @@ a.tag--primary:hover { background: var(--accent-hover); color: #fff; }
 .card__body { padding: 20px 22px 22px; display: flex; flex-direction: column; gap: 10px; }
 .card__title { margin: 0; font: 700 20px/1.2 var(--font-display); letter-spacing: -.01em; text-wrap: balance; }
 
+/* "Latest" row under the home hero (not in the original design; reuses the secondary card). */
+.home-latest { margin-top: 64px; padding-top: 28px; border-top: 1px solid var(--border); }
+.home-latest__head { display: flex; justify-content: space-between; align-items: baseline; gap: 16px; margin-bottom: 24px; }
+.home-latest__title { margin: 0; font: 700 28px/1.2 var(--font-display); letter-spacing: -.02em; }
+.home-latest__grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 300px), 1fr)); gap: 28px; }
+.home-latest__grid .card { height: 100%; }
+
 .empty-note a { color: var(--accent); text-decoration: underline; text-underline-offset: 3px; }
 .empty-note {
   padding: 26px; border-radius: 14px; border: 1px solid var(--border); background: var(--surface);
