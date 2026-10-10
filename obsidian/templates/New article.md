@@ -25,6 +25,8 @@ tags:
   - investigations
 cover: ""
 coverAlt: ""
+featured: false
+hideFromHome: false
 ---
 <!--
   Properties above:
@@ -32,6 +34,8 @@ coverAlt: ""
   - tags: first tag is the red category pill. No spaces: threat-research, data-breaches.
   - cover: drag the lead image into this folder and name it "cover", or type its file name here.
   - draft: untick (false) when it's ready, then Commit-and-sync to publish.
+  - featured: tick to pin this as the big story on the home page.
+  - hideFromHome: tick to keep it off the home page (still listed under Articles).
   Comments like this one never appear on the site.
 -->
 

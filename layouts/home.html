@@ -1,5 +1,20 @@
 {{ define "main" }}
+{{- /*
+  What shows on the home page (all set from Obsidian properties):
+    hideFromHome: true  → the post never appears on the home page (still on Articles, tags, RSS).
+    featured: true      → the post takes the big lead slot. If several are ticked, the newest wins.
+                          With none ticked, the newest post leads.
+  Then: the next post sits beside the lead, and the next `homeLatestCount` posts
+  (hugo.toml, default 3) fill the "Latest" row underneath.
+*/ -}}
 {{- $posts := where site.RegularPages "Section" "posts" }}
+{{- $home := where $posts "Params.hidefromhome" "!=" true }}
+{{- $lead := index (where $home "Params.featured" true) 0 | default (index $home 0) }}
+{{- $rest := $home }}
+{{- with $lead }}{{ $rest = where $home "Permalink" "!=" .Permalink }}{{ end }}
+{{- $side := index $rest 0 }}
+{{- $n := 3 }}{{ if isset site.Params "homelatestcount" }}{{ $n = int site.Params.homeLatestCount }}{{ end }}
+{{- $latest := first $n (after 1 $rest) }}
 <main class="main main--wide main--home" id="content">
   <div class="home-intro">
     <h1 class="home-title">
@@ -11,7 +26,7 @@
   </div>
 
   <div class="home-grid">
-    {{- with index $posts 0 }}
+    {{- with $lead }}
       {{- partial "post-card-featured.html" . }}
     {{- else }}
     <div class="home-main">
@@ -20,11 +35,25 @@
     {{- end }}
 
     <aside class="home-side">
-      {{- if gt (len $posts) 1 }}
-        {{- partial "post-card.html" (index $posts 1) }}
+      {{- with $side }}
+        {{- partial "post-card.html" . }}
       {{- end }}
       {{- partial "newsletter.html" . }}
     </aside>
   </div>
+
+  {{- with $latest }}
+  <section class="home-latest" aria-labelledby="latest-heading">
+    <div class="home-latest__head">
+      <h2 class="home-latest__title" id="latest-heading">Latest</h2>
+      <a class="read-more" href="{{ (site.GetPage "/posts").RelPermalink }}">All articles →</a>
+    </div>
+    <div class="home-latest__grid">
+      {{- range . }}
+        {{- partial "post-card.html" . }}
+      {{- end }}
+    </div>
+  </section>
+  {{- end }}
 </main>
 {{ end }}

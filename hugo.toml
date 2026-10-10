@@ -44,6 +44,9 @@ ignoreFiles = ['\.obsidian', '\.trash', '(^|/)Untitled( \d+)?\.md$']
   description = "Independent reporting, technical analysis, and field notes on the stories behind cybersecurity."
   disclaimer = "Every article is human-written, not AI-generated."
 
+  # How many stories fill the "Latest" row under the home page hero (0 hides the row).
+  homeLatestCount = 3
+
   # About page contact block. Leave a value empty ("") to hide that line.
   contactEmail = "mcculloughjack7@gmail.com"
   pgpFingerprint = ""
