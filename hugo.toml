@@ -45,7 +45,7 @@ ignoreFiles = ['\.obsidian', '\.trash', '(^|/)Untitled( \d+)?\.md$']
   disclaimer = "Every article is human-written, not AI-generated."
 
   # About page contact block. Leave a value empty ("") to hide that line.
-  contactEmail = "mcculloughjack7@gmail.com"
+  contactEmail = "jack@cybersealreport.com"
   pgpFingerprint = ""
 
   # Topic tags shown under "What I cover" on the About page. Use the same spelling as post tags
