@@ -53,13 +53,13 @@ ignoreFiles = ['\.obsidian', '\.trash', '(^|/)Untitled( \d+)?\.md$']
   topics = ["threat-research", "vulnerabilities", "investigations", "tooling", "data-breaches", "phishing-scams", "social-engineering", "privacy", "OSINT", "malware"]
 
   [params.newsletter]
-    # Paste your newsletter provider's form URL here (e.g. Buttondown, Kit).
-    # While it's empty, the signup card shows as "coming soon" and can't be submitted.
-    action = ""
-    # Name of the email field the provider expects.
-    field = "email"
+    # Kit inline form 10042907 (Kit → Grow → Landing Pages & Forms).
+    # Empty action = the signup card shows "Signups open soon" and can't be submitted.
+    action = "https://app.kit.com/forms/10042907/subscriptions"
+    # Name of the email field Kit expects.
+    field = "email_address"
     headline = "New research, every other Tuesday."
-    finePrint = "No tracking pixels. Unsubscribe anytime."
+    finePrint = "No spam. Unsubscribe anytime."
 
   # Footer links. Leave url empty to hide a link.
   [[params.footerLinks]]
