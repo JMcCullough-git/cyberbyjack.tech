@@ -366,6 +366,25 @@ a.tag--primary:hover { background: var(--accent-hover); color: #fff; }
 .about__h2 { margin: 48px 0 16px; font: 700 24px/1.2 var(--font-display); letter-spacing: -.015em; }
 .about__main .disclaimer { margin-top: 40px; }
 
+/* ---------- Newsletter status pages (/welcome/, /confirm/) ---------- */
+.main--status { padding-top: 64px; }
+.status { max-width: 680px; margin: 0 auto; text-align: center; display: flex; flex-direction: column; align-items: center; }
+.status__media {
+  width: 100%; max-width: 560px; margin-bottom: 36px; border-radius: 14px; overflow: hidden;
+  background: #fcfcff; border: 1px solid var(--border);
+}
+.status__media img { display: block; width: 100%; height: auto; }
+.status__mark {
+  width: 96px; height: 96px; margin-bottom: 28px; display: block; background: var(--ink);
+  -webkit-mask: url(/images/cyber-seal-logo.svg) center / contain no-repeat;
+  mask: url(/images/cyber-seal-logo.svg) center / contain no-repeat;
+}
+.status__title { margin-top: 14px; text-wrap: balance; }
+.status__lead { margin: 20px 0 0; font-size: 20px; line-height: 1.55; color: var(--ink-2); text-wrap: pretty; }
+.status__lead strong, .status__note strong { color: var(--ink); font-weight: 600; }
+.status__note { margin: 14px 0 0; font-size: 16px; line-height: 1.6; color: var(--muted); text-wrap: pretty; }
+.status__actions { display: flex; gap: 10px; flex-wrap: wrap; justify-content: center; margin-top: 32px; }
+
 /* ---------- 404 ---------- */
 .not-found { max-width: 620px; }
 .not-found .page-title { margin-top: 14px; }
