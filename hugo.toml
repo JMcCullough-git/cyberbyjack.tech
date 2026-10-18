@@ -30,7 +30,11 @@ ignoreFiles = ['\.obsidian', '\.trash', '(^|/)Untitled( \d+)?\.md$']
     codeFences = true
     guessSyntax = false
   [markup.goldmark.renderer]
-    unsafe = false
+    # On so Obsidian HTML formatting like <u>underline</u> works. <!-- comments --> are stripped in single.html, about.html and rss.xml.
+    unsafe = true
+  # ==highlight== (Obsidian syntax) becomes <mark>.
+  [markup.goldmark.extensions.extras.mark]
+    enable = true
   [markup.goldmark.parser]
     # An image on its own line becomes a <figure> (see layouts/_markup/render-image.html).
     wrapStandAloneImageWithinParagraph = false
