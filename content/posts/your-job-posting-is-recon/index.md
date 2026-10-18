@@ -38,7 +38,7 @@ To wrap up this discussion, the fix costs nothing to the company. Companies shou
 
 For this article, I ranked ten public IT job postings by how much free reconnaissance each one hands an attacker. I scored them with the NIST SP 800-30 method, where the score is Likelihood times Impact, on a scale of 1 to 25. Each score then lands in a category: Low, Moderate, High, or Critical.
 
-I flagged a posting "+agg" when it gave away four or more systems at once, enough to map most of a network. Since the score only counts a posting's single worst item, those "+agg" flags are what let a wider leak outrank a higher-scoring but narrower one. Ironically, it may be that the most honest map of your network might be the one sitting on your public job board.
+I flagged a posting "+agg" when it gave away four or more systems at once, enough to map most of a network. Since the score only counts a posting's single worst item, those "+agg" flags are what let a wider leak outrank a higher-scoring but narrower one. Ironically, it may be that the most honest map of your network might be the one sitting on your <u>public job board</u>.
 
 
 
