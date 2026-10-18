@@ -41,6 +41,19 @@ Older posts don't have these checkboxes yet. Add them in Properties (**+ Add pro
 
 Mix them: `**<u>bold and underlined</u>**`. Formatting works in the article body and story blocks, not in the `title` or `dek` properties.
 
+## Tables
+
+```markdown
+| Indicator | Type | First seen | Status |
+|---|---|:---:|---:|
+| `185.220.101.44` | C2 server IP | Aug 14 | **Active** |
+```
+
+- In Obsidian, right-click in the note → **Insert → Table**, or type it as above. Obsidian's table editor adds rows and columns for you.
+- Colons in the second line set alignment: `:---` left (default), `:---:` center, `---:` right.
+- Bold, highlight, `code` and links work inside cells.
+- A wide table (hashes, file paths) scrolls sideways on its own instead of stretching the page. Put hashes and IPs in `code` so they never break mid-value.
+
 ## Titles
 
 Titles can use any punctuation: `?`, `!`, `&`, `:`, quotes. Type the title normally when Templater asks, or edit `title` in Properties later. The web address (the folder name) drops the punctuation: "Is Your Router Lying?" lives at `/posts/is-your-router-lying/`.
