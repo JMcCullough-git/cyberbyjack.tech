@@ -36,6 +36,10 @@ Images are published only as resized WebP copies with EXIF/GPS metadata stripped
 
 The older Hugo shortcodes (`{{< pullquote >}}`, `{{< callout >}}`, `{{< figure >}}`) still work if you write outside Obsidian.
 
+## Home page
+
+Lead story = the newest post with `featured: true`, otherwise the newest post. The next post sits beside it; older posts are on the Articles page. Posts with `hideFromHome: true` are skipped on the home page only.
+
 ## Site settings (`hugo.toml`)
 
 - `params.contactEmail` / `params.pgpFingerprint`: About page contact block (empty hides it).

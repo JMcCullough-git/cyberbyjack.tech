@@ -15,6 +15,36 @@ Everything here works in Obsidian's editor and on the site.
 
 To fix a typo after publishing, edit the note and Commit-and-sync again.
 
+## Home page
+
+The home page shows two stories: the **lead** (big card) and one story **beside it**. Everything else is on the Articles page.
+
+| Property | What it does |
+|---|---|
+| `featured` ☑ | Pins this post as the lead, however old. If several are ticked, the newest ticked one wins. Untick to go back to newest-first. |
+| `hideFromHome` ☑ | Keeps the post off the home page. It still appears under Articles, tags, Archive and RSS. |
+
+Older posts don't have these checkboxes yet. Add them in Properties (**+ Add property** → `featured`, type Checkbox), or just type `featured: true` in the properties.
+
+## Text formatting
+
+| Type this | Looks like | Shortcut in Obsidian |
+|---|---|---|
+| `**bold**` | **bold** | `Ctrl/Cmd + B` |
+| `*italic*` | *italic* | `Ctrl/Cmd + I` |
+| `<u>underline</u>` | <u>underline</u> | none (type it) |
+| `==highlight==` | ==highlight== (soft red on the site) | none |
+| `~~strikethrough~~` | ~~strikethrough~~ | none |
+| `` `code` `` | `code` | none |
+| `<kbd>Ctrl</kbd>` | <kbd>Ctrl</kbd> key caps | none |
+| `H<sub>2</sub>O`, `x<sup>2</sup>` | H<sub>2</sub>O, x<sup>2</sup> | none |
+
+Mix them: `**<u>bold and underlined</u>**`. Formatting works in the article body and story blocks, not in the `title` or `dek` properties.
+
+## Titles
+
+Titles can use any punctuation: `?`, `!`, `&`, `:`, quotes. Type the title normally when Templater asks, or edit `title` in Properties later. The web address (the folder name) drops the punctuation: "Is Your Router Lying?" lives at `/posts/is-your-router-lying/`.
+
 ## Story blocks
 
 ```markdown
@@ -58,5 +88,5 @@ The first tag is the red category pill. Obsidian tags can't contain spaces, so u
 ## Comments to yourself
 
 ```markdown
-<!-- Notes like this never appear on the site. -->
+<!-- Notes like this never appear on the site or in the RSS feed. -->
 ```

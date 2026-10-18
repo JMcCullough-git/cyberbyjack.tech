@@ -3,7 +3,7 @@
   <span class="kicker">Newsletter</span>
   <h3 class="newsletter__title">{{ $n.headline }}</h3>
   {{- if $n.action }}
-  <form class="newsletter__form" action="{{ $n.action }}" method="post" target="_blank">
+  <form class="newsletter__form" action="{{ $n.action }}" method="post">
     <label class="visually-hidden" for="newsletter-email">Email address</label>
     <input class="newsletter__input" id="newsletter-email" type="email" name="{{ $n.field | default "email" }}" required placeholder="you@company.com" autocomplete="email">
     <button class="newsletter__button" type="submit">Subscribe</button>

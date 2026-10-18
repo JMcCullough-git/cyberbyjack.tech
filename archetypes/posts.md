@@ -8,6 +8,8 @@ tags:
   - investigations
 cover: ""
 coverAlt: ""
+featured: false
+hideFromHome: false
 ---
 
 Open with the moment the story started. What was the question, and what looked off?

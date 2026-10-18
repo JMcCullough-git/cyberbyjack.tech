@@ -1,0 +1,33 @@
+{{ define "main" }}
+{{- /*
+  Newsletter status pages (/welcome/ and /confirm/). Kit redirects subscribers here;
+  they are not linked from the site and are kept out of search engines, the sitemap and RSS.
+  Front matter: kicker, title, lead, note, animation (true = looping seal).
+*/ -}}
+<main class="main main--wide main--status" id="content">
+  <div class="status">
+    {{- if .Params.animation }}
+    <div class="status__media">
+      <picture>
+        <source srcset="/images/newsletter/seal-welcome-still.webp" media="(prefers-reduced-motion: reduce)">
+        <img src="/images/newsletter/seal-welcome.webp" width="640" height="360" alt="The Cyber Seal winking as confetti falls">
+      </picture>
+    </div>
+    {{- else }}
+    <span class="status__mark" role="img" aria-label="Cyber Seal"></span>
+    {{- end }}
+
+    {{- with .Params.kicker }}<span class="kicker kicker--lg">{{ . }}</span>{{ end }}
+    <h1 class="page-title status__title">{{ .Title }}</h1>
+    {{- with .Params.lead }}<p class="status__lead">{{ . | markdownify }}</p>{{ end }}
+    {{- with .Params.note }}<p class="status__note">{{ . | markdownify }}</p>{{ end }}
+
+    <div class="status__actions">
+      <a class="btn btn--primary" href="{{ "/" | relURL }}">Back to the report</a>
+      {{- with site.GetPage "/about" }}
+      <a class="btn btn--secondary" href="{{ .RelPermalink }}">About Me</a>
+      {{- end }}
+    </div>
+  </div>
+</main>
+{{ end }}

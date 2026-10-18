@@ -30,7 +30,11 @@ ignoreFiles = ['\.obsidian', '\.trash', '(^|/)Untitled( \d+)?\.md$']
     codeFences = true
     guessSyntax = false
   [markup.goldmark.renderer]
-    unsafe = false
+    # On so Obsidian HTML formatting like <u>underline</u> works. <!-- comments --> are stripped in single.html, about.html and rss.xml.
+    unsafe = true
+  # ==highlight== (Obsidian syntax) becomes <mark>.
+  [markup.goldmark.extensions.extras.mark]
+    enable = true
   [markup.goldmark.parser]
     # An image on its own line becomes a <figure> (see layouts/_markup/render-image.html).
     wrapStandAloneImageWithinParagraph = false
@@ -45,7 +49,7 @@ ignoreFiles = ['\.obsidian', '\.trash', '(^|/)Untitled( \d+)?\.md$']
   disclaimer = "Every article is human-written, not AI-generated."
 
   # About page contact block. Leave a value empty ("") to hide that line.
-  contactEmail = "mcculloughjack7@gmail.com"
+  contactEmail = "jack@cybersealreport.com"
   pgpFingerprint = ""
 
   # Topic tags shown under "What I cover" on the About page. Use the same spelling as post tags
@@ -53,13 +57,13 @@ ignoreFiles = ['\.obsidian', '\.trash', '(^|/)Untitled( \d+)?\.md$']
   topics = ["threat-research", "vulnerabilities", "investigations", "tooling", "data-breaches", "phishing-scams", "social-engineering", "privacy", "OSINT", "malware"]
 
   [params.newsletter]
-    # Paste your newsletter provider's form URL here (e.g. Buttondown, Kit).
-    # While it's empty, the signup card shows as "coming soon" and can't be submitted.
-    action = ""
-    # Name of the email field the provider expects.
-    field = "email"
+    # Kit inline form 10042907 (Kit → Grow → Landing Pages & Forms).
+    # Empty action = the signup card shows "Signups open soon" and can't be submitted.
+    action = "https://app.kit.com/forms/10042907/subscriptions"
+    # Name of the email field Kit expects.
+    field = "email_address"
     headline = "New research, every other Tuesday."
-    finePrint = "No tracking pixels. Unsubscribe anytime."
+    finePrint = "No spam. Unsubscribe anytime."
 
   # Footer links. Leave url empty to hide a link.
   [[params.footerLinks]]
