@@ -1,11 +1,11 @@
 ---
 title: Five browsers I'd recommend over Chrome if you care about privacy
 date: 2026-10-17
-draft: true
+draft: false
 dek: Who is your browser really working for?
 tags:
   - Privacy
-cover: ""
+cover: cover.jpg
 coverAlt: ""
 featured: false
 hideFromHome: false
@@ -103,23 +103,6 @@ That leads to a counterintuitive tip for Tor and Mullvad: don't install extra pr
 
 #### What I'd do today
 
-If you're on Chrome, install Brave or Firefox and make it your default before lunch. If you're already on Firefox, take five minutes and harden it, or let LibreWolf do it for you. Keep Mullvad or Tor around for the times you'd rather not be anyone at all.
+If you're on Chrome, install Brave or Firefox and make it your default before lunch. If you're already on Firefox, take five minutes and harden it with the above steps, or let LibreWolf do it for you. Keep Mullvad or Tor around for the times you'd rather not be anyone at all.
 
-Chrome will always be Google's browser. Pick one that's yours.
-
-> [!quote]
-> The line you want readers to remember.
-
-## What I found
-
-<!-- Drag screenshots into the note. Type the caption between the [ ] of the image link. -->
-
-> [!note]
-> Context, method, or a caveat.
-
-> [!disclosure]
-> Who was notified, when, and what they did.
-
-## What it means
-
-Close the story. What should the reader do or take away?
+At the end of the day, Google is using Chrome as its data broker which is caused to become bloated.
