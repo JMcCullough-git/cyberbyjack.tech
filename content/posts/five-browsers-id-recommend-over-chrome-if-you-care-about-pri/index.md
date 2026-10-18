@@ -7,7 +7,7 @@ tags:
   - Privacy
 cover: cover.jpg
 coverAlt: ""
-featured: false
+featured: true
 hideFromHome: false
 ---
 <!--
