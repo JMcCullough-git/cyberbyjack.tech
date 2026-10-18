@@ -4,7 +4,6 @@ date: 2026-10-09
 draft: false
 dek: What is your careers page telling attackers?
 tags:
-  - threat-research
   - OSINT
 cover: cover.jpg
 coverAlt: ""

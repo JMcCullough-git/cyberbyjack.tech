@@ -1,7 +1,7 @@
 ---
 title: Your AI Knows Your Name. Does It Know Its Limits?
 date: 2026-10-17
-draft: true
+draft: false
 dek: A Privacy Audit of Google Gemini
 tags:
   - Privacy
