@@ -1,62 +1,59 @@
 # Writing cheatsheet
 
-Everything here works in Obsidian's editor and on the site.
+How I write, format and publish posts for The Cyber Seal Report. Everything here works in Obsidian and on the site.
 
-## Publish a new article
+## Publishing workflow
 
-1. **New article:** press `Ctrl/Cmd + N` for a blank note, then click the **<%** Templater icon in the left ribbon → **New article** → type the title. It turns the note into `content/posts/<title>/index.md`.
-   - Or `Ctrl/Cmd + P` → "Templater: Create new note from template" → **New article**.
-   - The insert icon needs an open note; with nothing open, Templater shows "No active editor".
-   - Optional, Ctrl + N alone: Settings → Templater → turn on *Trigger Templater on new file creation*, then add a folder template: `content/posts` → `obsidian/templates/New article.md`.
-2. **Write.** Fill in `dek` and `tags` in Properties at the top.
-3. **Drag images** into the note. They're saved in the article's folder automatically.
-4. **Cover image:** rename your lead image to `cover` (right-click → Rename), or type its file name in the `cover` property.
-5. **Publish:** untick `draft`, then click **Commit-and-sync** (Obsidian Git icon in the left ribbon, or `Ctrl/Cmd + P` → "Git: Commit-and-sync"). It's live in about a minute.
+1. **Start the article.** I press `Ctrl + N` for a blank note, then click the **<%** Templater icon in the left ribbon → **New article** → type the title. Templater moves the note to `content/posts/<title>/index.md` and fills in the properties.
+   - Command palette alternative: `Ctrl + P` → "Templater: Create new note from template" → **New article**.
+   - The **<%** icon needs an open note. With nothing open, Templater shows "No active editor".
+2. **Fill in the properties** at the top: `dek` and `tags` (see Article properties below).
+3. **Write the body** under the properties.
+4. **Drag in images.** Obsidian saves them in the article's folder.
+5. **Set the cover.** I rename the lead image to `cover` (right-click → Rename), or type its file name in the `cover` property.
+6. **Publish.** I untick `draft`, then run **Git: Commit-and-sync** (Obsidian Git icon in the left ribbon, or `Ctrl + P` → "Git: Commit-and-sync"). The post goes live in about a minute.
 
-To fix a typo after publishing, edit the note and Commit-and-sync again.
+**Fixing a published post:** I edit the note and run Commit-and-sync again.
 
-## Home page
-
-The home page shows two stories: the **lead** (big card) and one story **beside it**. Everything else is on the Articles page.
+## Article properties
 
 | Property | What it does |
 |---|---|
-| `featured` ☑ | Pins this post as the lead, however old. If several are ticked, the newest ticked one wins. Untick to go back to newest-first. |
+| `title` | The headline. Any punctuation works: `?`, `!`, `&`, `:`, quotes. The web address drops it: "Is Your Router Lying?" lives at `/posts/is-your-router-lying/`. |
+| `dek` | One-sentence hook under the title and on cards. Plain text only, no formatting. |
+| `tags` | The first tag is the red category pill. |
+| `cover` | File name of the lead image (or I just name the image `cover`). |
+| `coverAlt` | Short description of the cover image for screen readers. |
+| `draft` | Ticked keeps the post off the site. I untick it to publish. |
+| `featured` ☑ | Pins the post as the big lead story on the home page, however old. If several are ticked, the newest ticked one wins. |
 | `hideFromHome` ☑ | Keeps the post off the home page. It still appears under Articles, tags, Archive and RSS. |
 
-Older posts don't have these checkboxes yet. Add them in Properties (**+ Add property** → `featured`, type Checkbox), or just type `featured: true` in the properties.
+**Home page:** it shows two stories, the lead (big card) and one beside it. Without `featured`, the newest post leads. Everything else lives on the Articles page.
+
+**Older posts without the checkboxes:** I add them in Properties (**+ Add property** → `featured`, type Checkbox) or type `featured: true`.
+
+### Tags
+
+Obsidian tags can't contain spaces, so I use hyphens: `threat-research` shows as **Threat Research**.
+
+Tags in use: `investigations`, `threat-research`, `vulnerabilities`, `tooling`, `data-breaches`, `phishing-scams`, `social-engineering`, `privacy`, `OSINT`, `malware`.
 
 ## Text formatting
 
-| Type this | Looks like | Shortcut in Obsidian |
+| I type | It shows | Obsidian shortcut |
 |---|---|---|
-| `**bold**` | **bold** | `Ctrl/Cmd + B` |
-| `*italic*` | *italic* | `Ctrl/Cmd + I` |
-| `<u>underline</u>` | <u>underline</u> | none (type it) |
+| `**bold**` | **bold** | `Ctrl + B` |
+| `*italic*` | *italic* | `Ctrl + I` |
+| `<u>underline</u>` | <u>underline</u> | none |
 | `==highlight==` | ==highlight== (soft red on the site) | none |
 | `~~strikethrough~~` | ~~strikethrough~~ | none |
 | `` `code` `` | `code` | none |
 | `<kbd>Ctrl</kbd>` | <kbd>Ctrl</kbd> key caps | none |
 | `H<sub>2</sub>O`, `x<sup>2</sup>` | H<sub>2</sub>O, x<sup>2</sup> | none |
 
-Mix them: `**<u>bold and underlined</u>**`. Formatting works in the article body and story blocks, not in the `title` or `dek` properties.
-
-## Tables
-
-```markdown
-| Indicator | Type | First seen | Status |
-|---|---|:---:|---:|
-| `185.220.101.44` | C2 server IP | Aug 14 | **Active** |
-```
-
-- In Obsidian, right-click in the note → **Insert → Table**, or type it as above. Obsidian's table editor adds rows and columns for you.
-- Colons in the second line set alignment: `:---` left (default), `:---:` center, `---:` right.
-- Bold, highlight, `code` and links work inside cells.
-- A wide table (hashes, file paths) scrolls sideways on its own instead of stretching the page. Put hashes and IPs in `code` so they never break mid-value.
-
-## Titles
-
-Titles can use any punctuation: `?`, `!`, `&`, `:`, quotes. Type the title normally when Templater asks, or edit `title` in Properties later. The web address (the folder name) drops the punctuation: "Is Your Router Lying?" lives at `/posts/is-your-router-lying/`.
+- Formats combine: `**<u>bold and underlined</u>**`.
+- Formatting works in the body, tables and story blocks, not in `title` or `dek`.
+- I skip font colors and background colors. They clash with the design and may not show on the site.
 
 ## Story blocks
 
@@ -74,17 +71,20 @@ Titles can use any punctuation: `?`, `!`, `&`, `:`, quotes. Type the title norma
 > Any title after the type replaces the label.
 ```
 
-## Images
+## Tables
 
 ```markdown
-![Caption shown under the image as "Fig. 1"](screenshot.png)
+| Indicator | Type | First seen | Status |
+|---|---|:---:|---:|
+| `185.220.101.44` | C2 server IP | Aug 14 | **Active** |
 ```
 
-- An image on its own line becomes a numbered evidence figure, but only if it has a caption.
-- File names with spaces (like Obsidian's `Pasted image …png`) are fine.
-- The site publishes resized copies with **GPS and camera metadata stripped**. Your original files are never published.
+- **Insert:** right-click in the note → **Insert → Table**, or type it. Obsidian's table editor adds rows and columns.
+- **Alignment:** colons in the second line set it. `:---` left (default), `:---:` center, `---:` right.
+- **Inside cells:** bold, highlight, `code` and links all work.
+- **Wide tables** (hashes, file paths) scroll sideways on their own instead of stretching the page. I put hashes, IPs and domains in `code` so they never break mid-value.
 
-## Code
+## Code blocks
 
 ````markdown
 ```bash {title="check_build.sh"}
@@ -92,13 +92,38 @@ grep -r "password" /etc
 ```
 ````
 
-The title shows in the bar above the code, with a Copy button. Leave out `{…}` to show just the language.
+The title shows in the dark bar above the code, next to a Copy button. Without `{…}`, the bar shows just the language.
 
-## Tags
+## Images in articles
 
-The first tag is the red category pill. Obsidian tags can't contain spaces, so use hyphens: `threat-research` shows as **Threat Research**. Tags already used on the site: `investigations`, `threat-research`, `vulnerabilities`, `tooling`, `data-breaches`, `phishing-scams`, `social-engineering`, `privacy`, `OSINT`, `malware`.
+```markdown
+![Caption shown under the image as "Fig. 1"](screenshot.png)
+```
 
-## Comments to yourself
+- An image on its own line becomes a numbered evidence figure, but only if it has a caption.
+- File names with spaces (like Obsidian's `Pasted image …png`) are fine.
+- The site publishes resized copies with **GPS and camera metadata stripped**. The original files never go online.
+
+## Images for emails and other uses
+
+For images outside an article, like a logo for a Kit email: anything in the `static` folder goes live at the same path, so `static/images/my-file.png` becomes `https://cybersealreport.com/images/my-file.png`.
+
+**The easy way (Windows File Explorer + Obsidian Git):**
+
+1. In File Explorer, I open my vault folder and go to `static\images`.
+2. I copy my image into it.
+3. In Obsidian, I run **Git: Commit-and-sync**. It picks up every change in the vault, not just notes.
+4. About a minute later, it's live at `https://cybersealreport.com/images/<file-name>`.
+
+**Without my PC:** on GitHub, I open the repo → `static/images` → **Add file → Upload files**, and commit to `main`.
+
+Rules for these files:
+
+- **File names:** lowercase with hyphens and no spaces (`seal-banner-2026.png`). The file name becomes the web address.
+- **Photos:** these files go online exactly as they are, so I strip location data first. Right-click the file → Properties → Details → **Remove Properties and Personal Information**. Graphics I made myself are fine.
+- **Replacing an image:** saving over an existing name updates it everywhere, including emails already sent. I use a new name when old emails should keep the old image.
+
+## Notes to myself
 
 ```markdown
 <!-- Notes like this never appear on the site or in the RSS feed. -->
