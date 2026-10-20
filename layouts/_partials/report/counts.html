@@ -1,0 +1,11 @@
+{{- /*
+  Counts rows per severity. Context: dict "rows" (list of dicts) "key" (severity column).
+  Returns dict critical/high/medium/low/info → int, plus "total" (all but info).
+*/ -}}
+{{- $c := dict "critical" 0 "high" 0 "medium" 0 "low" 0 "info" 0 }}
+{{- $key := .key }}
+{{- range .rows }}
+  {{- $s := partial "report/sev.html" (index . $key) }}
+  {{- with $s }}{{ $c = merge $c (dict . (add (index $c .) 1)) }}{{ end }}
+{{- end }}
+{{- return merge $c (dict "total" (add (index $c "critical") (index $c "high") (index $c "medium") (index $c "low"))) }}

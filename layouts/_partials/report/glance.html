@@ -1,0 +1,29 @@
+{{- /*
+  ```glance   →   dark "at a glance" panel that sits to the right of the text after it.
+    file: findings.csv        counts the Severity (or Risk) column, or type the counts:
+    Critical | 5
+    note: Unique findings across all three scans.
+    title: Findings at a glance
+*/ -}}
+{{- $card := index (partial "report/parse.html" .) 0 }}
+{{- $items := slice }}
+{{- with $card.opts.file }}
+  {{- $csv := partial "report/csv.html" (dict "page" $.page "file" .) }}
+  {{- with $csv.error }}<p class="r-error">{{ . }}</p>{{ end }}
+  {{- $key := partial "report/col.html" (dict "head" $csv.head "names" (slice "severity" "risk" "rating" "confidence")) }}
+  {{- $c := partial "report/counts.html" (dict "rows" $csv.rows "key" $key) }}
+  {{- range slice "critical" "high" "medium" "low" "info" }}{{ $items = $items | append (dict "label" (title .) "n" (index $c .) "sev" .) }}{{ end }}
+{{- end }}
+{{- range $card.rows }}
+  {{- $r := .c | append "" }}
+  {{- $items = $items | append (dict "label" (index $r 0) "n" (index $r 1) "sev" (partial "report/sev.html" (index $r 0))) }}
+{{- end }}
+<aside class="r-block r-glance">
+  <span class="r-label">{{ $card.opts.title | default "Findings at a glance" }}</span>
+  <ul class="r-glance__list">
+    {{- range $items }}
+    <li><span class="r-dot sev-bg--{{ .sev | default "none" }}" aria-hidden="true"></span><span class="r-glance__label">{{ .label }}</span><span class="r-glance__n">{{ .n }}</span></li>
+    {{- end }}
+  </ul>
+  {{- with $card.opts.note }}<p class="r-glance__note">{{ . }}</p>{{ end }}
+</aside>

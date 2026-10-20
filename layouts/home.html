@@ -23,6 +23,9 @@
   </div>
 
   <div class="home-grid">
+    {{- /* Left column: lead story, then the newest investigation as a ruled index card
+         that stretches so the column ends level with the newsletter. */}}
+    <div class="home-lead-col">
     {{- with $lead }}
       {{- partial "post-card-featured.html" . }}
     {{- else }}
@@ -30,6 +33,10 @@
       <p class="empty-note">The first investigation is on its way. Follow the <a href="{{ "index.xml" | relURL }}">RSS feed</a> to catch it when it lands.</p>
     </div>
     {{- end }}
+    {{- with index (where site.RegularPages "Section" "investigations") 0 }}
+      {{- partial "investigation-index-card.html" . }}
+    {{- end }}
+    </div>
 
     <aside class="home-side">
       {{- with $side }}

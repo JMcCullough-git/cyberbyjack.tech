@@ -2,6 +2,8 @@
   Hugo's built-in RSS feed, with two changes:
   - <!-- comments --> in a post are stripped, so notes to yourself never reach feed readers.
   - The language is fixed to "en" (site.Language.Locale breaks on older Hugo versions).
+  - Only articles and investigations are included (not About, Archive and other pages).
+  - Investigations send their dek and a link, since they're mostly tables and blocks.
 */ -}}
 {{- $authorEmail := "" }}
 {{- with site.Params.author }}
@@ -31,6 +33,8 @@
 {{- else }}
 	{{- $pages = $pctx.Pages }}
 {{- end }}
+{{- /* Feeds carry articles and investigations only, never standalone pages like About or Archive. */}}
+{{- $pages = where $pages "Section" "in" (slice "posts" "investigations") }}
 {{- $limit := .Site.Config.Services.RSS.Limit }}
 {{- if ge $limit 1 }}
 	{{- $pages = $pages | first $limit }}
@@ -65,7 +69,10 @@
 				<pubDate>{{ .PublishDate.Format "Mon, 02 Jan 2006 15:04:05 -0700" | safeHTML }}</pubDate>
 				{{- with $authorEmail }}<author>{{ . }}{{ with $authorName }} ({{ . }}){{ end }}</author>{{ end }}
 				<guid>{{ .Permalink }}</guid>
-				<description>{{ .Summary | replaceRE `(?s)<!--.*?-->` "" | strings.TrimSpace | transform.XMLEscape | safeHTML }}</description>
+				{{- $desc := .Summary | replaceRE `(?s)<!--.*?-->` "" | strings.TrimSpace }}
+				{{- /* Investigations are mostly tables and blocks: send the dek and a link instead. */}}
+				{{- if and (eq .Section "investigations") .Params.dek }}{{ $desc = printf "<p>%s</p><p><a href=%q>Read the full investigation →</a></p>" (.Params.dek | htmlEscape) .Permalink }}{{ end }}
+				<description>{{ $desc | transform.XMLEscape | safeHTML }}</description>
 			</item>
 		{{- end }}
 	</channel>

@@ -1,0 +1,26 @@
+{{- /*
+  What an investigation's cards show, worked out from the page itself:
+    tools  → the lines of its ```tools block
+    counts → severity counts from the property "summary: file.csv", or else the first CSV in
+             the folder with a Severity / Risk column
+  Returns dict "tools" (list of dicts name/ver) "counts" (dict or false) "unit" (string).
+*/ -}}
+{{- $p := . }}
+{{- $tools := slice }}
+{{- with findRESubmatch "(?s)```tools[^\\n]*\\n(.*?)```" $p.RawContent 1 }}
+  {{- range (index (partial "report/parse.html" (dict "text" (index (index . 0) 1))) 0).rows }}
+    {{- $r := .c | append "" }}
+    {{- $tools = $tools | append (dict "name" (index $r 0) "ver" (index $r 1)) }}
+  {{- end }}
+{{- end }}
+{{- $counts := false }}
+{{- $files := slice }}
+{{- with $p.Params.summary }}{{ $files = slice . }}{{ else }}{{ range $p.Resources.Match "*.csv" }}{{ $files = $files | append .Name }}{{ end }}{{ end }}
+{{- range $files }}
+  {{- if not $counts }}
+    {{- $csv := partial "report/csv.html" (dict "page" $p "file" .) }}
+    {{- $sk := partial "report/col.html" (dict "head" $csv.head "names" (slice "severity" "risk" "rating")) }}
+    {{- if $sk }}{{ $counts = partial "report/counts.html" (dict "rows" $csv.rows "key" $sk) }}{{ end }}
+  {{- end }}
+{{- end }}
+{{- return dict "tools" $tools "counts" $counts }}

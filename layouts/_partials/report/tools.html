@@ -1,0 +1,10 @@
+{{- /* ```tools   →   Nmap | 7.99   (name | version; version optional) */ -}}
+{{- $card := index (partial "report/parse.html" .) 0 }}
+<div class="r-block r-tools">
+  <span class="r-label">{{ $card.opts.title | default "Tools" }}</span>
+  <ul class="r-tools__list">
+    {{- range $card.rows }}{{ with .c }}
+    <li class="r-tool"><span class="r-tool__name">{{ index . 0 }}</span>{{ with and (gt (len .) 1) (index . 1) }}<span class="r-tool__ver">{{ . }}</span>{{ end }}</li>
+    {{- end }}{{ end }}
+  </ul>
+</div>

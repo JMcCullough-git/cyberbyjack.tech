@@ -1,0 +1,33 @@
+{{- /*
+  Shared table markup for CSV data. Context: dict "page" "head" (columns to show, as written) "rows" "class".
+  Severity / Risk / Confidence / Rating columns get colored pills; IP, host, port, hash, CVE
+  and similar columns use the monospace font. Markdown in cells works.
+*/ -}}
+{{- $page := .page }}
+{{- $pill := slice "severity" "risk" "rating" "confidence" "status" }}
+{{- $mono := slice "ip" "host" "port" "hash" "sha256" "sha-256" "sha1" "md5" "cve" "plugin id" "mac" "domain" "url" "wallet" "address" "indicator" "ioc" }}
+<div class="table-wrap r-table-wrap{{ with .class }} {{ . }}{{ end }}" role="region" aria-label="Table" tabindex="0">
+<table class="r-table">
+  <thead><tr>
+    {{- range .head }}<th>{{ . }}</th>{{ end }}
+  </tr></thead>
+  <tbody>
+    {{- range $row := .rows }}
+    <tr>
+      {{- range $h := $.head }}
+        {{- $k := lower $h }}
+        {{- $v := index $row $k }}
+        {{- if in $pill $k }}
+          {{- $s := partial "report/sev.html" $v }}
+      <td>{{ if $s }}<span class="r-pill sev--{{ $s }}">{{ $v }}</span>{{ else }}{{ $v }}{{ end }}</td>
+        {{- else if in $mono $k }}
+      <td class="r-mono">{{ $v }}</td>
+        {{- else }}
+      <td>{{ $v | $page.RenderString }}</td>
+        {{- end }}
+      {{- end }}
+    </tr>
+    {{- end }}
+  </tbody>
+</table>
+</div>

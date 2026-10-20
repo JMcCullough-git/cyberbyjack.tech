@@ -16,5 +16,6 @@
     "public/",
     "resources/",
     "node_modules/"
-  ]
+  ],
+  "showUnsupportedFiles": true
 }

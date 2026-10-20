@@ -1,0 +1,88 @@
+{{- /*
+  ```host / ```entity / ```cards   →   one card, or several separated by a line with ===
+    title: 10.71.2.102                 big name on the card (IP, handle, domain, wallet…)
+    badge: Critical risk               pill on the right; colored when it names a severity
+    subtitle: Windows XP · VMware      small line under the title
+    chip: B                            small dark letter box before the title
+    OS: Windows XP                     any other "Label: value" line becomes a detail row
+    findings: findings.csv             severity bar + counts from rows whose Host is the title
+    ports: ports.csv                   table of rows whose Host is the title
+    counts: 5 critical, 3 high, 2 info type the counts instead of using a file
+    ---
+    Notes in markdown, shown at the bottom of the card.
+*/ -}}
+{{- $page := .page }}
+{{- $cards := partial "report/parse.html" . }}
+{{- $reserved := slice "title" "badge" "subtitle" "chip" "findings" "ports" "counts" "columns" }}
+<div class="r-block r-cards{{ if gt (len $cards) 1 }} r-cards--grid{{ end }}">
+  {{- range $cards }}
+  {{- $o := .opts }}
+  {{- $errors := slice }}
+  {{- $title := $o.title | default "" }}
+  {{- $counts := false }}
+  {{- with $o.findings }}
+    {{- $csv := partial "report/csv.html" (dict "page" $page "file" .) }}
+    {{- with $csv.error }}{{ $errors = $errors | append . }}{{ end }}
+    {{- $hk := partial "report/col.html" (dict "head" $csv.head "names" (slice "host" "ip" "target" "asset")) }}
+    {{- $sk := partial "report/col.html" (dict "head" $csv.head "names" (slice "severity" "risk" "rating" "confidence")) }}
+    {{- $rows := $csv.rows }}
+    {{- if $hk }}{{ $rows = where $csv.rows $hk $title }}{{ end }}
+    {{- $counts = partial "report/counts.html" (dict "rows" $rows "key" $sk) }}
+  {{- end }}
+  {{- with $o.counts }}
+    {{- $c := dict "critical" 0 "high" 0 "medium" 0 "low" 0 "info" 0 }}
+    {{- range split . "," }}
+      {{- $m := findRESubmatch `(\d+)\s*([A-Za-z]+)` . 1 }}
+      {{- with $m }}{{ with partial "report/sev.html" (index (index $m 0) 2) }}{{ $c = merge $c (dict . (int (index (index $m 0) 1))) }}{{ end }}{{ end }}
+    {{- end }}
+    {{- $counts = merge $c (dict "total" (add (index $c "critical") (index $c "high") (index $c "medium") (index $c "low"))) }}
+  {{- end }}
+  {{- $subtitle := $o.subtitle | default "" }}
+  {{- if and (not $subtitle) $o.findings $counts }}
+    {{- $parts := slice }}
+    {{- range slice "critical" "high" "medium" "low" }}{{ if and (gt (index $counts .) 0) (lt (len $parts) 2) }}{{ $parts = $parts | append (printf "%d %s" (index $counts .) .) }}{{ end }}{{ end }}
+    {{- if eq (add (index $counts "critical") (index $counts "high")) 0 }}{{ $parts = $parts | append "no critical or high" }}{{ end }}
+    {{- $subtitle = delimit $parts " · " }}
+  {{- end }}
+  {{- $sev := partial "report/sev.html" ($o.badge | default "") }}
+  <article class="r-card">
+    <div class="r-card__head">
+      {{- with $o.chip }}<span class="r-chip" aria-hidden="true">{{ . }}</span>{{ end }}
+      <div class="r-card__titles">
+        <h3 class="r-card__title">{{ $title }}</h3>
+        {{- with $subtitle }}<span class="r-card__sub">{{ . }}</span>{{ end }}
+      </div>
+      {{- with $o.badge }}<span class="r-badge sev--{{ $sev | default "none" }}">{{ . }}</span>{{ end }}
+    </div>
+    {{- $details := slice }}
+    {{- range .order }}{{ if not (in $reserved (lower .)) }}{{ $details = $details | append . }}{{ end }}{{ end }}
+    {{- with $details }}
+    <dl class="r-card__details">
+      {{- range . }}
+      <div><dt>{{ . }}</dt><dd>{{ index $o (lower .) | $page.RenderString }}</dd></div>
+      {{- end }}
+    </dl>
+    {{- end }}
+    {{- with $counts }}
+    <div class="r-card__sev">
+      {{- partial "report/sevbar.html" . }}
+      {{- partial "report/sevcounts.html" (dict "counts" . "info" true) }}
+    </div>
+    {{- end }}
+    {{- with $o.ports }}
+      {{- $csv := partial "report/csv.html" (dict "page" $page "file" .) }}
+      {{- with $csv.error }}{{ $errors = $errors | append . }}{{ end }}
+      {{- $hk := partial "report/col.html" (dict "head" $csv.head "names" (slice "host" "ip" "target" "asset")) }}
+      {{- $rows := $csv.rows }}
+      {{- if $hk }}{{ $rows = where $csv.rows $hk $title }}{{ end }}
+      {{- $head := slice }}
+      {{- range $csv.head }}{{ if ne (lower .) $hk }}{{ $head = $head | append . }}{{ end }}{{ end }}
+      {{- partial "report/table-html.html" (dict "page" $page "head" $head "rows" $rows "class" "r-card__table") }}
+    {{- end }}
+    {{- range $errors }}<p class="r-error r-card__error">{{ . }}</p>{{ end }}
+    {{- with strings.TrimSpace .notes }}
+    <div class="r-card__notes">{{ . | $page.RenderString (dict "display" "block") }}</div>
+    {{- end }}
+  </article>
+  {{- end }}
+</div>

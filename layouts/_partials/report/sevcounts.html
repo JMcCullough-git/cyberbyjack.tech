@@ -1,0 +1,10 @@
+{{- /* "5 Critical 3 High …" row. Context: dict "counts" "info" (bool: include Info). */ -}}
+{{- $c := .counts }}
+<div class="r-counts">
+  {{- range slice "critical" "high" "medium" "low" "info" }}
+    {{- if or (ne . "info") $.info }}
+    {{- $n := index $c . }}
+  <span class="r-count{{ if eq $n 0 }} is-zero{{ end }}"><b class="sev-text--{{ . }}">{{ $n }}</b> {{ title . }}</span>
+    {{- end }}
+  {{- end }}
+</div>

@@ -1,0 +1,23 @@
+Host,Port,Service,Version / notes
+10.71.2.101,135/tcp,msrpc,Microsoft Windows RPC
+10.71.2.101,139/tcp,netbios-ssn,Microsoft Windows NetBIOS
+10.71.2.101,445/tcp,microsoft-ds,SMB
+10.71.2.101,3389/tcp,ms-wbt-server,Remote Desktop
+10.71.2.101,5357/tcp,http,Microsoft HTTPAPI 2.0 (SSDP/UPnP)
+10.71.2.101,5800/tcp,vnc-http,"TightVNC, user `[redacted]`"
+10.71.2.101,5900/tcp,vnc,VNC protocol 3.8
+10.71.2.102,135/tcp,msrpc,Microsoft Windows RPC
+10.71.2.102,139/tcp,netbios-ssn,Microsoft Windows NetBIOS
+10.71.2.102,445/tcp,microsoft-ds,Windows XP SMB
+10.71.2.102,3389/tcp,ms-wbt-server,Remote Desktop
+10.71.2.106,135/tcp,msrpc,Microsoft Windows RPC
+10.71.2.106,139/tcp,netbios-ssn,Microsoft Windows NetBIOS
+10.71.2.106,445/tcp,microsoft-ds,Windows 7–10 SMB (workgroup: WORKGROUP)
+10.71.2.106,554/tcp,rtsp?,Unconfirmed service
+10.71.2.106,3389/tcp,ms-wbt-server,Remote Desktop
+10.71.2.106,5357/tcp,http,Microsoft HTTPAPI 2.0 (SSDP/UPnP)
+10.71.2.254,22/tcp,ssh,Cisco SSH 1.25 (protocol 2.0)
+10.71.2.254,80/tcp,http,OpenResty web app server
+10.71.2.254,443/tcp,ssl/http,OpenResty web app server
+10.71.2.20,22/tcp,ssh,OpenSSH 10.3p1 Debian 4 (protocol 2.0)
+10.71.2.20,5900/tcp,vnc,VNC protocol 3.8
