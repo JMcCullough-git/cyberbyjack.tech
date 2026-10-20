@@ -2,6 +2,8 @@
   Hugo's built-in RSS feed, with two changes:
   - <!-- comments --> in a post are stripped, so notes to yourself never reach feed readers.
   - The language is fixed to "en" (site.Language.Locale breaks on older Hugo versions).
+  - Only articles and investigations are included (not About, Archive and other pages).
+  - Investigations send their dek and a link, since they're mostly tables and blocks.
 */ -}}
 {{- $authorEmail := "" }}
 {{- with site.Params.author }}
@@ -31,6 +33,8 @@
 {{- else }}
 	{{- $pages = $pctx.Pages }}
 {{- end }}
+{{- /* Feeds carry articles and investigations only, never standalone pages like About or Archive. */}}
+{{- $pages = where $pages "Section" "in" (slice "posts" "investigations") }}
 {{- $limit := .Site.Config.Services.RSS.Limit }}
 {{- if ge $limit 1 }}
 	{{- $pages = $pages | first $limit }}
