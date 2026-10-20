@@ -11,6 +11,8 @@
         {{- $active := false }}
         {{- with .Page }}
           {{- if eq .RelPermalink $current.RelPermalink }}{{ $active = true }}{{ end }}
+          {{- /* Inside a section (an article, an investigation), its tab stays highlighted. */}}
+          {{- if and (eq .Kind "section") (eq $current.Kind "page") (eq .Section $current.Section) }}{{ $active = true }}{{ end }}
         {{- else }}
           {{- if eq (.URL | relURL) $current.RelPermalink }}{{ $active = true }}{{ end }}
         {{- end }}

@@ -4,7 +4,15 @@
   ...
   ```
   With no filename, the bar shows the language (or just the Copy button).
+
+  Report blocks (for investigations, but they work in any post) use the same fences with a
+  block name instead of a language: stats, tools, glance, host / entity / cards, table,
+  findings, priority, timeline. See content/investigations/Investigations cheatsheet.md.
 */ -}}
+{{- $blocks := dict "stats" "stats" "tools" "tools" "glance" "glance" "host" "cards" "entity" "cards" "cards" "cards" "table" "table" "findings" "findings" "priority" "priority" "next-steps" "priority" "timeline" "timeline" }}
+{{- with index $blocks (lower .Type) }}
+{{- partial (printf "report/%s.html" .) (dict "page" $.Page "text" $.Inner "attrs" $.Attributes) }}
+{{- else }}
 {{- .Page.Store.Set "hasCode" true }}
 {{- $label := .Attributes.filename | default .Attributes.title | default .Type }}
 <div class="code">
@@ -14,3 +22,4 @@
   </div>
   {{ transform.Highlight .Inner (.Type | default "text") .Options }}
 </div>
+{{- end }}

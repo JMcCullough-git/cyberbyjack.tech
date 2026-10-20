@@ -1,0 +1,44 @@
+{{ define "main" }}
+{{- /* One investigation: wide report page. Blocks are documented in content/investigations/Investigations cheatsheet.md. */ -}}
+{{- $section := site.GetPage "/investigations" }}
+<main class="main main--wide main--report" id="content">
+  <div class="report">
+    <div class="report-head">
+      <a class="back-link" href="{{ $section.RelPermalink }}">← All investigations</a>
+      {{- with .Params.labels }}
+      <div class="tags">
+        {{- range $i, $l := . }}<span class="tag{{ if eq $i 0 }} tag--primary{{ end }}">{{ $l }}</span>{{ end }}
+      </div>
+      {{- else }}
+      <div class="tags-spacer"></div>
+      {{- end }}
+      <h1 class="post-title">{{ .Title }}</h1>
+      {{- with .Params.dek }}<p class="post-dek">{{ . }}</p>{{ end }}
+      <div class="meta meta--lg">
+        <span class="meta__author">{{ .Params.author | default site.Params.author }}</span>
+        <span class="meta__date"><time datetime="{{ .Date.Format "2006-01-02" }}">{{ .Date.Format "Jan 2, 2006" }}</time>{{ with .Params.meta }} · {{ . }}{{ end }}</span>
+      </div>
+    </div>
+
+    {{- with partial "cover.html" (dict "page" . "spec" "2160x926 webp q80 Center") }}
+    <div class="post-hero report-hero">
+      <img class="img-fill" src="{{ .RelPermalink }}" width="{{ .Width }}" height="{{ .Height }}" alt="{{ $.Params.coverAlt }}" fetchpriority="high">
+    </div>
+    {{- end }}
+
+    <article class="prose prose--report">
+      {{ .Content | replaceRE `(?s)<!--.*?-->` "" | safeHTML }}
+      <p class="disclaimer">{{ site.Params.disclaimer }}</p>
+    </article>
+
+    {{- with .NextInSection | default .PrevInSection }}
+    <div class="next-wrap report-next">
+      <a class="next-card" href="{{ .RelPermalink }}">
+        <span class="kicker kicker--muted">Next investigation</span>
+        <span class="next-card__title">{{ .Title }} →</span>
+      </a>
+    </div>
+    {{- end }}
+  </div>
+</main>
+{{ end }}

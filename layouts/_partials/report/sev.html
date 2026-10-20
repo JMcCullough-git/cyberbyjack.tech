@@ -1,0 +1,10 @@
+{{- /* Severity word → one of critical / high / medium / low / info, or "" if it isn't one. */ -}}
+{{- $s := lower (strings.TrimSpace (string .)) }}
+{{- $out := "" }}
+{{- if strings.Contains $s "critical" }}{{ $out = "critical" }}
+{{- else if strings.Contains $s "high" }}{{ $out = "high" }}
+{{- else if or (strings.Contains $s "medium") (strings.Contains $s "moderate") }}{{ $out = "medium" }}
+{{- else if strings.Contains $s "low" }}{{ $out = "low" }}
+{{- else if or (strings.HasPrefix $s "info") (eq $s "none") }}{{ $out = "info" }}
+{{- end }}
+{{- return $out }}

@@ -38,5 +38,12 @@
       {{- partial "newsletter.html" . }}
     </aside>
   </div>
+
+  {{- /* Newest investigation, as a ruled index card under the two stories. */ -}}
+  {{- with index (where site.RegularPages "Section" "investigations") 0 }}
+  <section class="home-inv" aria-label="Latest investigation">
+    {{- partial "investigation-index-card.html" . }}
+  </section>
+  {{- end }}
 </main>
 {{ end }}

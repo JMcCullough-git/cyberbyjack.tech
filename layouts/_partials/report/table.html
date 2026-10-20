@@ -1,0 +1,22 @@
+{{- /*
+  ```table   →   a CSV file as a styled table
+    file: hosts.csv
+    columns: IP, Role, Risk          optional: which columns, in what order
+    where: Host = 10.71.2.101        optional: only rows where a column equals a value
+*/ -}}
+{{- $card := index (partial "report/parse.html" .) 0 }}
+{{- $csv := partial "report/csv.html" (dict "page" .page "file" ($card.opts.file | default "")) }}
+{{- $rows := $csv.rows }}
+{{- with $card.opts.where }}
+  {{- $p := split . "=" }}
+  {{- if eq (len $p) 2 }}{{ $rows = where $rows (lower (strings.TrimSpace (index $p 0))) (strings.TrimSpace (index $p 1)) }}{{ end }}
+{{- end }}
+{{- $head := $csv.head }}
+{{- with $card.opts.columns }}
+  {{- $head = slice }}
+  {{- range split . "," }}{{ $head = $head | append (strings.TrimSpace .) }}{{ end }}
+{{- end }}
+{{- with $csv.error }}<p class="r-error">{{ . }}</p>{{ end }}
+<div class="r-block">
+{{- partial "report/table-html.html" (dict "page" .page "head" $head "rows" $rows) }}
+</div>

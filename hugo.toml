@@ -7,7 +7,8 @@ capitalizeListTitles = false
 # Publishing is manual (draft: false + sync), so a future date never hides a post.
 buildFuture = true
 # Content written in Obsidian lives in content/; ignore Obsidian/editor clutter there.
-ignoreFiles = ['\.obsidian', '\.trash', '(^|/)Untitled( \d+)?\.md$']
+# The investigations cheatsheet lives next to the investigations in Obsidian but is never published.
+ignoreFiles = ['\.obsidian', '\.trash', '(^|/)Untitled( \d+)?\.md$', 'Investigations cheatsheet\.md$']
 
 # Fail fast with a clear message if the build server runs an older Hugo.
 [module.hugoVersion]
@@ -23,6 +24,7 @@ ignoreFiles = ['\.obsidian', '\.trash', '(^|/)Untitled( \d+)?\.md$']
 [permalinks]
   [permalinks.page]
     posts = "/posts/:contentbasename/"
+    investigations = "/investigations/:contentbasename/"
 
 [markup]
   [markup.highlight]
@@ -83,7 +85,7 @@ ignoreFiles = ['\.obsidian', '\.trash', '(^|/)Untitled( \d+)?\.md$']
     weight = 10
   [[menus.main]]
     name = "Investigations"
-    url = "/tags/investigations/"
+    pageRef = "/investigations"
     weight = 20
   [[menus.main]]
     name = "Archive"

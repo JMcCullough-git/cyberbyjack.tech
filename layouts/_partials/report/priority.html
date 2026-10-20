@@ -1,0 +1,18 @@
+{{- /*
+  ```priority   →   numbered "fix these first" / "what I'd do next" list.
+    Title | Why it matters | Severity · Host        (description and meta are optional)
+*/ -}}
+{{- $card := index (partial "report/parse.html" .) 0 }}
+{{- $page := .page }}
+<ol class="r-block r-priority">
+  {{- range $i, $cr := $card.rows }}{{ $r := $cr.c }}
+  <li class="r-priority__item">
+    <span class="r-priority__n" aria-hidden="true">{{ add $i 1 }}</span>
+    <div class="r-priority__body">
+      <span class="r-priority__title{{ if eq (len $r) 1 }} is-plain{{ end }}">{{ index $r 0 | $page.RenderString }}</span>
+      {{- if gt (len $r) 1 }}{{ with index $r 1 }}<span class="r-priority__why">{{ . | $page.RenderString }}</span>{{ end }}{{ end }}
+    </div>
+    {{- if gt (len $r) 2 }}{{ with index $r 2 }}<span class="r-priority__meta">{{ . }}</span>{{ end }}{{ end }}
+  </li>
+  {{- end }}
+</ol>

@@ -1,0 +1,25 @@
+{{- /* One investigation on the Investigations tab. */ -}}
+{{- $s := partial "report/summary.html" . }}
+<a class="inv-row" href="{{ .RelPermalink }}">
+  <div class="inv-row__body">
+    {{- with index (.Params.labels | default slice) 0 }}<span class="kicker">{{ . }}</span>{{ end }}
+    <h2 class="inv-row__title">{{ .Title }}</h2>
+    {{- with .Params.dek }}<p class="inv-row__dek">{{ . | plainify }}</p>{{ end }}
+    <div class="meta">
+      <span class="meta__date"><time datetime="{{ .Date.Format "2006-01-02" }}">{{ .Date.Format "Jan 2, 2006" }}</time>{{ with .Params.meta }} · {{ . }}{{ end }}</span>
+    </div>
+  </div>
+  <div class="inv-row__side">
+    {{- with $s.counts }}
+    <div class="inv-sev">
+      {{- partial "report/sevbar.html" . }}
+      {{- partial "report/sevcounts.html" (dict "counts" . "info" false) }}
+    </div>
+    {{- end }}
+    {{- with $s.tools }}
+    <ul class="r-tools__list r-tools__list--sm" aria-label="Tools">
+      {{- range . }}<li class="r-tool"><span class="r-tool__name">{{ .name }}</span>{{ with .ver }}<span class="r-tool__ver">{{ . }}</span>{{ end }}</li>{{ end }}
+    </ul>
+    {{- end }}
+  </div>
+</a>

@@ -1,0 +1,19 @@
+{{- /*
+  Stacked severity bar (critical → low) as SVG, so widths need no inline styles (blocked by the CSP).
+  Context: counts dict from report/counts.html.
+*/ -}}
+{{- $c := . }}
+{{- $total := index $c "total" }}
+{{- if gt $total 0 }}
+<svg class="r-bar" viewBox="0 0 100 4" preserveAspectRatio="none" aria-hidden="true" focusable="false">
+  {{- $x := 0.0 }}
+  {{- range slice "critical" "high" "medium" "low" }}
+    {{- $n := index $c . }}
+    {{- if gt $n 0 }}
+      {{- $w := div (mul 100.0 $n) $total }}
+  <rect class="sev-fill--{{ . }}" x="{{ $x }}" y="0" width="{{ $w }}" height="4"/>
+      {{- $x = add $x $w }}
+    {{- end }}
+  {{- end }}
+</svg>
+{{- end }}

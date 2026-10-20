@@ -1,0 +1,23 @@
+{{- /* "Latest investigation" index card under the two stories on the home page. */ -}}
+{{- $s := partial "report/summary.html" . }}
+<a class="index-card" href="{{ .RelPermalink }}">
+  <div class="index-card__head">
+    <span class="kicker">Latest investigation</span>
+    <span class="meta__date"><time datetime="{{ .Date.Format "2006-01-02" }}">{{ .Date.Format "Jan 2, 2006" }}</time></span>
+  </div>
+  <div class="index-card__body">
+    <div class="index-card__main">
+      <h2 class="index-card__title">{{ .Title }}</h2>
+      {{- with .Params.dek }}<p class="index-card__dek">{{ . | plainify }}</p>{{ end }}
+    </div>
+    <div class="index-card__side">
+      {{- with $s.counts }}{{ partial "report/sevcounts.html" (dict "counts" . "info" false) }}{{ end }}
+      {{- with $s.tools }}
+      <ul class="r-tools__list r-tools__list--sm" aria-label="Tools">
+        {{- range . }}<li class="r-tool"><span class="r-tool__name">{{ .name }}</span>{{ with .ver }}<span class="r-tool__ver">{{ . }}</span>{{ end }}</li>{{ end }}
+      </ul>
+      {{- end }}
+      <span class="read-more">Read the investigation →</span>
+    </div>
+  </div>
+</a>

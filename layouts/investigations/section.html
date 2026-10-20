@@ -1,0 +1,22 @@
+{{ define "main" }}
+{{- /* The Investigations tab (/investigations/). */ -}}
+<main class="main main--wide main--list" id="content">
+  <h1 class="page-title">{{ .Title }}</h1>
+  {{- with .Description }}<p class="page-intro">{{ . }}</p>{{ end }}
+  {{- $pager := .Paginate .Pages }}
+  <div class="rows inv-rows">
+    {{- range $pager.Pages }}
+      {{- partial "investigation-row.html" . }}
+    {{- else }}
+      <p class="empty-note">No investigations published yet.</p>
+    {{- end }}
+  </div>
+  {{- if gt $pager.TotalPages 1 }}
+  <nav class="pager" aria-label="Pagination">
+    {{- with $pager.Prev }}<a href="{{ .URL }}">← Newer</a>{{ else }}<span class="pager__disabled">← Newer</span>{{ end }}
+    <span class="pager__count">Page {{ $pager.PageNumber }} of {{ $pager.TotalPages }}</span>
+    {{- with $pager.Next }}<a href="{{ .URL }}">Older →</a>{{ else }}<span class="pager__disabled">Older →</span>{{ end }}
+  </nav>
+  {{- end }}
+</main>
+{{ end }}

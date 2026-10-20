@@ -1,0 +1,11 @@
+{{- /* ```stats   →   256 | IPs scanned   (one tile per line) */ -}}
+{{- $card := index (partial "report/parse.html" .) 0 }}
+<div class="r-block r-stats">
+  {{- range $card.rows }}{{ with .c }}
+  <div class="r-stat">
+    {{- $r := . | append "" }}
+    <span class="r-stat__label">{{ index $r 1 }}</span>
+    <span class="r-stat__n">{{ index . 0 }}</span>
+  </div>
+  {{- end }}{{ end }}
+</div>

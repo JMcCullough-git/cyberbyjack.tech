@@ -1,0 +1,41 @@
+{{- /*
+  Splits a report block's text into options, rows and cards.
+    Label: value    → option (keys are matched lowercase)
+    a | b | c       → a row of fields
+    ---             → everything after is markdown notes (cards only)
+    ===             → starts the next card
+  Returns a list of cards: dict "opts" (dict) "order" (list of option keys as written)
+  "rows" (list of dicts; .c is the list of fields) "notes" (string).
+*/ -}}
+{{- $cards := slice }}
+{{- $opts := dict }}{{ $order := slice }}{{ $rows := slice }}{{ $notes := slice }}{{ $inNotes := false }}
+{{- $lines := split (strings.TrimSpace .text) "\n" }}
+{{- $n := len $lines }}
+{{- range $i, $raw := $lines }}
+  {{- $line := strings.TrimRight " \r\t" $raw }}
+  {{- $t := strings.TrimSpace $line }}
+  {{- if eq $t "===" }}
+    {{- $cards = $cards | append (dict "opts" $opts "order" $order "rows" $rows "notes" (delimit $notes "\n")) }}
+    {{- $opts = dict }}{{ $order = slice }}{{ $rows = slice }}{{ $notes = slice }}{{ $inNotes = false }}
+  {{- else if $inNotes }}
+    {{- $notes = $notes | append $line }}
+  {{- else if eq $t "---" }}
+    {{- $inNotes = true }}
+  {{- else if eq $t "" }}
+  {{- else if strings.Contains $t "|" }}
+    {{- $cells := slice }}
+    {{- range split $t "|" }}{{ $cells = $cells | append (strings.TrimSpace .) }}{{ end }}
+    {{- $rows = $rows | append (dict "c" $cells) }}
+  {{- else }}
+    {{- $m := findRESubmatch `^([A-Za-z][A-Za-z0-9 /&()._-]{0,40}?):\s+(.+)$` $t 1 }}
+    {{- if $m }}
+      {{- $k := strings.TrimSpace (index (index $m 0) 1) }}
+      {{- $opts = merge $opts (dict (lower $k) (index (index $m 0) 2)) }}
+      {{- $order = $order | append $k }}
+    {{- else }}
+      {{- $rows = $rows | append (dict "c" (slice $t)) }}
+    {{- end }}
+  {{- end }}
+{{- end }}
+{{- $cards = $cards | append (dict "opts" $opts "order" $order "rows" $rows "notes" (delimit $notes "\n")) }}
+{{- return $cards }}

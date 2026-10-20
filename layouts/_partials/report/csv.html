@@ -1,0 +1,28 @@
+{{- /*
+  Reads a CSV file from the page's folder.
+  Context: dict "page" "file". Returns dict "head" (column names as written),
+  "rows" (list of dicts keyed by lowercased column name) and "error".
+*/ -}}
+{{- $out := dict "head" slice "rows" slice "error" "" }}
+{{- with .page.Resources.Get (strings.TrimPrefix "./" (strings.TrimSpace .file)) }}
+  {{- $data := transform.Unmarshal (dict "delimiter" ",") .Content }}
+  {{- if gt (len $data) 0 }}
+    {{- $head := slice }}
+    {{- range index $data 0 }}{{ $head = $head | append (strings.TrimSpace (strings.TrimPrefix "﻿" .)) }}{{ end }}
+    {{- $rows := slice }}
+    {{- range after 1 $data }}
+      {{- $r := . }}
+      {{- $d := dict }}
+      {{- range $i, $h := $head }}
+        {{- $v := "" }}{{ if lt $i (len $r) }}{{ $v = strings.TrimSpace (index $r $i) }}{{ end }}
+        {{- $d = merge $d (dict (lower $h) $v) }}
+      {{- end }}
+      {{- $rows = $rows | append $d }}
+    {{- end }}
+    {{- $out = dict "head" $head "rows" $rows "error" "" }}
+  {{- end }}
+{{- else }}
+  {{- $out = merge $out (dict "error" (printf "Can't find %q in this investigation's folder." .file)) }}
+  {{- warnf "Report block: %q not found in %s" .file .page.File.Dir }}
+{{- end }}
+{{- return $out }}

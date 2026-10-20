@@ -1,0 +1,7 @@
+{{- /* First column name in .head matching any of .names (case-insensitive). Returns the lowercased key, or "". */ -}}
+{{- $out := "" }}
+{{- $names := .names }}
+{{- range .head }}
+  {{- if and (not $out) (in $names (lower .)) }}{{ $out = lower . }}{{ end }}
+{{- end }}
+{{- return $out }}

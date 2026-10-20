@@ -1,0 +1,11 @@
+{{- /* ```timeline   →   Aug 14, 2026 | What happened   (markdown works in the text) */ -}}
+{{- $card := index (partial "report/parse.html" .) 0 }}
+{{- $page := .page }}
+<ol class="r-block r-timeline">
+  {{- range $card.rows }}{{ with .c }}
+  <li class="r-timeline__item">
+    <span class="r-timeline__date">{{ index . 0 }}</span>
+    <div class="r-timeline__text">{{ if gt (len .) 1 }}{{ index . 1 | $page.RenderString }}{{ end }}</div>
+  </li>
+  {{- end }}{{ end }}
+</ol>

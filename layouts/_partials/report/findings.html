@@ -1,0 +1,137 @@
+{{- /*
+  ```findings   →   from a CSV: a sortable findings table with search and filters (static/js/findings.js).
+    file: findings.csv
+    columns: CVSS, VPR, EPSS              extra columns to show after Host
+    details: What it means, Fix           columns shown when a row is opened
+    hide: Info                            severities hidden until picked in the filters
+    scans: B = Basic Network Scan, W = Win7 & XP scan     letters used in the "Found by" column
+  Recognized columns: Severity (or Risk), Finding (or Name, Title), Host (or IP), Tags (split by ;),
+  Found by (or Scans). Rows are sorted most severe first, keeping the file's order within a level.
+
+  Without a file, each line is   Severity | What I found   and renders as a short findings list.
+*/ -}}
+{{- $page := .page }}
+{{- $card := index (partial "report/parse.html" .) 0 }}
+{{- $o := $card.opts }}
+{{- if not $o.file }}
+<ul class="r-block r-keyfindings">
+  {{- range $card.rows }}
+  {{- $r := .c | append "" }}
+  {{- $s := partial "report/sev.html" (index $r 0) }}
+  <li><span class="r-pill sev--{{ $s | default "none" }}">{{ index $r 0 }}</span><span class="r-keyfindings__text">{{ index $r 1 | $page.RenderString }}</span></li>
+  {{- end }}
+</ul>
+{{- else }}
+{{- $page.Store.Set "hasFindings" true }}
+{{- $csv := partial "report/csv.html" (dict "page" $page "file" $o.file) }}
+{{- with $csv.error }}<p class="r-error">{{ . }}</p>{{ end }}
+{{- $h := $csv.head }}
+{{- $sk := partial "report/col.html" (dict "head" $h "names" (slice "severity" "risk" "rating")) }}
+{{- $fk := partial "report/col.html" (dict "head" $h "names" (slice "finding" "name" "title" "issue" "vulnerability")) }}
+{{- $hk := partial "report/col.html" (dict "head" $h "names" (slice "host" "ip" "target" "asset")) }}
+{{- $tk := partial "report/col.html" (dict "head" $h "names" (slice "tags" "tag" "category")) }}
+{{- $bk := partial "report/col.html" (dict "head" $h "names" (slice "found by" "scans" "detected by")) }}
+{{- $extra := slice }}{{ with $o.columns }}{{ range split . "," }}{{ $extra = $extra | append (strings.TrimSpace .) }}{{ end }}{{ end }}
+{{- $details := slice }}{{ with $o.details }}{{ range split . "," }}{{ $details = $details | append (strings.TrimSpace .) }}{{ end }}{{ end }}
+{{- $hide := slice }}{{ with $o.hide }}{{ range split . "," }}{{ with partial "report/sev.html" . }}{{ $hide = $hide | append . }}{{ end }}{{ end }}{{ end }}
+{{- $scans := slice }}
+{{- with $o.scans }}{{ range split . "," }}{{ $p := split . "=" }}{{ if eq (len $p) 2 }}{{ $scans = $scans | append (dict "l" (strings.TrimSpace (index $p 0)) "name" (strings.TrimSpace (index $p 1))) }}{{ end }}{{ end }}{{ end }}
+
+{{- /* Sort: severity rank, then file order. */}}
+{{- $rank := dict "critical" 0 "high" 1 "medium" 2 "low" 3 "info" 4 }}
+{{- $rows := slice }}
+{{- range $i, $r := $csv.rows }}
+  {{- $s := partial "report/sev.html" (index $r $sk) | default "info" }}
+  {{- $rows = $rows | append (merge $r (dict "_sev" $s "_order" (add (mul (index $rank $s) 100000) $i))) }}
+{{- end }}
+{{- $rows = sort $rows "_order" }}
+
+{{- /* Filter data */}}
+{{- $counts := partial "report/counts.html" (dict "rows" $rows "key" "_sev") }}
+{{- $hosts := slice }}{{ if $hk }}{{ range $rows }}{{ $hosts = $hosts | append (index . $hk) }}{{ end }}{{ $hosts = $hosts | uniq | sort }}{{ end }}
+{{- $tags := slice }}{{ if $tk }}{{ range $rows }}{{ range split (index . $tk) ";" }}{{ with strings.TrimSpace . }}{{ $tags = $tags | append . }}{{ end }}{{ end }}{{ end }}{{ $tags = $tags | uniq }}{{ end }}
+{{- $ncols := add 3 (len $extra) (cond (gt (len $scans) 0) 1 0) (cond (gt (len $details) 0) 1 0) }}
+
+<div class="r-block r-findings" data-findings data-hide="{{ delimit $hide " " }}">
+  <div class="r-findings__tools" hidden>
+    <div class="r-findings__row">
+      <input class="r-findings__search" type="search" placeholder="Search name, ID or CVE" aria-label="Search findings">
+      {{- if gt (len $hosts) 1 }}
+      <div class="r-seg" role="group" aria-label="Host">
+        <button type="button" class="is-active" data-host="" aria-pressed="true">All hosts</button>
+        {{- range $hosts }}
+        {{- $short := . }}{{ with findRE `\.\d+$` . 1 }}{{ $short = index . 0 }}{{ end }}
+        <button type="button" data-host="{{ . }}" aria-pressed="false" title="{{ . }}">{{ $short }}</button>
+        {{- end }}
+      </div>
+      {{- end }}
+      {{- with $scans }}
+      <div class="r-seg" role="group" aria-label="Scan">
+        <button type="button" class="is-active" data-scan="" aria-pressed="true">All scans</button>
+        {{- range . }}<button type="button" data-scan="{{ .l }}" aria-pressed="false" title="{{ .name }}">{{ .l }}</button>{{ end }}
+      </div>
+      {{- end }}
+    </div>
+    <div class="r-findings__row">
+      <span class="r-findings__label">Severity</span>
+      {{- range slice "critical" "high" "medium" "low" "info" }}
+      {{- if gt (index $counts .) 0 }}
+      <button type="button" class="r-fchip" data-sev="{{ . }}" aria-pressed="false"><span class="r-dot sev-bg--{{ . }}" aria-hidden="true"></span>{{ title . }} · {{ index $counts . }}</button>
+      {{- end }}
+      {{- end }}
+    </div>
+    {{- with $tags }}
+    <div class="r-findings__row">
+      <span class="r-findings__label">Tags</span>
+      {{- range . }}<button type="button" class="r-fchip" data-tag="{{ lower . }}" aria-pressed="false">{{ . }}</button>{{ end }}
+    </div>
+    {{- end }}
+    <p class="r-findings__result" aria-live="polite"></p>
+  </div>
+
+  <div class="table-wrap r-table-wrap" role="region" aria-label="Findings" tabindex="0">
+  <table class="r-table r-findings__table">
+    <thead><tr>
+      <th>Severity</th><th>Finding</th>{{ if $hk }}<th>Host</th>{{ end }}
+      {{- range $extra }}<th class="r-num">{{ . }}</th>{{ end }}
+      {{- with $scans }}<th>Found by</th>{{ end }}
+      {{- with $details }}<th><span class="visually-hidden">Details</span></th>{{ end }}
+    </tr></thead>
+    <tbody>
+    {{- range $i, $r := $rows }}
+      {{- $rowTags := slice }}{{ if $tk }}{{ range split (index $r $tk) ";" }}{{ with strings.TrimSpace . }}{{ $rowTags = $rowTags | append . }}{{ end }}{{ end }}{{ end }}
+      {{- $found := cond (ne $bk "") (index $r $bk) "" }}
+      {{- $hasDetail := false }}{{ range $details }}{{ if index $r (lower .) }}{{ $hasDetail = true }}{{ end }}{{ end }}
+      <tr class="r-findings__item" data-sev="{{ (index $r "_sev") }}" data-host="{{ if $hk }}{{ index $r $hk }}{{ end }}" data-scans="{{ $found }}" data-tags="{{ delimit (apply $rowTags "lower" ".") "|" }}" data-text="{{ range $r }}{{ lower (string .) }} {{ end }}">
+        <td><span class="r-pill sev--{{ (index $r "_sev") }}">{{ title (index $r "_sev") }}</span></td>
+        <td class="r-findings__name">
+          <span class="r-findings__title">{{ index $r $fk }}</span>
+          {{- with $rowTags }}<span class="r-findings__tags">{{ range . }}<span class="r-mini">{{ . }}</span>{{ end }}</span>{{ end }}
+        </td>
+        {{- if $hk }}<td class="r-mono">{{ index $r $hk }}</td>{{ end }}
+        {{- range $extra }}<td class="r-mono r-num">{{ index $r (lower .) }}</td>{{ end }}
+        {{- with $scans }}
+        <td><span class="r-found">{{ range . }}<span class="r-found__l{{ if strings.Contains $found .l }} is-on{{ end }}" title="{{ .name }}{{ if not (strings.Contains $found .l) }} (not detected){{ end }}">{{ .l }}</span>{{ end }}</span></td>
+        {{- end }}
+        {{- with $details }}
+        <td class="r-findings__toggle">{{ if $hasDetail }}<button type="button" class="r-expand" aria-expanded="true" aria-label="Details for {{ index $r $fk }}">+</button>{{ end }}</td>
+        {{- end }}
+      </tr>
+      {{- if $hasDetail }}
+      <tr class="r-findings__detail">
+        <td colspan="{{ $ncols }}">
+          <dl>
+            {{- range $d := $details }}{{ with index $r (lower $d) }}<div><dt>{{ $d }}</dt><dd>{{ . | $page.RenderString }}</dd></div>{{ end }}{{ end }}
+          </dl>
+        </td>
+      </tr>
+      {{- end }}
+    {{- end }}
+    </tbody>
+  </table>
+  </div>
+  {{- with $scans }}
+  <p class="r-findings__legend">{{ range $i, $s := . }}{{ if $i }} · {{ end }}<b>{{ $s.l }}</b> = {{ $s.name }}{{ end }}</p>
+  {{- end }}
+</div>
+{{- end }}
