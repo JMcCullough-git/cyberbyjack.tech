@@ -28,7 +28,7 @@ meta: ""
 <!--
   Properties above:
   - dek: one or two sentences under the title, on the Investigations tab and the home card.
-  - labels: the pills above the title. The first one is red. Spaces are fine: "Lab · Pod 2".
+  - labels: the pills above the title. The first one is red. Spaces are fine: "Home lab · Windows".
   - meta: short facts after the date, e.g. "3 scans · 2 hosts · uncredentialed".
   - draft: untick (false) when it's ready, then Commit-and-sync to publish.
   Blocks and data files: see "Investigations cheatsheet" in this folder.

@@ -4,7 +4,7 @@ Host,Port,Service,Version / notes
 10.71.2.101,445/tcp,microsoft-ds,SMB
 10.71.2.101,3389/tcp,ms-wbt-server,Remote Desktop
 10.71.2.101,5357/tcp,http,Microsoft HTTPAPI 2.0 (SSDP/UPnP)
-10.71.2.101,5800/tcp,vnc-http,"TightVNC, user `cybr_w10_pod02`"
+10.71.2.101,5800/tcp,vnc-http,"TightVNC, user `[redacted]`"
 10.71.2.101,5900/tcp,vnc,VNC protocol 3.8
 10.71.2.102,135/tcp,msrpc,Microsoft Windows RPC
 10.71.2.102,139/tcp,netbios-ssn,Microsoft Windows NetBIOS

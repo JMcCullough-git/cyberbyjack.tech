@@ -27,7 +27,7 @@ Each investigation lives at `cybersealreport.com/investigations/<folder-name>/`.
 |---|---|
 | `title` | The headline. Any punctuation works. |
 | `dek` | One or two sentences under the title, on the Investigations tab and on the home card. |
-| `labels` | Pills above the title. The first is red. Free text, spaces allowed: `Lab · Pod 2`. Unlike article tags, labels don't create tag pages. |
+| `labels` | Pills above the title. The first is red. Free text, spaces allowed: `Home lab · Windows`. Unlike article tags, labels don't create tag pages. |
 | `meta` | Short facts after the date: `3 scans · 2 hosts · uncredentialed`. |
 | `date` | Publish date. The newest investigation is the one on the home page. |
 | `draft` | Ticked keeps it off the site. |

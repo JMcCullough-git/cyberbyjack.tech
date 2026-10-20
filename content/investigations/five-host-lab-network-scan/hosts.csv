@@ -1,6 +1,6 @@
 IP,Role,OS detected,Open ports,Risk
-10.71.2.101,Windows 10 pod host,Windows 10 (1709–22H2),7,Medium
-10.71.2.102,Windows XP pod host,Windows XP SP2/SP3,4,High
-10.71.2.106,WIN7_POD2,Windows 7 / Embedded Std 7,6,High
+10.71.2.101,Windows 10 lab host,Windows 10 (1709–22H2),7,Medium
+10.71.2.102,Windows XP lab host,Windows XP SP2/SP3,4,High
+10.71.2.106,Windows 7 lab host,Windows 7 / Embedded Std 7,6,High
 10.71.2.254,Cisco gateway / device,Cisco IOS (no exact match),3,Low
 10.71.2.20,Scanner (0 hops),Linux (Debian),2,Info

@@ -47,7 +47,7 @@ VNC and RDP are both exposed, and the TightVNC banner gives away a username.
 ```
 
 ```text {title="nmap · 10.71.2.101"}
-5800/tcp open  vnc-http  TightVNC (user: cybr_w10_pod02; VNC TCP port: 5900)
+5800/tcp open  vnc-http  TightVNC (user: [redacted]; VNC TCP port: 5900)
 ```
 
 ```host
@@ -64,12 +64,12 @@ SMB and RPC on an unpatched XP system are typically open to well-known remote ex
 ```host
 title: 10.71.2.106
 badge: High
-subtitle: Host name WIN7_POD2 · VMware · 00:50:56:81:1D:90 · 0.00019s latency · 94 filtered ports
+subtitle: Host name redacted · VMware · 00:50:56:81:1D:90 · 0.00019s latency · 94 filtered ports
 ports: ports.csv
 ---
 Windows 7 is end of life. Nmap flagged its OS detection as unreliable because it found no closed port, so treat the OS as a best guess.
 
-Most ports are filtered, which points to an active host firewall. Port 554 (RTSP) is unexpected on a pod workstation.
+Most ports are filtered, which points to an active host firewall. Port 554 (RTSP) is unexpected on a lab workstation.
 ```
 
 ```host
