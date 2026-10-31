@@ -23,15 +23,15 @@ hideFromHome: false
 
 Chrome is a good browser. It just tracks more than you might think. You may be thinking why do browsers matter? Its just a search engine.
 
-It matters because a browser can see a lot: the sites you visit, the trackers you encounter, and details websites can use to recognize you.
+It matters because a browser can see a LOT about you. The sites you visit. Trackers will follow you across the internet, and details websites can use to recognize you.
 
-Google spent years saying Chrome would phase out third-party cookies, which can follow you across websites. In 2025, Google dropped that plan and kept them. This also you to be tracked not just in a singular website but across the web.
+Google spent years saying Chrome would phase out third-party cookies, which allow for this cross tracking. In 2025, Google dropped that plan and kept them. This means you can be tracked not just in a singular website but across the web.
 
 Incognito doesn't make you invisible either. Google settled a class action over data collected while users browsed in Incognito and agreed to delete billions of browsing records. Google called the lawsuit meritless.
 
 This left a bad taste in my mouth as a general advocate of privacy and open source tools. So I rounded up five suspects and questioned each one: what it blocks, what it hides, and what it costs you. 
 
-I'm ranking them like a ladder. Each step gives you more privacy, usually at the cost of some convenience. The best browser is the highest rung you'll actually use.
+I'll be ranking them like a ladder. Each step gives you more privacy, usually at the cost of some convenience. The best browser is the highest rung you'll actually use.
 
 #### Rung 1: Brave, the easy switch from Chrome
 
