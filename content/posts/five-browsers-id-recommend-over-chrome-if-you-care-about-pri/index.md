@@ -7,7 +7,7 @@ tags:
   - Privacy
 cover: cover.jpg
 coverAlt: ""
-featured: true
+featured: false
 hideFromHome: false
 ---
 <!--
@@ -54,7 +54,7 @@ It also lets you run the strongest blockers. Mozilla says it "has no plans to de
 
 **The catch:** Firefox collects telemetry, meaning usage data, out of the box. Mozilla also took heat in February 2025 when it rewrote its terms and removed the line promising it doesn't sell access to your data. After the backlash, Mozilla said the new license was only there to run basic Firefox features and that it wasn't using your data for AI.
 
-**My fix list for Firefox:** set Enhanced Tracking Protection to Strict, turn off data collection in Settings, and install uBlock Origin. Five minutes, tops. 
+**My fix list for Firefox:** set Enhanced Tracking Protection to Strict, turn off data collection in Settings, and install uBlock Origin. Five minutes, tops. Here's a useful [video](https://www.youtube.com/watch?v=F9GHINMx49M&t=22s) on hardening Firefox.
 
 #### Rung 3: LibreWolf, Firefox with the work already done
 
