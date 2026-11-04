@@ -56,6 +56,8 @@ The About page text lives in `content/about.md`; the portrait is `static/images/
 
 ## Notes
 
-- Fonts (Bricolage Grotesque, Public Sans, JetBrains Mono) are self-hosted in `static/fonts/` under the SIL Open Font License, so the site makes no third-party requests.
+- Fonts (Bricolage Grotesque, Public Sans, JetBrains Mono) are self-hosted in `static/fonts/` under the SIL Open Font License.
+- Visitor analytics use Cloudflare Web Analytics (cookieless), switched on by `params.analytics.cloudflareToken` in `hugo.toml`. It's the site's only third-party script; the CSP allows `static.cloudflareinsights.com` and `cloudflareinsights.com` for it.
+- `robots.txt` points search engines at `sitemap.xml` (`layouts/robots.txt`).
 - `static/_headers` sets a strict Content Security Policy and other security headers (Cloudflare applies it to the static assets). If you add third-party embeds or scripts later, update the CSP or they'll be blocked.
 - Light theme only; dark mode wasn't part of the design.
