@@ -50,6 +50,12 @@ ignoreFiles = ['\.obsidian', '\.trash', '(^|/)Untitled( \d+)?\.md$', 'Investigat
   description = "Independent reporting, technical analysis, and field notes on the stories behind cybersecurity."
   disclaimer = "Every article is human-written, not AI-generated."
 
+  # Visitor analytics: Cloudflare Web Analytics (no cookies, no personal data).
+  # Paste the token from Cloudflare → Web Analytics → your site → manual setup snippet.
+  # Leave it empty ("") to turn analytics off.
+  [params.analytics]
+    cloudflareToken = ""
+
   # About page contact block. Leave a value empty ("") to hide that line.
   contactEmail = "jack@cybersealreport.com"
   pgpFingerprint = ""
