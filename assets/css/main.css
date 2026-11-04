@@ -774,17 +774,23 @@ a.tag--primary:hover { background: var(--accent-hover); color: #fff; }
   background: var(--surface); border: 1px solid var(--border);
   transition: border-color 120ms;
 }
-/* The seal mark as a faint watermark tucked into the bottom-right corner, cropped by the
-   card's edge. It darkens slightly on hover (no motion, like every other hover on the site). */
+/* Viewfinder corners: four thin brackets just inside the card, like framing evidence in a
+   camera. Hairline gray at rest; they take the accent with the title on hover. */
 .index-card::after {
-  content: ""; position: absolute; z-index: -1; pointer-events: none;
-  right: -22px; bottom: -22px; width: 120px; height: 120px;
-  background: var(--surface-muted);
-  -webkit-mask: url(/images/cyber-seal-logo.svg) center / contain no-repeat;
-  mask: url(/images/cyber-seal-logo.svg) center / contain no-repeat;
-  opacity: .45; transition: opacity 120ms;
+  --vf: var(--border-strong); --vf-len: 12px; --vf-w: 1.5px;
+  content: ""; position: absolute; inset: 8px; z-index: -1; pointer-events: none;
+  background:
+    linear-gradient(var(--vf), var(--vf)) left top / var(--vf-len) var(--vf-w),
+    linear-gradient(var(--vf), var(--vf)) left top / var(--vf-w) var(--vf-len),
+    linear-gradient(var(--vf), var(--vf)) right top / var(--vf-len) var(--vf-w),
+    linear-gradient(var(--vf), var(--vf)) right top / var(--vf-w) var(--vf-len),
+    linear-gradient(var(--vf), var(--vf)) left bottom / var(--vf-len) var(--vf-w),
+    linear-gradient(var(--vf), var(--vf)) left bottom / var(--vf-w) var(--vf-len),
+    linear-gradient(var(--vf), var(--vf)) right bottom / var(--vf-len) var(--vf-w),
+    linear-gradient(var(--vf), var(--vf)) right bottom / var(--vf-w) var(--vf-len);
+  background-repeat: no-repeat;
 }
-.index-card:hover::after { opacity: .8; }
+.index-card:hover::after { --vf: var(--accent); }
 .index-card__head {
   display: flex; justify-content: space-between; align-items: center; gap: 16px;
   height: 46px; padding: 0 28px;
@@ -824,7 +830,6 @@ a.tag--primary:hover { background: var(--accent-hover); color: #fff; }
   .prose .r-keyfindings li { grid-template-columns: 1fr; gap: 8px; }
   .r-card__details div { grid-template-columns: 1fr; gap: 0; }
   .index-card__head, .index-card__body { padding-left: 20px; padding-right: 20px; }
-  .index-card::after { width: 96px; height: 96px; right: -20px; bottom: -20px; }
   .r-findings__label { width: 100%; }
 }
 .r-card__error { margin: 16px 22px 0; }
