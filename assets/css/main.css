@@ -774,17 +774,17 @@ a.tag--primary:hover { background: var(--accent-hover); color: #fff; }
   background: var(--surface); border: 1px solid var(--border);
   transition: border-color 120ms;
 }
-/* The seal mark as a faint watermark, cropped by the card's right edge. It warms to the
-   accent tint on hover (color only, like every other hover on the site). */
+/* The seal mark as a faint watermark tucked into the bottom-right corner, cropped by the
+   card's edge. It darkens slightly on hover (no motion, like every other hover on the site). */
 .index-card::after {
   content: ""; position: absolute; z-index: -1; pointer-events: none;
-  right: -34px; top: 50%; width: 190px; height: 190px; margin-top: -88px;
+  right: -22px; bottom: -22px; width: 120px; height: 120px;
   background: var(--surface-muted);
   -webkit-mask: url(/images/cyber-seal-logo.svg) center / contain no-repeat;
   mask: url(/images/cyber-seal-logo.svg) center / contain no-repeat;
-  opacity: .7; transition: background-color 120ms;
+  opacity: .45; transition: opacity 120ms;
 }
-.index-card:hover::after { background: var(--accent-tint); opacity: 1; }
+.index-card:hover::after { opacity: .8; }
 .index-card__head {
   display: flex; justify-content: space-between; align-items: center; gap: 16px;
   height: 46px; padding: 0 28px;
@@ -824,7 +824,7 @@ a.tag--primary:hover { background: var(--accent-hover); color: #fff; }
   .prose .r-keyfindings li { grid-template-columns: 1fr; gap: 8px; }
   .r-card__details div { grid-template-columns: 1fr; gap: 0; }
   .index-card__head, .index-card__body { padding-left: 20px; padding-right: 20px; }
-  .index-card::after { width: 150px; height: 150px; right: -40px; top: auto; bottom: -24px; margin-top: 0; opacity: .5; }
+  .index-card::after { width: 96px; height: 96px; right: -20px; bottom: -20px; }
   .r-findings__label { width: 100%; }
 }
 .r-card__error { margin: 16px 22px 0; }
