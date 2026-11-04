@@ -75,7 +75,7 @@ Instead of hiding your details, it makes them look like everyone else's. Every M
 
 It's free, and you don't need Mullvad's VPN to use it.
 
-**The catch:** It doesn't hide your IP addres which most browsers don't without paying for a VPN. Mullvad itself recommends pairing it with a trustworthy VPN ([Mullvad](https://mullvad.net/en/browser)). It's also desktop only: Windows, macOS, and Linux. In my own testing, Mullvad was incredibly snappy and had me thinking about swapping. However, Brave's integration with 
+**The catch:** It doesn't hide your IP addres which most browsers don't without paying for a VPN. Mullvad itself recommends pairing it with a trustworthy VPN ([Mullvad](https://mullvad.net/en/browser)). It's also desktop only: Windows, macOS, and Linux. In my own testing, Mullvad was incredibly snappy and had me thinking about swapping. However, Brave's integration with the Chrome store is what holds me back.
 
 #### Rung 5: Tor Browser, when it matters who you are
 
