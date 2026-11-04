@@ -8,11 +8,19 @@ Workers & Pages → **cyberseal** → Settings → Build:
 
 | Setting | Value |
 |---|---|
-| Build command | `hugo --minify` |
-| Deploy command | `npx wrangler deploy` |
+| Build command | `npm ci && hugo --minify` |
+| Deploy command | `npx --no-install wrangler deploy` |
 | Build variable | `HUGO_VERSION` = `0.167.0` (under **Build** variables, not the Worker's runtime variables) |
 
 `wrangler.jsonc` tells Wrangler to upload the `public/` folder Hugo produces. Keep the `name` in it matching the Worker's name in Cloudflare.
+
+### Pinned deploy tooling
+
+Wrangler is pinned to an exact version in `package.json`, and `package-lock.json` locks it and every dependency to known hashes. `npm ci` installs exactly that set, and `--no-install` makes `npx` fail instead of quietly downloading the newest Wrangler from npm. A compromised or breaking Wrangler release can't reach a deploy until I merge it.
+
+To update Wrangler: Dependabot (`.github/dependabot.yml`) opens a PR each week a new version is out. I check the [release notes](https://github.com/cloudflare/workers-sdk/releases), then merge. To bump by hand: `npm install --save-exact wrangler@<version>` and commit both files.
+
+`node_modules/` is gitignored, and writing posts never needs it; only Cloudflare's build installs it.
 
 The site needs Hugo **extended, 0.146 or newer** (it uses the `layouts/_partials` folder layout). If `HUGO_VERSION` isn't set, Cloudflare falls back to its default Hugo, which works but is older.
 
@@ -21,6 +29,15 @@ The site needs Hugo **extended, 0.146 or newer** (it uses the `layouts/_partials
 The repo doubles as an Obsidian vault. Open the repo folder in Obsidian and write with normal Obsidian features; the site renders them directly.
 
 **One-time setup:** clone the repo, open the folder as a vault in Obsidian, turn on community plugins, and install **Templater** and **Git** (settings for both are already in `.obsidian/`).
+
+**Commit identity (every device):** this repo is public, so every commit's author email is public too. Before the first commit from a new device, I set the vault to my GitHub no-reply address:
+
+```bash
+git config user.email "JMcCullough-git@users.noreply.github.com"
+git config user.name "Jack McCullough"
+```
+
+I run these in the repo folder (not `--global`) so other repos keep their own identity. Obsidian Git commits with this config. Backstop: GitHub → Settings → Emails has **Keep my email addresses private** and **Block command line pushes that expose my email** turned on, so a push with a personal address gets rejected instead of published.
 
 **Each article:**
 

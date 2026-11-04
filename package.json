@@ -1,0 +1,11 @@
+{
+  "name": "cyberseal",
+  "private": true,
+  "description": "Deploy tooling for The Cyber Seal Report. Pins Wrangler so every Cloudflare deploy uses a known version.",
+  "scripts": {
+    "deploy": "wrangler deploy"
+  },
+  "devDependencies": {
+    "wrangler": "4.157.0"
+  }
+}

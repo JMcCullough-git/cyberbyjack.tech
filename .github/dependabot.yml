@@ -1,0 +1,12 @@
+# Wrangler is pinned to an exact version in package.json. Dependabot opens a PR
+# when a new version ships, so I review and merge updates instead of getting
+# whatever npm serves on deploy day.
+version: 2
+updates:
+  - package-ecosystem: "npm"
+    directory: "/"
+    schedule:
+      interval: "weekly"
+    open-pull-requests-limit: 3
+    commit-message:
+      prefix: "deps"
