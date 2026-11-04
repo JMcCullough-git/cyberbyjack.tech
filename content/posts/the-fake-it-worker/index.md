@@ -20,6 +20,8 @@ hideFromHome: false
   - hideFromHome: tick to keep it off the home page (still listed under Articles).
   Comments like this one never appear on the site.
 -->
+> [!disclosure]
+> This is an ongoing case, and every defendant is presumed innocent unless and until proven guilty in court.
 
 Forty houses in Texas. Nearly **190** laptops. None of them belonged to the people using them.
 
