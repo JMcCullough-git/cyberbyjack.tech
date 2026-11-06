@@ -10,6 +10,8 @@
 {{- $img := false }}
 {{- if not $u.IsAbs }}{{ $img = .Page.Resources.Get $path }}{{ end }}
 {{- $alt := .PlainText }}
+{{- /* No caption? Use the file name as alt text: "laptop-farm-network-map.jpg" → "laptop farm network map". */}}
+{{- if not $alt }}{{ $alt = path.BaseName $path | replaceRE `[-_]+|%20` " " | strings.TrimSpace }}{{ end }}
 {{- $src := .Destination }}
 {{- $full := .Destination }}
 {{- $w := 0 }}{{ $h := 0 }}

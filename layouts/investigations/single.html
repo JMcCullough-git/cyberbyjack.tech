@@ -22,7 +22,7 @@
 
     {{- with partial "cover.html" (dict "page" . "spec" "2160x926 webp q80 Center") }}
     <div class="post-hero report-hero">
-      <img class="img-fill" src="{{ .RelPermalink }}" width="{{ .Width }}" height="{{ .Height }}" alt="{{ $.Params.coverAlt }}" fetchpriority="high">
+      <img class="img-fill" src="{{ .RelPermalink }}" width="{{ .Width }}" height="{{ .Height }}" alt="{{ $.Params.coverAlt | default $.Title }}" fetchpriority="high">
     </div>
     {{- end }}
 

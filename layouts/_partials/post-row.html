@@ -2,7 +2,7 @@
 <a class="row" href="{{ .RelPermalink }}">
   <div class="row__media">
     {{- with $img }}
-    <img class="img-fill" src="{{ .RelPermalink }}" width="{{ .Width }}" height="{{ .Height }}" alt="" loading="lazy">
+    <img class="img-fill" src="{{ .RelPermalink }}" width="{{ .Width }}" height="{{ .Height }}" alt="{{ $.Params.coverAlt | default $.Title }}" loading="lazy">
     {{- end }}
   </div>
   <div class="row__body">

@@ -2,7 +2,7 @@
 <article class="home-main">
   <a class="featured__media" href="{{ .RelPermalink }}">
     {{- with $img }}
-    <img class="img-fill" src="{{ .RelPermalink }}" width="{{ .Width }}" height="{{ .Height }}" alt="{{ $.Params.coverAlt }}" fetchpriority="high">
+    <img class="img-fill" src="{{ .RelPermalink }}" width="{{ .Width }}" height="{{ .Height }}" alt="{{ $.Params.coverAlt | default $.Title }}" fetchpriority="high">
     {{- end }}
     <div class="featured__overlay">
       {{- with index (.Params.tags | default slice) 0 }}<span class="tag tag--primary">{{ partial "tag-name.html" . }}</span>{{ end }}
