@@ -16,10 +16,10 @@ Each investigation lives at `cybersealreport.com/investigations/<folder-name>/`.
 ## Start a new investigation
 
 1. I press `Ctrl + N` for a blank note, then click the **<%** Templater icon → **New investigation** → type the title.
-2. Templater moves the note to `content/investigations/<title>/index.md` and adds example blocks.
+2. Templater moves the note to `drafts/investigations/<title>/index.md` and adds example blocks. `drafts/` is gitignored, so the investigation stays on this device until I publish it.
 3. I fill in the properties, keep the blocks I need, and delete the rest.
 4. I drag any data files (CSV) into the same folder.
-5. To publish: untick `draft`, then **Git: Commit-and-sync**.
+5. To publish: with the note open, **<%** icon → **Publish draft**. It moves the folder (CSVs included) to `content/investigations/` and unticks `draft`. Then **Git: Commit-and-sync**.
 
 ## Properties
 
@@ -30,7 +30,7 @@ Each investigation lives at `cybersealreport.com/investigations/<folder-name>/`.
 | `labels` | Pills above the title. The first is red. Free text, spaces allowed: `Home lab · Windows`. Unlike article tags, labels don't create tag pages. |
 | `meta` | Short facts after the date: `3 scans · 2 hosts · uncredentialed`. |
 | `date` | Publish date. The newest investigation is the one on the home page. |
-| `draft` | Ticked keeps it off the site. |
+| `draft` | Ticked keeps it off the site. **Publish draft** unticks it. |
 | `cover` | Optional lead image, same as articles. |
 | `summary` | Optional. Which CSV the severity bar on the tab and home card counts. Without it, the site uses the first CSV in the folder that has a `Severity` or `Risk` column. |
 

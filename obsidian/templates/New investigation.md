@@ -1,5 +1,6 @@
 <%*
-// "New investigation": creates content/investigations/<slug>/index.md and fills in the properties.
+// "New investigation": creates drafts/investigations/<slug>/index.md and fills in the properties.
+// drafts/ is gitignored, so it stays on this device until "Publish draft" moves it to content/investigations/.
 // Ctrl + N for a blank note, then the Templater icon in the ribbon → New investigation.
 let title = await tp.system.prompt("Investigation title");
 if (!title || !title.trim()) title = "Untitled investigation";
@@ -9,7 +10,7 @@ const slug = title.toLowerCase()
   .replace(/[^a-z0-9]+/g, "-")
   .replace(/^-+|-+$/g, "")
   .slice(0, 60) || "untitled-investigation";
-const folder = `content/investigations/${slug}`;
+const folder = `drafts/investigations/${slug}`;
 if (!app.vault.getAbstractFileByPath(folder)) {
   await app.vault.createFolder(folder);
 }
@@ -30,8 +31,9 @@ meta: ""
   - dek: one or two sentences under the title, on the Investigations tab and the home card.
   - labels: the pills above the title. The first one is red. Spaces are fine: "Home lab · Windows".
   - meta: short facts after the date, e.g. "3 scans · 2 hosts · uncredentialed".
-  - draft: untick (false) when it's ready, then Commit-and-sync to publish.
-  Blocks and data files: see "Investigations cheatsheet" in this folder.
+  - draft: leave ticked. When it's ready, Templater → Insert template → "Publish draft" moves it to
+    content/investigations/ and unticks this, then Commit-and-sync puts it live.
+  Blocks and data files: see content/investigations/Investigations cheatsheet.md.
   Delete any block below you don't need. Comments like this one never appear on the site.
 -->
 

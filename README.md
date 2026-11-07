@@ -41,11 +41,19 @@ I run these in the repo folder (not `--global`) so other repos keep their own id
 
 **Each article:**
 
-1. `Ctrl + N` for a blank note, then the **<%** Templater icon → **New article** → type the title. It turns the note into `content/posts/<title>/index.md`.
+1. `Ctrl + N` for a blank note, then the **<%** Templater icon → **New article** → type the title. It turns the note into `drafts/posts/<title>/index.md`.
 2. Write. Fill in `dek` (one-sentence hook) and `tags` in Properties. **The first tag is the red category pill.**
 3. Drag screenshots into the note. They land in the article's folder. Type a caption between the `[ ]` to get a numbered "Fig. N".
 4. Rename the lead image to `cover` (or type its file name in the `cover` property).
-5. Untick `draft`, then **Git: Commit-and-sync**. Cloudflare publishes in about a minute.
+5. **<%** icon → **Publish draft**. It moves the folder to `content/posts/` and unticks `draft`. Then **Git: Commit-and-sync**. Cloudflare publishes in about a minute.
+
+### Drafts
+
+The repo is public, so anything committed is readable on GitHub, even with `draft: true`. Drafts live in `drafts/posts/` and `drafts/investigations/` instead, and `drafts/` is gitignored: Commit-and-sync never pushes it, and Hugo never builds it (it's outside `content/`). The **New article** / **New investigation** templates create notes there; the **Publish draft** template (`obsidian/templates/Publish draft.md`) moves a finished one into `content/` with its images and data files and unticks `draft`.
+
+The trade-off: drafts don't sync between devices through GitHub. I finish a draft on the device where I started it, or copy the folder over myself.
+
+**Gotcha:** if `.gitignore` is ever missing `/drafts/` (an old clone, a bad merge), the next Commit-and-sync publishes every draft to GitHub. Before syncing on a new device I check that `git check-ignore drafts/x` prints `drafts/x`.
 
 `obsidian/Writing cheatsheet.md` has the full syntax: `> [!quote]` pull quotes, `> [!note]` / `> [!disclosure]` callouts, code blocks with `{title="file.sh"}`, and tags.
 
@@ -66,10 +74,6 @@ Lead story = the newest post with `featured: true`, otherwise the newest post. T
 - `menus.main`: header navigation.
 
 The About page text lives in `content/about.md`; the portrait is `static/images/jack.jpg`.
-
-## Sample posts
-
-`content/posts/sample-*` are the placeholder articles from the design handoff, written in the same Obsidian syntax and kept as drafts. They never appear on the live site. Delete them once you've published real posts.
 
 ## Notes
 

@@ -1,5 +1,6 @@
 <%*
-// "New article": creates content/posts/<slug>/index.md and fills in the properties.
+// "New article": creates drafts/posts/<slug>/index.md and fills in the properties.
+// drafts/ is gitignored, so the article stays on this device until "Publish draft" moves it to content/posts/.
 // Run it from the ribbon or command palette: Templater → "Create new note from template" → New article.
 let title = await tp.system.prompt("Article title");
 if (!title || !title.trim()) title = "Untitled article";
@@ -9,9 +10,9 @@ const slug = title.toLowerCase()
   .replace(/[^a-z0-9]+/g, "-")
   .replace(/^-+|-+$/g, "")
   .slice(0, 60) || "untitled-article";
-const folder = `content/posts/${slug}`;
+const folder = `drafts/posts/${slug}`;
 if (!app.vault.getAbstractFileByPath(folder)) {
-  await app.vault.createFolder(folder);
+  await app.vault.createFolder(folder); // also creates drafts/ and drafts/posts/ the first time
 }
 await tp.file.move(`${folder}/index`);
 const safeTitle = title.replace(/"/g, '\\"');
@@ -33,7 +34,8 @@ hideFromHome: false
   - dek: one-sentence hook shown under the title and on cards.
   - tags: first tag is the red category pill. No spaces: threat-research, data-breaches.
   - cover: drag the lead image into this folder and name it "cover", or type its file name here.
-  - draft: untick (false) when it's ready, then Commit-and-sync to publish.
+  - draft: leave ticked. When it's ready, Templater → Insert template → "Publish draft" moves it to
+    content/posts/ and unticks this, then Commit-and-sync puts it live. Until then it never reaches GitHub.
   - featured: tick to pin this as the big story on the home page.
   - hideFromHome: tick to keep it off the home page (still listed under Articles).
   Comments like this one never appear on the site.
