@@ -5,6 +5,9 @@
 .wrangler/
 node_modules/
 
+# Unpublished drafts never leave this device (the repo is public). See README → Drafts.
+/drafts/
+
 # Obsidian: keep shared settings, ignore per-device state and installed plugin code
 .obsidian/workspace*.json
 .obsidian/graph.json

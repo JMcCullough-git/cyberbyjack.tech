@@ -4,14 +4,16 @@ How I write, format and publish posts for The Cyber Seal Report. Everything here
 
 ## Publishing workflow
 
-1. **Start the article.** I press `Ctrl + N` for a blank note, then click the **<%** Templater icon in the left ribbon → **New article** → type the title. Templater moves the note to `content/posts/<title>/index.md` and fills in the properties.
+1. **Start the article.** I press `Ctrl + N` for a blank note, then click the **<%** Templater icon in the left ribbon → **New article** → type the title. Templater moves the note to `drafts/posts/<title>/index.md` and fills in the properties. `drafts/` is gitignored, so nothing in it reaches the public repo.
    - Command palette alternative: `Ctrl + P` → "Templater: Create new note from template" → **New article**.
    - The **<%** icon needs an open note. With nothing open, Templater shows "No active editor".
 2. **Fill in the properties** at the top: `dek` and `tags` (see Article properties below).
 3. **Write the body** under the properties.
 4. **Drag in images.** Obsidian saves them in the article's folder.
 5. **Set the cover.** I rename the lead image to `cover` (right-click → Rename), or type its file name in the `cover` property.
-6. **Publish.** I untick `draft`, then run **Git: Commit-and-sync** (Obsidian Git icon in the left ribbon, or `Ctrl + P` → "Git: Commit-and-sync"). The post goes live in about a minute.
+6. **Publish.** With the article open, I click the **<%** icon → **Publish draft** (or `Ctrl + P` → "Templater: Insert template" → **Publish draft**). It moves the whole folder, images included, to `content/posts/` and unticks `draft`. Then I run **Git: Commit-and-sync** (Obsidian Git icon in the left ribbon, or `Ctrl + P` → "Git: Commit-and-sync"). The post goes live in about a minute.
+
+**Drafts stay on one device.** Commit-and-sync skips `drafts/`, so a draft started on my PC isn't on my laptop. I finish a draft where I started it, or copy its folder over myself. I never untick `draft` and sync a note that's still in `drafts/`; it won't publish, and Publish draft is the only step that moves it.
 
 **Fixing a published post:** I edit the note and run Commit-and-sync again.
 
@@ -24,7 +26,7 @@ How I write, format and publish posts for The Cyber Seal Report. Everything here
 | `tags` | The first tag is the red category pill. |
 | `cover` | File name of the lead image (or I just name the image `cover`). |
 | `coverAlt` | Short description of the cover image for screen readers. |
-| `draft` | Ticked keeps the post off the site. I untick it to publish. |
+| `draft` | Ticked keeps the post off the site. **Publish draft** unticks it for me when it moves the article out of `drafts/`. |
 | `featured` ☑ | Pins the post as the big lead story on the home page, however old. If several are ticked, the newest ticked one wins. |
 | `hideFromHome` ☑ | Keeps the post off the home page. It still appears under Articles, tags, Archive and RSS. |
 
