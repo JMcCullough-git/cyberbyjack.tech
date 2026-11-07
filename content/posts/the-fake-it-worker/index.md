@@ -6,7 +6,7 @@ dek: How North Korean Operatives Are Getting Hired as Remote Contractors
 tags:
   - Security
 cover: cover.jpg
-coverAlt: ""
+coverAlt: '"Rows of open laptops running video calls in a dim room, with red-and-blue flags outside the window"'
 featured: true
 hideFromHome: false
 ---

@@ -6,7 +6,7 @@ dek: A Privacy Audit of Google Gemini
 tags:
   - Privacy
 cover: cover.jpg
-coverAlt: ""
+coverAlt: The Gemini logo on the side of a dark concrete building
 featured: false
 hideFromHome: false
 ---

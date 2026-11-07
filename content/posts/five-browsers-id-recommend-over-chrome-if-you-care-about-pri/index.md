@@ -6,7 +6,7 @@ dek: Who is your browser really working for?
 tags:
   - Privacy
 cover: cover.jpg
-coverAlt: ""
+coverAlt: Clay figures of browser mascots in a police lineup while a seal in a detective hat inspects them
 featured: false
 hideFromHome: false
 ---

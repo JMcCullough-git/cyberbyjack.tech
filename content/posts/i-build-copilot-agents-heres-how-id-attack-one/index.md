@@ -5,8 +5,8 @@ draft: false
 dek: Seventy percent of the Fortune 500 trusts Copilot. Should they?
 tags:
   - vulnerabilities
-cover: ""
-coverAlt: ""
+cover: cover.jpg
+coverAlt: Copilot logo
 ---
 <!--
   Properties above:

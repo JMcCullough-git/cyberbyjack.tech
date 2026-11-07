@@ -6,7 +6,7 @@ dek: What is your careers page telling attackers?
 tags:
   - OSINT
 cover: cover.jpg
-coverAlt: ""
+coverAlt: Resume with target on it
 ---
 <!--
   Properties above:

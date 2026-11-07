@@ -1,6 +1,6 @@
 ---
-title: "Handed Out Hack Instead Of Resume"
-date: 2026-11-03
+title: Handed Out Hack Instead Of Resume
+date: 2026-11-17
 draft: true
 dek: ""
 tags:
