@@ -764,24 +764,36 @@ a.tag--primary:hover { background: var(--accent-hover); color: #fff; }
 .inv-row__side { display: flex; flex-direction: column; gap: 14px; align-self: center; }
 .inv-sev { display: flex; flex-direction: column; gap: 10px; }
 
-/* Home: latest investigation as a ruled index card, under the lead story.
+/* Home: latest investigation card, under the lead story.
    It grows to fill the column so the bottom lines up with the newsletter.
-   Head band 44px + 2px red rule; below it, faint lines every 32px. Every line of text
-   uses a 32px line box so it sits on a rule. */
+   Sizes (46px head, 32px text lines) are fixed so the card keeps the same footprint. */
 .index-card {
   --rule: 32px;
-  flex: 1 0 auto; display: flex; flex-direction: column; border-radius: 6px; color: var(--ink);
-  background-color: var(--surface);
-  background-image: repeating-linear-gradient(to bottom, transparent 0 calc(var(--rule) - 1px), #e3e9ef calc(var(--rule) - 1px) var(--rule));
-  background-position: 0 46px; background-repeat: no-repeat; background-size: 100% calc(100% - 46px);
-  border: 1px solid var(--border); box-shadow: 0 10px 24px -20px rgba(20, 20, 20, .3);
+  position: relative; overflow: hidden; isolation: isolate;
+  flex: 1 0 auto; display: flex; flex-direction: column; border-radius: 14px; color: var(--ink);
+  background: var(--surface); border: 1px solid var(--border);
   transition: border-color 120ms;
 }
-.index-card:hover { color: var(--ink); border-color: var(--border-strong); }
-.index-card:hover .index-card__title { color: var(--accent); }
+/* Viewfinder corners: four thin brackets just inside the card, like framing evidence in a
+   camera. Hairline gray at rest; they take the accent with the title on hover. */
+.index-card::after {
+  --vf: var(--border-strong); --vf-len: 12px; --vf-w: 1.5px;
+  content: ""; position: absolute; inset: 8px; z-index: -1; pointer-events: none;
+  background:
+    linear-gradient(var(--vf), var(--vf)) left top / var(--vf-len) var(--vf-w),
+    linear-gradient(var(--vf), var(--vf)) left top / var(--vf-w) var(--vf-len),
+    linear-gradient(var(--vf), var(--vf)) right top / var(--vf-len) var(--vf-w),
+    linear-gradient(var(--vf), var(--vf)) right top / var(--vf-w) var(--vf-len),
+    linear-gradient(var(--vf), var(--vf)) left bottom / var(--vf-len) var(--vf-w),
+    linear-gradient(var(--vf), var(--vf)) left bottom / var(--vf-w) var(--vf-len),
+    linear-gradient(var(--vf), var(--vf)) right bottom / var(--vf-len) var(--vf-w),
+    linear-gradient(var(--vf), var(--vf)) right bottom / var(--vf-w) var(--vf-len);
+  background-repeat: no-repeat;
+}
+.index-card:hover::after { --vf: var(--accent); }
 .index-card__head {
   display: flex; justify-content: space-between; align-items: center; gap: 16px;
-  height: 46px; padding: 0 28px; border-bottom: 2px solid var(--accent);
+  height: 46px; padding: 0 28px;
 }
 .index-card__head .meta__date { color: var(--muted); }
 .index-card__body { flex: 1; display: flex; flex-direction: column; padding: 0 28px 12px; }
@@ -790,13 +802,23 @@ a.tag--primary:hover { background: var(--accent-hover); color: #fff; }
   margin: 0; font-size: 16px; line-height: var(--rule); color: var(--muted);
   display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 2; line-clamp: 2; overflow: hidden;
 }
-.index-card__side { display: flex; flex-wrap: wrap; align-items: flex-end; gap: 0 20px; }
+.index-card__side { margin-top: auto; display: flex; flex-wrap: wrap; align-items: flex-end; gap: 0 20px; }
 .index-card__side > * { min-height: var(--rule); display: flex; align-items: flex-end; padding-bottom: 5px; }
 .index-card .r-counts { font-size: 13px; line-height: 1; gap: 4px 12px; }
 .index-card .r-tools__list { flex-wrap: nowrap; }
 .index-card .r-tool { padding: 3px 7px; }
 .index-card .read-more { margin-left: auto; font-size: 14px; line-height: 1; }
 
+/* Below the width where the two home columns fit side by side (560 + 300 + 28 gap + page
+   padding), stack everything: the two articles first, the newsletter, then the investigation. */
+@media (max-width: 951px) {
+  .home-grid { flex-direction: column; flex-wrap: nowrap; }
+  .home-lead-col, .home-side { display: contents; }
+  .home-lead-col > .home-main { order: 1; }
+  .home-side > .card { order: 2; }
+  .home-side > .newsletter { order: 3; flex: none; }
+  .index-card { order: 4; flex: none; }
+}
 @media (max-width: 900px) {
   .r-glance { float: none; width: auto; margin: 0 0 28px; }
   .inv-row { grid-template-columns: 1fr; }
