@@ -21,20 +21,24 @@ hideFromHome: false
   Comments like this one never appear on the site.
 -->
 
-Open with the moment the story started. What was the question, and what looked off?
+I just so happened upon a random post that piqued my interest on LinkedIn. I know LinkedIn! That's typically where office memes go to die.
 
-> [!quote]
-> The line you want readers to remember.
+It was a student, Steven Hainley, from Worcester Polytechnic Institute majoring in Cybersecurity with a minor in law. His post was compelling. He was showing off a simple yet ingenious BadUSB at a career fair that as soon as you plugged into any laptop in a flash it pulled up his resume and LinkedIn. 
 
-## What I found
+A BadUSB is a modified USB device that is flashed with malicious firmware. It looks like a normal USB thumbdrive but can act like a keyboard, network adapter or other interfaces. This allows for covert command injection but in Steven's case just displays his resume. 
 
-<!-- Drag screenshots into the note. Type the caption between the [ ] of the image link. -->
+![](LinkedIn-Post.png)
 
-> [!note]
-> Context, method, or a caveat.
+Nonetheless, it reminded me of the need to showcase your practical skills. In an era, where each job posting get on an average of 244 applications and 81% of recruiters spend under a minute on a resume.
 
-> [!disclosure]
-> Who was notified, when, and what they did.
+It's easy to hear people complain about the job market but rarely do you see people want to step out of the comfort zone of the resume. The one or two pages must summarize all our capabilities. A few lines of ink, a few bytes on your hard drive must encapsulate your proficiency at the job.
+
+That's why its a breath of fresh air when someone like Steven finds new ways to stand out. Not just doing what the other 243 applicants chose to do and send a two page pdf. 
+## Let's talk numbers
+
+
+
+
 
 ## What it means
 
